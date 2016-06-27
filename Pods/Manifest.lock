@@ -1,0 +1,22 @@
+PODS:
+  - CorePlot (2.1)
+  - MBProgressHUD (0.9.2)
+  - ReactiveCocoa (2.5):
+    - ReactiveCocoa/UI (= 2.5)
+  - ReactiveCocoa/Core (2.5):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.5)
+  - ReactiveCocoa/UI (2.5):
+    - ReactiveCocoa/Core
+
+DEPENDENCIES:
+  - CorePlot (~> 2.1)
+  - MBProgressHUD (~> 0.9.2)
+  - ReactiveCocoa (~> 2.5)
+
+SPEC CHECKSUMS:
+  CorePlot: ab9898c79b94999018e9634ab0aa4c21480c8552
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
+
+COCOAPODS: 0.39.0
