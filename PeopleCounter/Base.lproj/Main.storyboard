@@ -63,7 +63,13 @@
                             <outlet property="delegate" destination="16n-4k-i9j" id="W18-TR-L5z"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="人数统计客户端" id="4WF-qm-u4H"/>
+                    <navigationItem key="navigationItem" title="人数统计客户端" id="4WF-qm-u4H">
+                        <barButtonItem key="rightBarButtonItem" title="通知" id="0sy-Ar-vhT">
+                            <connections>
+                                <segue destination="rPM-uS-gvl" kind="push" id="ckh-zg-zs5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="hostView" destination="WlY-mo-rhd" id="Jc3-sJ-QPY"/>
                         <outlet property="tableView" destination="azf-Wn-Tvt" id="alw-4B-xU4"/>
@@ -107,7 +113,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lb0-Wr-Znj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="626" y="370"/>
+            <point key="canvasLocation" x="673" y="988"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zie-4U-wRq">
@@ -125,6 +131,114 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MjV-g7-t7D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-571" y="370"/>
+        </scene>
+        <!--Inform View Controller-->
+        <scene sceneID="86x-8G-I7A">
+            <objects>
+                <viewController id="rPM-uS-gvl" customClass="InformViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="H70-23-RMC"/>
+                        <viewControllerLayoutGuide type="bottom" id="MoG-AV-Zhs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eUa-mX-aQF" customClass="UIControl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="DWV-Hb-4ux">
+                                <rect key="frame" x="20" y="64" width="374" height="672"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请输入文本（中文）：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GQV-t2-5Zi">
+                                        <rect key="frame" x="0.0" y="0.0" width="170" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QEa-GP-wG1">
+                                        <rect key="frame" x="0.0" y="31" width="374" height="219"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fEA-GT-vnu">
+                                        <rect key="frame" x="0.0" y="260" width="119" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="egn-dp-ERh"/>
+                                        </constraints>
+                                        <state key="normal" title="翻译"/>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="将要发送的信息（英文）：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rTE-du-jye">
+                                        <rect key="frame" x="0.0" y="306" width="221" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="221" id="wIf-SS-Cat"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gFN-7A-T32">
+                                        <rect key="frame" x="0.0" y="337" width="374" height="218"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" spellCheckingType="yes"/>
+                                    </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名（英文）：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7e9-go-EAP">
+                                        <rect key="frame" x="0.0" y="565" width="119" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g10-0G-Sl6">
+                                        <rect key="frame" x="0.0" y="596" width="119" height="30"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="y4F-Qw-Dzc"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hB0-hg-NoI">
+                                        <rect key="frame" x="0.0" y="636" width="119" height="36"/>
+                                        <state key="normal" title="发送"/>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="QEa-GP-wG1" firstAttribute="leading" secondItem="DWV-Hb-4ux" secondAttribute="leading" id="3We-0Z-krQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="QEa-GP-wG1" secondAttribute="trailing" id="D6V-hV-NCk"/>
+                                    <constraint firstItem="7e9-go-EAP" firstAttribute="width" secondItem="g10-0G-Sl6" secondAttribute="width" id="PTj-ea-xKC"/>
+                                    <constraint firstItem="g10-0G-Sl6" firstAttribute="width" secondItem="hB0-hg-NoI" secondAttribute="width" id="ST6-Q0-x4R"/>
+                                    <constraint firstItem="7e9-go-EAP" firstAttribute="width" secondItem="fEA-GT-vnu" secondAttribute="width" id="Voh-MP-PLB"/>
+                                    <constraint firstItem="gFN-7A-T32" firstAttribute="height" secondItem="QEa-GP-wG1" secondAttribute="height" id="jij-PS-8nf"/>
+                                    <constraint firstItem="fEA-GT-vnu" firstAttribute="height" secondItem="hB0-hg-NoI" secondAttribute="height" id="rxB-xq-2cW"/>
+                                    <constraint firstItem="QEa-GP-wG1" firstAttribute="width" secondItem="gFN-7A-T32" secondAttribute="width" id="wik-jC-0e2"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DWV-Hb-4ux" firstAttribute="top" secondItem="H70-23-RMC" secondAttribute="bottom" id="8sd-tV-TnG"/>
+                            <constraint firstItem="DWV-Hb-4ux" firstAttribute="trailing" secondItem="eUa-mX-aQF" secondAttribute="trailingMargin" id="IDH-L3-LQo"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="DWV-Hb-4ux" secondAttribute="bottom" id="Lvy-5F-C1B"/>
+                            <constraint firstItem="DWV-Hb-4ux" firstAttribute="leading" secondItem="eUa-mX-aQF" secondAttribute="leadingMargin" id="qXB-nJ-Hbt"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="nKA-RF-pRH"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="buttonConstraint" destination="Lvy-5F-C1B" id="Ril-BF-DwE"/>
+                        <outlet property="inputTextField" destination="QEa-GP-wG1" id="9MJ-Ye-NHN"/>
+                        <outlet property="nameTextField" destination="g10-0G-Sl6" id="01h-pe-eO8"/>
+                        <outlet property="sendBtn" destination="hB0-hg-NoI" id="84T-tg-Bjf"/>
+                        <outlet property="stackView" destination="DWV-Hb-4ux" id="lCg-M6-O27"/>
+                        <outlet property="transBtn" destination="fEA-GT-vnu" id="Wz5-RQ-eoz"/>
+                        <outlet property="transTextField" destination="gFN-7A-T32" id="dIN-H1-Cgf"/>
+                        <outlet property="viewControl" destination="eUa-mX-aQF" id="d8n-0G-IeL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sfw-kl-uNe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="673" y="90"/>
         </scene>
     </scenes>
 </document>

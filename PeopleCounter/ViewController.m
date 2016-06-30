@@ -13,6 +13,7 @@
 #import "TableViewModel.h"
 #import "GlobalHeader.h"
 #import "PlotViewModel.h"
+#import "InformViewController.h"
 
 @interface ViewController ()
 
@@ -80,9 +81,13 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-    ImageViewController *imgVc = segue.destinationViewController;
-    [imgVc setUuid:_datasArray[indexPath.row].imgUuid];
+    if ([sender class] == [UIBarButtonItem class]) {
+        InformViewController *informVc = segue.destinationViewController;
+    } else {
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        ImageViewController *imgVc = segue.destinationViewController;
+        [imgVc setUuid:_datasArray[indexPath.row].imgUuid];
+    } 
     
 }
 

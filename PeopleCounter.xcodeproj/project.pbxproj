@@ -17,6 +17,8 @@
 		54097E0E1D17C56A0047ED36 /* CellDatas.m in Sources */ = {isa = PBXBuildFile; fileRef = 54097E0D1D17C56A0047ED36 /* CellDatas.m */; };
 		54097E111D180C5D0047ED36 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54097E101D180C5D0047ED36 /* ImageViewController.m */; };
 		54832B6D1D21498800192ECB /* PlotViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 54832B6C1D21498800192ECB /* PlotViewModel.m */; };
+		54832B8E1D23F71800192ECB /* InformViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54832B8D1D23F71800192ECB /* InformViewController.m */; };
+		54832B931D23FF3800192ECB /* InformViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 54832B921D23FF3800192ECB /* InformViewModel.m */; };
 		54ABDEE51D18312D00D2F93D /* TableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 54ABDEE41D18312D00D2F93D /* TableViewModel.m */; };
 		54ABDEE91D18ECA200D2F93D /* ImageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 54ABDEE81D18ECA200D2F93D /* ImageViewModel.m */; };
 		6953AB42EEBD6F3D4771B6B5 /* Pods_PeopleCounter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3E9E5AA8D6758C208940D8 /* Pods_PeopleCounter.framework */; };
@@ -43,6 +45,10 @@
 		54097E101D180C5D0047ED36 /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
 		54832B6B1D21498800192ECB /* PlotViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlotViewModel.h; sourceTree = "<group>"; };
 		54832B6C1D21498800192ECB /* PlotViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlotViewModel.m; sourceTree = "<group>"; };
+		54832B8C1D23F71800192ECB /* InformViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformViewController.h; sourceTree = "<group>"; };
+		54832B8D1D23F71800192ECB /* InformViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformViewController.m; sourceTree = "<group>"; };
+		54832B911D23FF3800192ECB /* InformViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformViewModel.h; sourceTree = "<group>"; };
+		54832B921D23FF3800192ECB /* InformViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformViewModel.m; sourceTree = "<group>"; };
 		54ABDEE31D18312D00D2F93D /* TableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewModel.h; sourceTree = "<group>"; };
 		54ABDEE41D18312D00D2F93D /* TableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewModel.m; sourceTree = "<group>"; };
 		54ABDEE61D1831EF00D2F93D /* GlobalHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalHeader.h; sourceTree = "<group>"; };
@@ -121,6 +127,8 @@
 			children = (
 				54097DF51D1782BC0047ED36 /* ViewController.h */,
 				54097DF61D1782BC0047ED36 /* ViewController.m */,
+				54832B8C1D23F71800192ECB /* InformViewController.h */,
+				54832B8D1D23F71800192ECB /* InformViewController.m */,
 				54097E0F1D180C5D0047ED36 /* ImageViewController.h */,
 				54097E101D180C5D0047ED36 /* ImageViewController.m */,
 				54097E061D178A2B0047ED36 /* DateCell.h */,
@@ -138,6 +146,8 @@
 				54ABDEE41D18312D00D2F93D /* TableViewModel.m */,
 				54832B6B1D21498800192ECB /* PlotViewModel.h */,
 				54832B6C1D21498800192ECB /* PlotViewModel.m */,
+				54832B911D23FF3800192ECB /* InformViewModel.h */,
+				54832B921D23FF3800192ECB /* InformViewModel.m */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -281,6 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54832B931D23FF3800192ECB /* InformViewModel.m in Sources */,
 				54097E111D180C5D0047ED36 /* ImageViewController.m in Sources */,
 				54097DF71D1782BC0047ED36 /* ViewController.m in Sources */,
 				54ABDEE91D18ECA200D2F93D /* ImageViewModel.m in Sources */,
@@ -290,6 +301,7 @@
 				54097DF41D1782BC0047ED36 /* AppDelegate.m in Sources */,
 				54097DF11D1782BC0047ED36 /* main.m in Sources */,
 				54097E081D178A2B0047ED36 /* DateCell.m in Sources */,
+				54832B8E1D23F71800192ECB /* InformViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
