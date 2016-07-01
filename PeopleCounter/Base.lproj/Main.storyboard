@@ -64,7 +64,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="人数统计客户端" id="4WF-qm-u4H">
-                        <barButtonItem key="rightBarButtonItem" title="通知" id="0sy-Ar-vhT">
+                        <barButtonItem key="rightBarButtonItem" title="留言板" id="0sy-Ar-vhT">
                             <connections>
                                 <segue destination="rPM-uS-gvl" kind="push" id="ckh-zg-zs5"/>
                             </connections>
