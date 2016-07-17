@@ -36,9 +36,9 @@
             return @(value.length != 0);
         }];
         
-        RAC(self.sendBtn,enabled) = [RACSignal combineLatest:@[RACObserve(self.transTextField, text),self.nameTextField.rac_textSignal] reduce:^id(NSString *str1,NSString *str2){
+        RAC(self.sendBtn,enabled) = [RACSignal combineLatest:@[RACObserve(self.transTextField, text),self.nameTextField.rac_textSignal,self.transTextField.rac_textSignal] reduce:^id(NSString *str1,NSString *str2,NSString *str3){
   
-            return @(str1.length != 0 && str2.length != 0);
+            return @((str1.length != 0 || str3.length != 0) && str2.length != 0);
         }];
         
 //        当键盘出现的时候，调整布局，便于输入文字

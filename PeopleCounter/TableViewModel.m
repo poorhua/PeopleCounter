@@ -114,8 +114,8 @@
     NSString *endData = [NSString stringWithFormat:@"%ld-%@-%@T%@:%@:%@",(long)year,month,day,hour1,minute,second];
     NSString *startData = [NSString stringWithFormat:@"%ld-%@-%@T%@:%@:%@",(long)year,month,day,hour2,minute,second];
 #else
-    NSString *endData = [NSString stringWithFormat:@"%ld-%@-23T11:45:00",(long)year,month];
-    NSString *startData = [NSString stringWithFormat:@"%ld-%@-23T11:00:00",(long)year,month];
+    NSString *endData = [NSString stringWithFormat:@"%ld-06-23T11:45:00",(long)year];
+    NSString *startData = [NSString stringWithFormat:@"%ld-06-23T11:00:00",(long)year];
 #endif
     
     NSString *str = [NSString stringWithFormat:@"http://api.heclouds.com/devices/1100353/datapoints? datastream_id=001 2&start=%@&end=%@",startData,endData];

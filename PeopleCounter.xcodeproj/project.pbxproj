@@ -16,6 +16,7 @@
 		54097E081D178A2B0047ED36 /* DateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 54097E071D178A2B0047ED36 /* DateCell.m */; };
 		54097E0E1D17C56A0047ED36 /* CellDatas.m in Sources */ = {isa = PBXBuildFile; fileRef = 54097E0D1D17C56A0047ED36 /* CellDatas.m */; };
 		54097E111D180C5D0047ED36 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54097E101D180C5D0047ED36 /* ImageViewController.m */; };
+		544C44741D2E8B6B00A638C5 /* UIImage+Bitmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 544C44731D2E8B6B00A638C5 /* UIImage+Bitmap.m */; };
 		54832B6D1D21498800192ECB /* PlotViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 54832B6C1D21498800192ECB /* PlotViewModel.m */; };
 		54832B8E1D23F71800192ECB /* InformViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54832B8D1D23F71800192ECB /* InformViewController.m */; };
 		54832B931D23FF3800192ECB /* InformViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 54832B921D23FF3800192ECB /* InformViewModel.m */; };
@@ -43,6 +44,8 @@
 		54097E0D1D17C56A0047ED36 /* CellDatas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellDatas.m; sourceTree = "<group>"; };
 		54097E0F1D180C5D0047ED36 /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
 		54097E101D180C5D0047ED36 /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
+		544C44721D2E8B6B00A638C5 /* UIImage+Bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Bitmap.h"; sourceTree = "<group>"; };
+		544C44731D2E8B6B00A638C5 /* UIImage+Bitmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Bitmap.m"; sourceTree = "<group>"; };
 		54832B6B1D21498800192ECB /* PlotViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlotViewModel.h; sourceTree = "<group>"; };
 		54832B6C1D21498800192ECB /* PlotViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlotViewModel.m; sourceTree = "<group>"; };
 		54832B8C1D23F71800192ECB /* InformViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformViewController.h; sourceTree = "<group>"; };
@@ -108,6 +111,8 @@
 		54097DEF1D1782BC0047ED36 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				544C44721D2E8B6B00A638C5 /* UIImage+Bitmap.h */,
+				544C44731D2E8B6B00A638C5 /* UIImage+Bitmap.m */,
 				54097DF01D1782BC0047ED36 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -295,6 +300,7 @@
 				54097E111D180C5D0047ED36 /* ImageViewController.m in Sources */,
 				54097DF71D1782BC0047ED36 /* ViewController.m in Sources */,
 				54ABDEE91D18ECA200D2F93D /* ImageViewModel.m in Sources */,
+				544C44741D2E8B6B00A638C5 /* UIImage+Bitmap.m in Sources */,
 				54ABDEE51D18312D00D2F93D /* TableViewModel.m in Sources */,
 				54097E0E1D17C56A0047ED36 /* CellDatas.m in Sources */,
 				54832B6D1D21498800192ECB /* PlotViewModel.m in Sources */,
