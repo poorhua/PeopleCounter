@@ -152,17 +152,4 @@
     return request;
 }
 
-#pragma mark - tableView DateSourse
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [_dataArray count];
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    DateCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    [cell setData:_dataArray[indexPath.row]];
-    return cell;
-}
-
 @end

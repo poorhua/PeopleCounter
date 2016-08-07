@@ -16,6 +16,10 @@
 		54097E081D178A2B0047ED36 /* DateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 54097E071D178A2B0047ED36 /* DateCell.m */; };
 		54097E0E1D17C56A0047ED36 /* CellDatas.m in Sources */ = {isa = PBXBuildFile; fileRef = 54097E0D1D17C56A0047ED36 /* CellDatas.m */; };
 		54097E111D180C5D0047ED36 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54097E101D180C5D0047ED36 /* ImageViewController.m */; };
+		542222AD1D561A880063AAD1 /* ACMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 542222AC1D561A880063AAD1 /* ACMainViewController.m */; };
+		542222AF1D561AB50063AAD1 /* ACMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 542222AE1D561AB50063AAD1 /* ACMainView.xib */; };
+		542222B21D5620220063AAD1 /* ACButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 542222B11D5620220063AAD1 /* ACButtonView.m */; };
+		542222B41D5620330063AAD1 /* ACButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 542222B31D5620330063AAD1 /* ACButtonView.xib */; };
 		544C44741D2E8B6B00A638C5 /* UIImage+Bitmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 544C44731D2E8B6B00A638C5 /* UIImage+Bitmap.m */; };
 		54832B6D1D21498800192ECB /* PlotViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 54832B6C1D21498800192ECB /* PlotViewModel.m */; };
 		54832B8E1D23F71800192ECB /* InformViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54832B8D1D23F71800192ECB /* InformViewController.m */; };
@@ -44,6 +48,12 @@
 		54097E0D1D17C56A0047ED36 /* CellDatas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellDatas.m; sourceTree = "<group>"; };
 		54097E0F1D180C5D0047ED36 /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
 		54097E101D180C5D0047ED36 /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
+		542222AB1D561A880063AAD1 /* ACMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACMainViewController.h; sourceTree = "<group>"; };
+		542222AC1D561A880063AAD1 /* ACMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACMainViewController.m; sourceTree = "<group>"; };
+		542222AE1D561AB50063AAD1 /* ACMainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACMainView.xib; sourceTree = "<group>"; };
+		542222B01D5620220063AAD1 /* ACButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACButtonView.h; sourceTree = "<group>"; };
+		542222B11D5620220063AAD1 /* ACButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACButtonView.m; sourceTree = "<group>"; };
+		542222B31D5620330063AAD1 /* ACButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACButtonView.xib; sourceTree = "<group>"; };
 		544C44721D2E8B6B00A638C5 /* UIImage+Bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Bitmap.h"; sourceTree = "<group>"; };
 		544C44731D2E8B6B00A638C5 /* UIImage+Bitmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Bitmap.m"; sourceTree = "<group>"; };
 		54832B6B1D21498800192ECB /* PlotViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlotViewModel.h; sourceTree = "<group>"; };
@@ -138,6 +148,12 @@
 				54097E101D180C5D0047ED36 /* ImageViewController.m */,
 				54097E061D178A2B0047ED36 /* DateCell.h */,
 				54097E071D178A2B0047ED36 /* DateCell.m */,
+				542222B01D5620220063AAD1 /* ACButtonView.h */,
+				542222B11D5620220063AAD1 /* ACButtonView.m */,
+				542222B31D5620330063AAD1 /* ACButtonView.xib */,
+				542222AB1D561A880063AAD1 /* ACMainViewController.h */,
+				542222AC1D561A880063AAD1 /* ACMainViewController.m */,
+				542222AE1D561AB50063AAD1 /* ACMainView.xib */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -237,7 +253,9 @@
 			files = (
 				54097DFF1D1782BC0047ED36 /* LaunchScreen.storyboard in Resources */,
 				54097DFC1D1782BC0047ED36 /* Assets.xcassets in Resources */,
+				542222B41D5620330063AAD1 /* ACButtonView.xib in Resources */,
 				54097DFA1D1782BC0047ED36 /* Main.storyboard in Resources */,
+				542222AF1D561AB50063AAD1 /* ACMainView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,10 +321,12 @@
 				544C44741D2E8B6B00A638C5 /* UIImage+Bitmap.m in Sources */,
 				54ABDEE51D18312D00D2F93D /* TableViewModel.m in Sources */,
 				54097E0E1D17C56A0047ED36 /* CellDatas.m in Sources */,
+				542222AD1D561A880063AAD1 /* ACMainViewController.m in Sources */,
 				54832B6D1D21498800192ECB /* PlotViewModel.m in Sources */,
 				54097DF41D1782BC0047ED36 /* AppDelegate.m in Sources */,
 				54097DF11D1782BC0047ED36 /* main.m in Sources */,
 				54097E081D178A2B0047ED36 /* DateCell.m in Sources */,
+				542222B21D5620220063AAD1 /* ACButtonView.m in Sources */,
 				54832B8E1D23F71800192ECB /* InformViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -120,6 +120,8 @@ CGFloat currentScale;
     
     CGFloat cscale = 1.0 - (_lastScale - scale);
     _imageView.transform = CGAffineTransformScale(_imageView.transform, cscale, cscale);
+    
+//    _imageView.layer.transform = CATransform3DMakeScale(cscale, cscale, 0);
     _lastScale = scale;
 }
 

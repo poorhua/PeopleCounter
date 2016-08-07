@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ACMainViewController.h"
 
 @interface AppDelegate ()
 
@@ -14,32 +15,43 @@
 
 @implementation AppDelegate
 
--(void)makeUpUI
-{
-    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
-    
-    UITabBarController *tab = [[UITabBarController alloc] init];
-    
-    void(^addVc)(NSString *) = ^(NSString *storyboard) {
-        UIStoryboard *sb = [UIStoryboard storyboardWithName:storyboard bundle:nil];
-        UIViewController *cv = sb.instantiateInitialViewController;
-        
-        NSLog(@"%@",cv.class);
-        
-        [tab addChildViewController:cv];
-    };
-    
-    addVc(@"Main");
-    addVc(@"InformStoryboard");
-    
-    self.window.rootViewController = tab;
-}
+//-(void)makeUpUI
+//{
+//    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+//    self.window.backgroundColor = [UIColor whiteColor];
+//    [self.window makeKeyAndVisible];
+//    
+//    UITabBarController *tab = [[UITabBarController alloc] init];
+//    
+//    void(^addVc)(NSString *) = ^(NSString *storyboard) {
+//        UIStoryboard *sb = [UIStoryboard storyboardWithName:storyboard bundle:nil];
+//        UIViewController *cv = sb.instantiateInitialViewController;
+//        
+//        NSLog(@"%@",cv.class);
+//        
+//        [tab addChildViewController:cv];
+//    };
+//    
+//    addVc(@"Main");
+//    addVc(@"InformStoryboard");
+//    
+//    self.window.rootViewController = tab;
+//}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 //    [self makeUpUI];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    
+    ACMainViewController *mainVc = [[ACMainViewController alloc] initWithNibName:@"ACMainView" bundle:nil];
+//    mainVc.navigationItem.title = @"PeopleCounter";
+    
+    UINavigationController *naviController = [[UINavigationController alloc] initWithRootViewController:mainVc];
+    
+    self.window.rootViewController = naviController;
+    
+    [self.window makeKeyAndVisible];
     
     return YES;
 }
