@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "GlobalHeader.h"
 
-@class CellDatas;
+@class PlotDatas;
+
 
 @interface PlotViewModel : NSObject<CPTAxisDelegate,CPTPlotDataSource>
 
--(CPTXYGraph *)createGraphWith:(NSMutableArray<CellDatas *> *)array;
+-(CPTXYGraph *)createGraphWith:(NSMutableArray<PlotDatas *> *)array inStyle:(ACSeekType)style;
 
 @end

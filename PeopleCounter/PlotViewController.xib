@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlotViewController">
+            <connections>
+                <outlet property="dataLab" destination="Aa7-AG-68Y" id="x5a-PT-6jW"/>
+                <outlet property="graphView" destination="bcC-5t-8FV" id="MMd-im-dPs"/>
+                <outlet property="titleLab" destination="VqE-3y-yDl" id="Q0Z-EH-xJ6"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="widConstraints" destination="VHu-9P-MZu" id="ser-bO-0lJ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bcC-5t-8FV" customClass="CPTGraphHostingView">
+                    <rect key="frame" x="0.0" y="200" width="375" height="467"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="375" id="VHu-9P-MZu"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VqE-3y-yDl">
+                    <rect key="frame" x="8" y="8" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aa7-AG-68Y">
+                    <rect key="frame" x="93" y="84" width="189" height="96"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="80"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="Aa7-AG-68Y" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="0tN-bc-vVm"/>
+                <constraint firstItem="bcC-5t-8FV" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="8kA-NZ-TPr"/>
+                <constraint firstItem="bcC-5t-8FV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="200" id="FOI-aM-qem"/>
+                <constraint firstItem="bcC-5t-8FV" firstAttribute="top" secondItem="Aa7-AG-68Y" secondAttribute="bottom" constant="20" id="pde-Jt-FQm"/>
+                <constraint firstItem="VqE-3y-yDl" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="pit-6r-0We"/>
+                <constraint firstItem="VqE-3y-yDl" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="qcZ-Nw-E5Y"/>
+                <constraint firstAttribute="bottom" secondItem="bcC-5t-8FV" secondAttribute="bottom" id="xNb-ef-goR"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+        </view>
+    </objects>
+</document>

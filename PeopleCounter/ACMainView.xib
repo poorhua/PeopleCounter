@@ -46,30 +46,36 @@
                 <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HR9-tE-WBD">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEg-hU-jMN">
-                            <rect key="frame" x="154" y="421" width="66" height="66"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEg-hU-jMN" customClass="ACCostonBtn">
+                            <rect key="frame" x="154" y="405" width="66" height="82"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="66" id="PsT-UT-obk"/>
+                                <constraint firstAttribute="height" constant="82" id="S7H-oG-T2p"/>
                             </constraints>
-                            <state key="normal" title="Button" image="Rain"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <state key="normal" title="湿度" image="Rain"/>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VvU-3V-Tak">
-                            <rect key="frame" x="52" y="504" width="66" height="66"/>
-                            <state key="normal" title="Button" image="Newsvine"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VvU-3V-Tak" customClass="ACCostonBtn">
+                            <rect key="frame" x="52" y="504" width="66" height="82"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <state key="normal" title="空气质量" image="Newsvine"/>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Yz-Hz-nSn">
-                            <rect key="frame" x="256" y="504" width="66" height="66"/>
-                            <state key="normal" title="Button" image="Sun"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Yz-Hz-nSn" customClass="ACCostonBtn">
+                            <rect key="frame" x="256" y="504" width="66" height="82"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <state key="normal" title="温度" image="Sun"/>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="PEg-hU-jMN" secondAttribute="bottom" constant="180" id="0DH-FA-TRn"/>
+                        <constraint firstItem="9Yz-Hz-nSn" firstAttribute="height" secondItem="PEg-hU-jMN" secondAttribute="height" id="3ai-u7-dlr"/>
                         <constraint firstItem="9Yz-Hz-nSn" firstAttribute="top" secondItem="PEg-hU-jMN" secondAttribute="bottom" constant="17" id="3wa-kc-iow"/>
                         <constraint firstItem="9Yz-Hz-nSn" firstAttribute="width" secondItem="PEg-hU-jMN" secondAttribute="width" id="B5T-5v-Q59"/>
                         <constraint firstItem="9Yz-Hz-nSn" firstAttribute="leading" secondItem="PEg-hU-jMN" secondAttribute="trailing" constant="36" id="BFr-Av-CUM"/>
                         <constraint firstItem="VvU-3V-Tak" firstAttribute="width" secondItem="PEg-hU-jMN" secondAttribute="width" id="BI3-Ze-cRb"/>
                         <constraint firstItem="PEg-hU-jMN" firstAttribute="leading" secondItem="VvU-3V-Tak" secondAttribute="trailing" constant="36" id="Wq4-H8-UDf"/>
+                        <constraint firstItem="VvU-3V-Tak" firstAttribute="height" secondItem="PEg-hU-jMN" secondAttribute="height" id="iQT-Lu-qKl"/>
                         <constraint firstItem="PEg-hU-jMN" firstAttribute="centerX" secondItem="HR9-tE-WBD" secondAttribute="centerX" id="qlu-xM-Whk"/>
                         <constraint firstItem="VvU-3V-Tak" firstAttribute="top" secondItem="PEg-hU-jMN" secondAttribute="bottom" constant="17" id="uLj-Ux-pYS"/>
                     </constraints>

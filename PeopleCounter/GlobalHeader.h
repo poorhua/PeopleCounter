@@ -12,7 +12,7 @@
 #import "CorePlot.h"
 
 //#define TRUEDATE
-#define PADDINGLENTH 10
+#define PADDINGLENTH 2
 #define APIKEY @"BMoXY9INkS=l0Iiow=Zo4bqjqLE= "
 
 #ifndef GlobalHeader_h
@@ -20,3 +20,9 @@
 
 
 #endif /* GlobalHeader_h */
+
+typedef NS_ENUM(NSInteger, ACSeekType) {
+    SeekHuman,
+    SeekAir,
+    SeekTemp
+};

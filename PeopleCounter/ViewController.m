@@ -20,8 +20,8 @@
 @property(nonatomic,strong) NSMutableArray<CellDatas *> *datasArray;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) TableViewModel *tableVM;
-@property (weak, nonatomic) IBOutlet CPTGraphHostingView *hostView;
-@property(nonatomic,strong) PlotViewModel *plotVM;
+//@property (weak, nonatomic) IBOutlet CPTGraphHostingView *hostView;
+//@property(nonatomic,strong) PlotViewModel *plotVM;
 @end
 
 @implementation ViewController
@@ -44,13 +44,13 @@
     return _datasArray;
 }
 
--(PlotViewModel *)plotVM
-{
-    if (_plotVM == nil) {
-        _plotVM = [[PlotViewModel alloc] init];
-    }
-    return _plotVM;
-}
+//-(PlotViewModel *)plotVM
+//{
+//    if (_plotVM == nil) {
+//        _plotVM = [[PlotViewModel alloc] init];
+//    }
+//    return _plotVM;
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -65,11 +65,11 @@
     [sig subscribeNext:^(NSMutableArray *x) {
         _datasArray = x;
         
-        [[RACScheduler mainThreadScheduler] afterDelay:0.1 schedule:^{
-            
-            self.hostView.hostedGraph = [self.plotVM createGraphWith:_datasArray];
-            
-        }];
+//        [[RACScheduler mainThreadScheduler] afterDelay:0.1 schedule:^{
+//            
+//            self.hostView.hostedGraph = [self.plotVM createGraphWith:_datasArray inStyle:];
+//            
+//        }];
     }];
     
 }
