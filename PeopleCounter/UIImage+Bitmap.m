@@ -43,8 +43,10 @@
     CGImageRef imageRef = CGImageCreateWithImageInRect(srcImage, rect);
     // 将“挖取”出来的CGImageRef转换为UIImage对象
     UIImage* subImage = [UIImage imageWithCGImage: imageRef];
-    CGImageRelease(srcImage);
-    CGImageRelease(imageRef);
+//    CGImageRelease(srcImage);
+    CFRelease(srcImage);
+//    CGImageRelease(imageRef);
+    CFRelease(imageRef);
     return subImage;
 }
 - (UIImage *)imageByScalingAspectToMinSize:(CGSize)targetSize

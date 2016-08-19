@@ -98,6 +98,8 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
+    
     self.titleLab.alpha = 0;
     self.dataLab.alpha = 0;
     self.graphView.alpha = 0;

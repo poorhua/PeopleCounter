@@ -10,7 +10,7 @@
 #import "GlobalHeader.h"
 #import <UIKit/UIKit.h>
 
-@interface TableViewModel : NSObject<UITableViewDataSource,UITableViewDelegate,NSURLConnectionDataDelegate>
+@interface TableViewModel : NSObject<NSURLConnectionDataDelegate>
 
 @property(nonatomic,strong,nonnull) RACCommand *httpCommand;
 @property(nonatomic,strong,nonnull) UITableView *tableView;

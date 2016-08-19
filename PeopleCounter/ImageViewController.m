@@ -10,7 +10,7 @@
 #import "ImageViewModel.h"
 
 @interface ImageViewController()
-@property (weak, nonatomic) IBOutlet UIImageView *imgView;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic,strong) ImageViewModel *imageVM;
 @end
 
@@ -29,10 +29,10 @@
 {
     [super viewDidLoad];
     
-    self.imageVM.imageView = self.imgView;
+    self.imageVM.scrollView = self.scrollView;
     self.imageVM.view = self.view;
     
-    RACSignal *sig = [self.imageVM.imageLoadCommand execute:nil];
+     RACSignal *sig = [self.imageVM.imageLoadCommand execute:nil];
     
     [sig subscribeNext:^(UIImage* x) {
 //        self.imgView.image = x;

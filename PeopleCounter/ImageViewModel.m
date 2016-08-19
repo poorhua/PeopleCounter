@@ -12,7 +12,8 @@
 @interface ImageViewModel()
 
 @property(nonatomic,strong) UIImage *image;
-@property(nonatomic,assign) CGFloat lastScale;
+@property(nonatomic,strong) UIImageView *imgView;
+//@property(nonatomic,assign) CGFloat lastScale;
 @end
 
 @implementation ImageViewModel
@@ -29,32 +30,36 @@ CGFloat currentScale;
 
 -(void)bindEvents
 {
-    
     _imageLoadCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         
-//        添加捏合手势
-        UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pichEvents:)];
-        self.imageView.userInteractionEnabled = YES;
-        self.imageView.multipleTouchEnabled = YES;
-        _lastScale = 1.0;
-        [self.imageView addGestureRecognizer:pinchGesture];
-        
         RACSignal *requestSig = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-           
-            NSMutableURLRequest *request = [self makeUpURLConnection];
             
-            [[NSURLConnection rac_sendAsynchronousRequest:request] subscribeNext:^(RACTuple* x) {
-                RACTupleUnpack(NSHTTPURLResponse *response,NSData *data) = x;
-                
-                //NSInteger statusCode = response.statusCode;
-                
-                UIImage *image = [UIImage imageWithData:data];
-                
-                _image = image;
-                
-                [subscriber sendNext:image];
-                [subscriber sendCompleted];
-            }];
+            NSString *filePath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSLocalDomainMask, YES)[0];
+            filePath = [filePath stringByAppendingPathComponent:self.uuid];
+            
+            NSData *imgData = [NSData dataWithContentsOfFile:filePath];
+            if (imgData == nil) {
+                NSMutableURLRequest *request = [self makeUpURLConnection];
+            
+                [[NSURLConnection rac_sendAsynchronousRequest:request] subscribeNext:^(RACTuple* x) {
+                    RACTupleUnpack(NSHTTPURLResponse *response,NSData *data) = x;
+                    
+                    //NSInteger statusCode = response.statusCode;
+                    
+                    [data writeToFile:filePath atomically:YES];
+                    
+                    _image = [UIImage imageWithData:data];
+                    
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        self.imgView.image = _image;
+                    });
+                }];
+            }else{
+                _image = [UIImage imageWithData:imgData];
+            }
+           
+            [subscriber sendNext:_image];
+            [subscriber sendCompleted];
             
             return nil;
         }];
@@ -72,7 +77,24 @@ CGFloat currentScale;
         }else
         {
             NSLog(@"done!");
-            self.imageView.image = [self transImage:_image];
+            
+            //设置图片显示，Scrollview的代理
+            _imgView = [[UIImageView alloc] initWithFrame:self.scrollView.bounds];
+            [_imgView setContentMode:UIViewContentModeScaleAspectFit];
+            
+            _imgView.image = _image;
+            
+            [self.scrollView addSubview:_imgView];
+            self.scrollView.delegate =self;
+            
+            CGFloat imgWid = self.imgView.image.size.width;
+            CGFloat imgHei = self.imgView.image.size.height;
+            CGFloat actrueWid = [UIScreen mainScreen].bounds.size.width;
+            
+            self.scrollView.contentSize = CGSizeMake(actrueWid,imgHei * actrueWid/imgWid);
+            self.scrollView.maximumZoomScale = 2.0;
+            self.scrollView.minimumZoomScale = 1;
+            
             
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         }
@@ -93,36 +115,6 @@ CGFloat currentScale;
     [request setValue:APIKEY forHTTPHeaderField:@"api-key"];
     
     return request;
-}
-
--(void)pichEvents:(UIPinchGestureRecognizer *)gesture
-{
-    CGFloat scale = gesture.scale;
-    
-    NSLog(@"%f",scale);
-
-//    UIGraphicsBeginImageContext(_imageView.bounds.size);
-//    
-//    [_imageView.image drawInRect:_imageView.bounds];
-//    
-//    CGContextRef cxt = UIGraphicsGetCurrentContext();
-//    
-//    CGContextScaleCTM(cxt,0.001,0.001);
-//    
-//    _imageView.image = UIGraphicsGetImageFromCurrentImageContext();
-//    
-//    UIGraphicsEndImageContext();
-
-    if(gesture.state == UIGestureRecognizerStateEnded) {
-        _lastScale = 1.0;
-        return;
-    }
-    
-    CGFloat cscale = 1.0 - (_lastScale - scale);
-    _imageView.transform = CGAffineTransformScale(_imageView.transform, cscale, cscale);
-    
-//    _imageView.layer.transform = CATransform3DMakeScale(cscale, cscale, 0);
-    _lastScale = scale;
 }
 
 - (UIImage *)transImage:(UIImage *)image//图片转换成小图
@@ -147,6 +139,12 @@ CGFloat currentScale;
     [image drawInRect:projectRect];
     UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
     return smallImage;
+}
+
+#pragma mark - UIScrollViewDelegate
+-(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return _imgView;
 }
 
 @end

@@ -125,16 +125,19 @@
 			children = (
 				54097DF21D1782BC0047ED36 /* AppDelegate.h */,
 				54097DF31D1782BC0047ED36 /* AppDelegate.m */,
+				544C44721D2E8B6B00A638C5 /* UIImage+Bitmap.h */,
+				544C44731D2E8B6B00A638C5 /* UIImage+Bitmap.m */,
 				54ABDEE61D1831EF00D2F93D /* GlobalHeader.h */,
-				542222BB1D56E1630063AAD1 /* Invalid */,
-				54ABDEEA1D19065B00D2F93D /* ViewModel */,
-				54ABDEE21D18217200D2F93D /* ViewController */,
-				54ABDEE11D18214200D2F93D /* Model */,
+				542886CE1D66CF2C00557784 /* ImageVc */,
+				542886CB1D66CEFB00557784 /* InformVc */,
+				542886C81D66CE4900557784 /* PlotVc */,
+				542886C41D66CD8B00557784 /* MainVc */,
 				54097DF81D1782BC0047ED36 /* Main.storyboard */,
 				54097DFB1D1782BC0047ED36 /* Assets.xcassets */,
 				54097DFD1D1782BC0047ED36 /* LaunchScreen.storyboard */,
 				54097E001D1782BC0047ED36 /* Info.plist */,
 				54097DEF1D1782BC0047ED36 /* Supporting Files */,
+				542222BB1D56E1630063AAD1 /* Invalid */,
 			);
 			path = PeopleCounter;
 			sourceTree = "<group>";
@@ -142,8 +145,6 @@
 		54097DEF1D1782BC0047ED36 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				544C44721D2E8B6B00A638C5 /* UIImage+Bitmap.h */,
-				544C44731D2E8B6B00A638C5 /* UIImage+Bitmap.m */,
 				54097DF01D1782BC0047ED36 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -160,18 +161,7 @@
 			name = Invalid;
 			sourceTree = "<group>";
 		};
-		54ABDEE11D18214200D2F93D /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				54097E0C1D17C56A0047ED36 /* CellDatas.h */,
-				54097E0D1D17C56A0047ED36 /* CellDatas.m */,
-				542222CA1D57045F0063AAD1 /* PlotDatas.h */,
-				542222CB1D57045F0063AAD1 /* PlotDatas.m */,
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
-		54ABDEE21D18217200D2F93D /* ViewController */ = {
+		542886C31D66A07300557784 /* Transition */ = {
 			isa = PBXGroup;
 			children = (
 				542222BC1D56E3060063AAD1 /* LayoutAnimate.h */,
@@ -180,13 +170,24 @@
 				542222BF1D56E3060063AAD1 /* LayoutPresentationVC.m */,
 				542222C01D56E3060063AAD1 /* MDTransitionDelegate.h */,
 				542222C11D56E3060063AAD1 /* MDTransitionDelegate.m */,
-				542222C51D56E38A0063AAD1 /* PlotViewController.h */,
-				542222C61D56E38A0063AAD1 /* PlotViewController.m */,
-				542222C71D56E38A0063AAD1 /* PlotViewController.xib */,
-				54832B8C1D23F71800192ECB /* InformViewController.h */,
-				54832B8D1D23F71800192ECB /* InformViewController.m */,
-				54097E0F1D180C5D0047ED36 /* ImageViewController.h */,
-				54097E101D180C5D0047ED36 /* ImageViewController.m */,
+			);
+			name = Transition;
+			sourceTree = "<group>";
+		};
+		542886C41D66CD8B00557784 /* MainVc */ = {
+			isa = PBXGroup;
+			children = (
+				542886C31D66A07300557784 /* Transition */,
+				542886C71D66CDF200557784 /* Model */,
+				542886C51D66CDA300557784 /* View */,
+				542886C61D66CDCE00557784 /* ViewModel */,
+			);
+			name = MainVc;
+			sourceTree = "<group>";
+		};
+		542886C51D66CDA300557784 /* View */ = {
+			isa = PBXGroup;
+			children = (
 				542222CD1D572BDB0063AAD1 /* ACCostonBtn.h */,
 				542222CE1D572BDC0063AAD1 /* ACCostonBtn.m */,
 				542222B01D5620220063AAD1 /* ACButtonView.h */,
@@ -196,7 +197,108 @@
 				542222AC1D561A880063AAD1 /* ACMainViewController.m */,
 				542222AE1D561AB50063AAD1 /* ACMainView.xib */,
 			);
-			name = ViewController;
+			name = View;
+			sourceTree = "<group>";
+		};
+		542886C61D66CDCE00557784 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				54ABDEE31D18312D00D2F93D /* TableViewModel.h */,
+				54ABDEE41D18312D00D2F93D /* TableViewModel.m */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		542886C71D66CDF200557784 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				54097E0C1D17C56A0047ED36 /* CellDatas.h */,
+				54097E0D1D17C56A0047ED36 /* CellDatas.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		542886C81D66CE4900557784 /* PlotVc */ = {
+			isa = PBXGroup;
+			children = (
+				54ABDEE11D18214200D2F93D /* Model */,
+				542886C91D66CE5400557784 /* View */,
+				542886CA1D66CE7B00557784 /* ViewModel */,
+			);
+			name = PlotVc;
+			sourceTree = "<group>";
+		};
+		542886C91D66CE5400557784 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				542222C51D56E38A0063AAD1 /* PlotViewController.h */,
+				542222C61D56E38A0063AAD1 /* PlotViewController.m */,
+				542222C71D56E38A0063AAD1 /* PlotViewController.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		542886CA1D66CE7B00557784 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				54832B6B1D21498800192ECB /* PlotViewModel.h */,
+				54832B6C1D21498800192ECB /* PlotViewModel.m */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		542886CB1D66CEFB00557784 /* InformVc */ = {
+			isa = PBXGroup;
+			children = (
+				542886CD1D66CF1000557784 /* ViewModel */,
+				542886CC1D66CF0600557784 /* View */,
+			);
+			name = InformVc;
+			sourceTree = "<group>";
+		};
+		542886CC1D66CF0600557784 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				54832B8C1D23F71800192ECB /* InformViewController.h */,
+				54832B8D1D23F71800192ECB /* InformViewController.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		542886CD1D66CF1000557784 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				54832B911D23FF3800192ECB /* InformViewModel.h */,
+				54832B921D23FF3800192ECB /* InformViewModel.m */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		542886CE1D66CF2C00557784 /* ImageVc */ = {
+			isa = PBXGroup;
+			children = (
+				54ABDEEA1D19065B00D2F93D /* ViewModel */,
+				54ABDEE21D18217200D2F93D /* View */,
+			);
+			name = ImageVc;
+			sourceTree = "<group>";
+		};
+		54ABDEE11D18214200D2F93D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				542222CA1D57045F0063AAD1 /* PlotDatas.h */,
+				542222CB1D57045F0063AAD1 /* PlotDatas.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		54ABDEE21D18217200D2F93D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				54097E0F1D180C5D0047ED36 /* ImageViewController.h */,
+				54097E101D180C5D0047ED36 /* ImageViewController.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		54ABDEEA1D19065B00D2F93D /* ViewModel */ = {
@@ -204,12 +306,6 @@
 			children = (
 				54ABDEE71D18ECA200D2F93D /* ImageViewModel.h */,
 				54ABDEE81D18ECA200D2F93D /* ImageViewModel.m */,
-				54ABDEE31D18312D00D2F93D /* TableViewModel.h */,
-				54ABDEE41D18312D00D2F93D /* TableViewModel.m */,
-				54832B6B1D21498800192ECB /* PlotViewModel.h */,
-				54832B6C1D21498800192ECB /* PlotViewModel.m */,
-				54832B911D23FF3800192ECB /* InformViewModel.h */,
-				54832B921D23FF3800192ECB /* InformViewModel.m */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";

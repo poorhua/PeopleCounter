@@ -10,11 +10,11 @@
 #import "GlobalHeader.h"
 #import <UIKit/UIKit.h>
 
-@interface ImageViewModel : NSObject
+@interface ImageViewModel : NSObject<UIScrollViewDelegate>
 
 @property(nonatomic,strong) RACCommand *imageLoadCommand;
 @property(nonatomic,strong) NSString *uuid;
-@property(nonatomic,strong) UIImageView *imageView;
+@property(nonatomic,strong) UIScrollView *scrollView;
 @property(null_resettable, nonatomic,strong) UIView *view;
 
 @end

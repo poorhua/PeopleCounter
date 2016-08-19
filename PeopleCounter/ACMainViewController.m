@@ -81,6 +81,8 @@
 
 -(void)setUpUI
 {
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(trachCashe)];
+    
     self.label.text = @"远程监测客户端";
 //    自动设置了尺寸
     [self.label sizeToFit];
@@ -103,16 +105,15 @@
     [_airBtn addTarget:self action:@selector(airAction) forControlEvents:UIControlEventTouchUpInside];
     [_tempBtn addTarget:self action:@selector(tempAction) forControlEvents:UIControlEventTouchUpInside];
     
-    
 //    self.tableView.delegate = self.tableVM;
     self.tableView.delegate = self;
 //    self.tableView.dataSource = self.tableVM;
     self.tableView.dataSource = self;
+    
     self.tableVM.tableView = self.tableView;
     self.tableVM.view = self.view;
     
     RACSignal *sig = [self.tableVM.httpCommand execute:nil];
-    
     [sig subscribeNext:^(NSMutableArray *x) {
         _datasArray = x;
     }];
@@ -263,7 +264,6 @@
         RACTupleUnpack(NSHTTPURLResponse *response,NSData *data) = x;
         
         NSString *content = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        
         //                        状态码
         NSLog(@"%ld",(long)response.statusCode);
         
@@ -320,5 +320,20 @@
     return request;
 }
 
+//清理沙盒目录下的文件
+-(void)trachCashe
+{
+    NSString *filePath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSLocalDomainMask, YES)[0];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *files = [fileManager contentsOfDirectoryAtPath:filePath error:nil];
+    
+    for (NSString *file in files) {
+        if ([file hasSuffix:@"data"]) {
+            NSLog(@"%@",file);
+            [fileManager removeItemAtPath:[filePath stringByAppendingPathComponent:file] error:nil];
+        }
+    }
+}
 
 @end

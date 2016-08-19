@@ -42,7 +42,7 @@
                 
                 NSString *content = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
                 
-                //                        状态码
+                //   状态码
                 NSLog(@"%ld",(long)response.statusCode);
                 
                 NSLog(@"%@",content);
@@ -118,8 +118,10 @@
     NSString *startData = [NSString stringWithFormat:@"%ld-06-23T11:00:00",(long)year];
 #endif
     
+//    NSURL *url = [NSURL URLWithString:@"http://api.heclouds.com/devices/1100353/datapoints"];
+    
     NSString *str = [NSString stringWithFormat:@"http://api.heclouds.com/devices/1100353/datapoints? datastream_id=001 2&start=%@&end=%@",startData,endData];
-    NSLog(@"%@",str);
+//    NSLog(@"%@",str);
     str = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
     
     /*
@@ -143,11 +145,17 @@
      */
     
     NSURL *url = [NSURL URLWithString:str];
-    NSLog(@"%@",url);
+//    NSLog(@"%@",url);
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20];
     
+    
+//    NSString *bodyStr = [NSString stringWithFormat:@"datastream_id=001&start=%@&end=%@",startData,endData];
+    
     [request setHTTPMethod:@"GET"];
+//    [request setHTTPBody:[bodyStr dataUsingEncoding:NSUTF8StringEncoding]];
     [request setValue:APIKEY forHTTPHeaderField:@"api-key"];
+    
+    NSLog(@"%@",request.URL);
     
     return request;
 }
