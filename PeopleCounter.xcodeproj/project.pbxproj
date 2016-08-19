@@ -27,6 +27,7 @@
 		542222C91D56E38A0063AAD1 /* PlotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 542222C71D56E38A0063AAD1 /* PlotViewController.xib */; };
 		542222CC1D57045F0063AAD1 /* PlotDatas.m in Sources */ = {isa = PBXBuildFile; fileRef = 542222CB1D57045F0063AAD1 /* PlotDatas.m */; };
 		542222CF1D572BDC0063AAD1 /* ACCostonBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 542222CE1D572BDC0063AAD1 /* ACCostonBtn.m */; };
+		542886D41D66EB4C00557784 /* ACMainViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 542886D31D66EB4C00557784 /* ACMainViewModel.m */; };
 		544C44741D2E8B6B00A638C5 /* UIImage+Bitmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 544C44731D2E8B6B00A638C5 /* UIImage+Bitmap.m */; };
 		54832B6D1D21498800192ECB /* PlotViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 54832B6C1D21498800192ECB /* PlotViewModel.m */; };
 		54832B8E1D23F71800192ECB /* InformViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54832B8D1D23F71800192ECB /* InformViewController.m */; };
@@ -74,6 +75,8 @@
 		542222CB1D57045F0063AAD1 /* PlotDatas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlotDatas.m; sourceTree = "<group>"; };
 		542222CD1D572BDB0063AAD1 /* ACCostonBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACCostonBtn.h; sourceTree = "<group>"; };
 		542222CE1D572BDC0063AAD1 /* ACCostonBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACCostonBtn.m; sourceTree = "<group>"; };
+		542886D21D66EB4C00557784 /* ACMainViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACMainViewModel.h; sourceTree = "<group>"; };
+		542886D31D66EB4C00557784 /* ACMainViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACMainViewModel.m; sourceTree = "<group>"; };
 		544C44721D2E8B6B00A638C5 /* UIImage+Bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Bitmap.h"; sourceTree = "<group>"; };
 		544C44731D2E8B6B00A638C5 /* UIImage+Bitmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Bitmap.m"; sourceTree = "<group>"; };
 		54832B6B1D21498800192ECB /* PlotViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlotViewModel.h; sourceTree = "<group>"; };
@@ -205,6 +208,8 @@
 			children = (
 				54ABDEE31D18312D00D2F93D /* TableViewModel.h */,
 				54ABDEE41D18312D00D2F93D /* TableViewModel.m */,
+				542886D21D66EB4C00557784 /* ACMainViewModel.h */,
+				542886D31D66EB4C00557784 /* ACMainViewModel.m */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -452,6 +457,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				542886D41D66EB4C00557784 /* ACMainViewModel.m in Sources */,
 				54832B931D23FF3800192ECB /* InformViewModel.m in Sources */,
 				54097E111D180C5D0047ED36 /* ImageViewController.m in Sources */,
 				54097DF71D1782BC0047ED36 /* ViewController.m in Sources */,

@@ -9,6 +9,7 @@
 #import "TableViewModel.h"
 #import "CellDatas.h"
 #import "DateCell.h"
+#import "ImageViewController.h"
 
 @interface TableViewModel()
 
@@ -22,11 +23,8 @@
 {
     self = [super init];
     if (self) {
-        
         [self bindEvents];
-        
     }
-    
     return self;
 }
 
@@ -158,6 +156,91 @@
     NSLog(@"%@",request.URL);
     
     return request;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    ImageViewController *imgVc = [storyBoard instantiateViewControllerWithIdentifier:@"ImgVC"];
+    [imgVc setUuid:_dataArray[indexPath.row].imgUuid];
+    
+    [self.navigationController pushViewController:imgVc animated:YES];
+}
+
+#pragma mark - tableView DateSourse
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [_dataArray count];
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    }
+    
+    CellDatas *cellDatas = _dataArray[indexPath.row];
+    
+    NSRange range;
+    range.location = 11;
+    range.length = 8;
+    NSString *str = [cellDatas.dateTimeStr substringWithRange:range];
+    cell.textLabel.text = str;
+    
+    cell.textLabel.textColor = [UIColor whiteColor];
+    
+    cell.backgroundColor = [UIColor colorWithWhite:1 alpha:0];
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 60;
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGPoint scrollPoint = scrollView.contentOffset;
+    
+    CGFloat moveDistance = 0.0 - scrollPoint.y;
+    
+    self.headerViewContraint.constant = moveDistance;
+    
+    [self.view layoutIfNeeded];
+    
+    if (moveDistance < 40) {
+        self.headerLab.text = @"下拉更新。。。。";
+    }
+    
+    if (moveDistance >= 40.0&&moveDistance <= 80) {
+        self.headerLab.text = @"继续下拉，刷新数据。。。";
+    }
+    
+    if (moveDistance > 80) {
+        self.headerLab.text = @"松手，获得更新的数据。";
+    }
+}
+
+-(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+{
+    
+    CGPoint scrollPoint = scrollView.contentOffset;
+    
+    CGFloat moveDistance = 0.0 - scrollPoint.y;
+    
+    if (moveDistance >= 80) {
+        
+        //更新数据
+        [_httpCommand execute:nil];
+        
+        [self.tableView reloadData];
+    }
 }
 
 @end

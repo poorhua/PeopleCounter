@@ -10,10 +10,14 @@
 #import "GlobalHeader.h"
 #import <UIKit/UIKit.h>
 
-@interface TableViewModel : NSObject<NSURLConnectionDataDelegate>
+@interface TableViewModel : NSObject<NSURLConnectionDataDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic,strong,nonnull) RACCommand *httpCommand;
 @property(nonatomic,strong,nonnull) UITableView *tableView;
 @property(nonnull,nonatomic,strong) UIView *view;
+
+@property(nonatomic,weak) UINavigationController *navigationController;
+@property (weak, nonatomic) NSLayoutConstraint *headerViewContraint;
+@property (weak, nonatomic) UILabel *headerLab;
 
 @end

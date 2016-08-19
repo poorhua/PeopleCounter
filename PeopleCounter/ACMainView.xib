@@ -10,6 +10,8 @@
                 <outlet property="airBtn" destination="VvU-3V-Tak" id="Iv5-Q6-UQl"/>
                 <outlet property="btnView" destination="Epo-wV-BpQ" id="gX8-DL-9BJ"/>
                 <outlet property="comboView" destination="HR9-tE-WBD" id="S5f-La-KGz"/>
+                <outlet property="headerLab" destination="ZDt-4Q-9fI" id="0um-S9-aji"/>
+                <outlet property="headerViewContraint" destination="k7u-W9-Pf9" id="BSk-rc-2bA"/>
                 <outlet property="humanBtn" destination="PEg-hU-jMN" id="N4c-so-FCz"/>
                 <outlet property="tableView" destination="iwQ-kV-Sdp" id="xH5-1A-2oa"/>
                 <outlet property="tempBtn" destination="9Yz-Hz-nSn" id="OAL-ka-bHz"/>
@@ -43,6 +45,23 @@
                     <rect key="frame" x="8" y="64" width="359" height="559"/>
                     <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ftO-fg-4Af">
+                    <rect key="frame" x="8" y="-64" width="359" height="128"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="下拉更新。。。。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZDt-4Q-9fI">
+                            <rect key="frame" x="132" y="105" width="96" height="15"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="ZDt-4Q-9fI" secondAttribute="bottom" constant="8" id="6RB-ZL-TnX"/>
+                        <constraint firstAttribute="height" constant="128" id="gIv-qS-ZO5"/>
+                        <constraint firstItem="ZDt-4Q-9fI" firstAttribute="centerX" secondItem="ftO-fg-4Af" secondAttribute="centerX" id="nd6-59-hjg"/>
+                    </constraints>
+                </view>
                 <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HR9-tE-WBD">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
@@ -92,12 +111,15 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="HR9-tE-WBD" secondAttribute="trailing" id="39x-9h-8DV"/>
                 <constraint firstItem="kkK-ir-kFk" firstAttribute="top" secondItem="iwQ-kV-Sdp" secondAttribute="bottom" id="6Oy-tw-I13"/>
+                <constraint firstItem="ftO-fg-4Af" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="6xn-yP-hbg"/>
                 <constraint firstItem="kkK-ir-kFk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="7UG-3H-K9f"/>
                 <constraint firstItem="HR9-tE-WBD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="AWK-9u-8QS"/>
                 <constraint firstItem="HR9-tE-WBD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="IRE-z8-IN6"/>
                 <constraint firstAttribute="trailing" secondItem="kkK-ir-kFk" secondAttribute="trailing" id="VT6-lV-Qcs"/>
                 <constraint firstItem="iwQ-kV-Sdp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="f3P-6P-NhG"/>
                 <constraint firstItem="Epo-wV-BpQ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="jjS-1L-AZB"/>
+                <constraint firstItem="ftO-fg-4Af" firstAttribute="bottom" secondItem="iwQ-kV-Sdp" secondAttribute="top" id="k7u-W9-Pf9"/>
+                <constraint firstAttribute="trailing" secondItem="ftO-fg-4Af" secondAttribute="trailing" constant="8" id="p1k-7p-C5s"/>
                 <constraint firstAttribute="bottom" secondItem="HR9-tE-WBD" secondAttribute="bottom" id="qov-hh-4w4"/>
                 <constraint firstItem="iwQ-kV-Sdp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="64" id="uCv-Ql-FwY"/>
                 <constraint firstAttribute="bottom" secondItem="Epo-wV-BpQ" secondAttribute="bottom" id="vCP-tb-Mdx"/>
@@ -107,11 +129,6 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="425.5" y="393.5"/>
         </view>
-        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="iqG-sr-EU1">
-            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <point key="canvasLocation" x="812" y="408"/>
-        </imageView>
     </objects>
     <resources>
         <image name="Newsvine" width="66" height="66"/>

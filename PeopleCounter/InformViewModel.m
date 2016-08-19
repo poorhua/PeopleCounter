@@ -48,7 +48,17 @@
             CGRect fra = [noteCenter.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
             NSTimeInterval dure = [noteCenter.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue];
             
-            self.buttonConstraint.constant = fra.size.height;
+            NSInteger part = 0;
+            NSInteger fraHei = fra.size.height;
+            //根据不同的输入栏调整不同的高度
+            if ([self.inputTextField isFirstResponder]) {
+                part = fraHei / 2.0;
+            }else if ([self.transTextField isFirstResponder])
+                part = fraHei / 3.0;
+            else
+                part = 0;
+            
+            self.buttonConstraint.constant = fra.size.height + 20 - part;
             
             [UIView animateWithDuration:dure animations:^{
                 [self.viewControl layoutIfNeeded];
