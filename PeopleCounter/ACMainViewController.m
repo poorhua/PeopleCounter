@@ -10,6 +10,8 @@
 #import "InformViewController.h"
 #import "TableViewModel.h"
 #import "ACMainViewModel.h"
+#import "GlobalHeader.h"
+#import "ACAlbumViewController.h"
 
 @interface ACMainViewController()
 @property (weak, nonatomic) IBOutlet UIView *btnView;
@@ -61,7 +63,7 @@
 
 -(void)setUpUI
 {
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(trachCashe)];
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(trachCashe)];
     
     [self.navigationController.navigationBar setTintColor:[UIColor orangeColor]];
     //    2.隐藏分割线
@@ -95,20 +97,23 @@
 }
 
 - (IBAction)docAction:(id)sender {
-    
+   
+    ACAlbumViewController *albumVc = [[ACAlbumViewController alloc] initWithNibName:@"ACAlbumViewController" bundle:nil];
+    albumVc.title = @"相册";
+    [self.navigationController pushViewController:albumVc animated:YES];
 }
 
 - (IBAction)msgAction:(id)sender {
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     InformViewController *informVC = [storyBoard instantiateViewControllerWithIdentifier:@"InformVC"];
-    
+    informVC.title = @"发送消息";
     [self.navigationController pushViewController:informVC animated:YES];
 }
 
 //清理沙盒目录下的文件
 -(void)trachCashe
 {
-    NSString *filePath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSLocalDomainMask, YES)[0];
+    NSString *filePath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSArray *files = [fileManager contentsOfDirectoryAtPath:filePath error:nil];

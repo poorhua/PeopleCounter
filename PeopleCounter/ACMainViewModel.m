@@ -56,7 +56,7 @@
 {
     _acMainCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         
-        self.label.text = @"远程监测客户端";
+        self.label.text = ACAPP_NAME;
         //    自动设置了尺寸
         [self.label sizeToFit];
         self.label.textColor = [UIColor orangeColor];

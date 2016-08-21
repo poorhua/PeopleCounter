@@ -101,8 +101,11 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K57-0c-N5t">
                                 <rect key="frame" x="0.0" y="692" width="414" height="44"/>
                                 <items>
-                                    <barButtonItem title="Item" id="D8w-Dt-XcE">
+                                    <barButtonItem systemItem="action" id="D8w-Dt-XcE">
                                         <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="shareAction:" destination="Slv-U6-3BN" id="nrh-o7-pPS"/>
+                                        </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>

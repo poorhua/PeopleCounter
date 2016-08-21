@@ -34,7 +34,7 @@ CGFloat currentScale;
         
         RACSignal *requestSig = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
             
-            NSString *filePath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSLocalDomainMask, YES)[0];
+            NSString *filePath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
             filePath = [filePath stringByAppendingPathComponent:self.uuid];
             
             NSData *imgData = [NSData dataWithContentsOfFile:filePath];

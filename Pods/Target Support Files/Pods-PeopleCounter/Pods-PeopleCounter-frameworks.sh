@@ -87,11 +87,9 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-PeopleCounter/CorePlot.framework"
   install_framework "Pods-PeopleCounter/MBProgressHUD.framework"
   install_framework "Pods-PeopleCounter/ReactiveCocoa.framework"
-  install_framework "Pods-PeopleCounter/SDWebImage.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-PeopleCounter/CorePlot.framework"
   install_framework "Pods-PeopleCounter/MBProgressHUD.framework"
   install_framework "Pods-PeopleCounter/ReactiveCocoa.framework"
-  install_framework "Pods-PeopleCounter/SDWebImage.framework"
 fi

@@ -41,6 +41,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view
     
+    UILabel *label = [[UILabel alloc] init];
+    label.text = @"发送消息";
+    //    自动设置了尺寸
+    [label sizeToFit];
+    label.textColor = [UIColor orangeColor];
+    self.navigationItem.titleView = label;
+    
     self.informVM.buttonConstraint = self.buttonConstraint;
     self.informVM.stackView = self.stackView;
     self.informVM.inputTextField = self.inputTextField;

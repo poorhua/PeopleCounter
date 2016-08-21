@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ACMainViewController.h"
+#import "GlobalHeader.h"
 
 @interface AppDelegate ()
 
@@ -41,6 +42,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 //    [self makeUpUI];
+    
+    //添加第三方社会化分享
+    [UMSocialData setAppKey:UMAPP_KEY];
+    
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
@@ -76,6 +81,24 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    
+    [self trachCashe];
+}
+
+//清理沙盒目录下的文件
+-(void)trachCashe
+{
+    NSString *filePath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *files = [fileManager contentsOfDirectoryAtPath:filePath error:nil];
+    
+    for (NSString *file in files) {
+        if ([file hasSuffix:@"data"]) {
+            NSLog(@"%@",file);
+            [fileManager removeItemAtPath:[filePath stringByAppendingPathComponent:file] error:nil];
+        }
+    }
 }
 
 @end

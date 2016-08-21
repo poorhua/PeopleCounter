@@ -10,10 +10,17 @@
 #import "NSURLConnection+RACSupport.h"
 #import "MBProgressHUD.h"
 #import "CorePlot.h"
+#import "UMSocial.h"
 
 //#define TRUEDATE
 #define PADDINGLENTH 2
 #define APIKEY @"BMoXY9INkS=l0Iiow=Zo4bqjqLE= "
+
+#define UMAPP_KEY @"57b8fb3c67e58eed8b0025c4"
+
+#define PHOTO_ALBLUM @"远程监测客户端-Photos"
+
+#define ACAPP_NAME @"远程监测客户端"
 
 #ifndef GlobalHeader_h
 #define GlobalHeader_h

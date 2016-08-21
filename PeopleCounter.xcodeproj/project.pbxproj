@@ -28,6 +28,12 @@
 		542222CC1D57045F0063AAD1 /* PlotDatas.m in Sources */ = {isa = PBXBuildFile; fileRef = 542222CB1D57045F0063AAD1 /* PlotDatas.m */; };
 		542222CF1D572BDC0063AAD1 /* ACCostonBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 542222CE1D572BDC0063AAD1 /* ACCostonBtn.m */; };
 		542886D41D66EB4C00557784 /* ACMainViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 542886D31D66EB4C00557784 /* ACMainViewModel.m */; };
+		542887271D69445500557784 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 542887261D69445500557784 /* Photos.framework */; };
+		542887291D694EC000557784 /* PhotosUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 542887281D694EC000557784 /* PhotosUI.framework */; };
+		5428872D1D69568A00557784 /* ACAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5428872B1D69568A00557784 /* ACAlbumViewController.m */; };
+		5428872E1D69568A00557784 /* ACAlbumViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5428872C1D69568A00557784 /* ACAlbumViewController.xib */; };
+		542887331D69707500557784 /* ACPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 542887311D69707500557784 /* ACPhotoViewController.m */; };
+		542887341D69707500557784 /* ACPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 542887321D69707500557784 /* ACPhotoViewController.xib */; };
 		544C44741D2E8B6B00A638C5 /* UIImage+Bitmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 544C44731D2E8B6B00A638C5 /* UIImage+Bitmap.m */; };
 		54832B6D1D21498800192ECB /* PlotViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 54832B6C1D21498800192ECB /* PlotViewModel.m */; };
 		54832B8E1D23F71800192ECB /* InformViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54832B8D1D23F71800192ECB /* InformViewController.m */; };
@@ -77,6 +83,14 @@
 		542222CE1D572BDC0063AAD1 /* ACCostonBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACCostonBtn.m; sourceTree = "<group>"; };
 		542886D21D66EB4C00557784 /* ACMainViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACMainViewModel.h; sourceTree = "<group>"; };
 		542886D31D66EB4C00557784 /* ACMainViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACMainViewModel.m; sourceTree = "<group>"; };
+		542887261D69445500557784 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
+		542887281D694EC000557784 /* PhotosUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhotosUI.framework; path = System/Library/Frameworks/PhotosUI.framework; sourceTree = SDKROOT; };
+		5428872A1D69568A00557784 /* ACAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACAlbumViewController.h; sourceTree = "<group>"; };
+		5428872B1D69568A00557784 /* ACAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACAlbumViewController.m; sourceTree = "<group>"; };
+		5428872C1D69568A00557784 /* ACAlbumViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACAlbumViewController.xib; sourceTree = "<group>"; };
+		542887301D69707500557784 /* ACPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACPhotoViewController.h; sourceTree = "<group>"; };
+		542887311D69707500557784 /* ACPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACPhotoViewController.m; sourceTree = "<group>"; };
+		542887321D69707500557784 /* ACPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACPhotoViewController.xib; sourceTree = "<group>"; };
 		544C44721D2E8B6B00A638C5 /* UIImage+Bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Bitmap.h"; sourceTree = "<group>"; };
 		544C44731D2E8B6B00A638C5 /* UIImage+Bitmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Bitmap.m"; sourceTree = "<group>"; };
 		54832B6B1D21498800192ECB /* PlotViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlotViewModel.h; sourceTree = "<group>"; };
@@ -98,6 +112,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				542887291D694EC000557784 /* PhotosUI.framework in Frameworks */,
+				542887271D69445500557784 /* Photos.framework in Frameworks */,
 				6953AB42EEBD6F3D4771B6B5 /* Pods_PeopleCounter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -131,6 +147,7 @@
 				544C44721D2E8B6B00A638C5 /* UIImage+Bitmap.h */,
 				544C44731D2E8B6B00A638C5 /* UIImage+Bitmap.m */,
 				54ABDEE61D1831EF00D2F93D /* GlobalHeader.h */,
+				5428872F1D69569200557784 /* PhotoVc */,
 				542886CE1D66CF2C00557784 /* ImageVc */,
 				542886CB1D66CEFB00557784 /* InformVc */,
 				542886C81D66CE4900557784 /* PlotVc */,
@@ -288,6 +305,19 @@
 			name = ImageVc;
 			sourceTree = "<group>";
 		};
+		5428872F1D69569200557784 /* PhotoVc */ = {
+			isa = PBXGroup;
+			children = (
+				5428872A1D69568A00557784 /* ACAlbumViewController.h */,
+				5428872B1D69568A00557784 /* ACAlbumViewController.m */,
+				5428872C1D69568A00557784 /* ACAlbumViewController.xib */,
+				542887301D69707500557784 /* ACPhotoViewController.h */,
+				542887311D69707500557784 /* ACPhotoViewController.m */,
+				542887321D69707500557784 /* ACPhotoViewController.xib */,
+			);
+			name = PhotoVc;
+			sourceTree = "<group>";
+		};
 		54ABDEE11D18214200D2F93D /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -327,6 +357,8 @@
 		79710DBE9A7A3FE4E532A28C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				542887281D694EC000557784 /* PhotosUI.framework */,
+				542887261D69445500557784 /* Photos.framework */,
 				4F3E9E5AA8D6758C208940D8 /* Pods_PeopleCounter.framework */,
 			);
 			name = Frameworks;
@@ -393,12 +425,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5428872E1D69568A00557784 /* ACAlbumViewController.xib in Resources */,
 				54097DFF1D1782BC0047ED36 /* LaunchScreen.storyboard in Resources */,
 				54097DFC1D1782BC0047ED36 /* Assets.xcassets in Resources */,
 				542222B41D5620330063AAD1 /* ACButtonView.xib in Resources */,
 				54097DFA1D1782BC0047ED36 /* Main.storyboard in Resources */,
 				542222AF1D561AB50063AAD1 /* ACMainView.xib in Resources */,
 				542222C91D56E38A0063AAD1 /* PlotViewController.xib in Resources */,
+				542887341D69707500557784 /* ACPhotoViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,8 +491,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				542887331D69707500557784 /* ACPhotoViewController.m in Sources */,
 				542886D41D66EB4C00557784 /* ACMainViewModel.m in Sources */,
 				54832B931D23FF3800192ECB /* InformViewModel.m in Sources */,
+				5428872D1D69568A00557784 /* ACAlbumViewController.m in Sources */,
 				54097E111D180C5D0047ED36 /* ImageViewController.m in Sources */,
 				54097DF71D1782BC0047ED36 /* ViewController.m in Sources */,
 				542222C41D56E3060063AAD1 /* MDTransitionDelegate.m in Sources */,
