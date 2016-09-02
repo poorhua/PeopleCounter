@@ -204,6 +204,11 @@
     return 60;
 }
 
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self.freshBtn moveDistance:0.0 inType:ACMoveBegin];
+}
+
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     CGPoint scrollPoint = scrollView.contentOffset;
@@ -225,13 +230,17 @@
     if (moveDistance > 80) {
         self.headerLab.text = @"松手，获得更新的数据。";
     }
+    
+    [self.freshBtn moveDistance:moveDistance inType:ACMoveMoving];
 }
 
 -(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
 {
+    //告诉刷新动画结束触控
+    [self.freshBtn moveDistance:0.0 inType:ACMoveEnd];
+    
     
     CGPoint scrollPoint = scrollView.contentOffset;
-    
     CGFloat moveDistance = 0.0 - scrollPoint.y;
     
     if (moveDistance >= 80) {

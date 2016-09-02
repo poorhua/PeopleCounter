@@ -10,6 +10,7 @@
                 <outlet property="airBtn" destination="VvU-3V-Tak" id="Iv5-Q6-UQl"/>
                 <outlet property="btnView" destination="Epo-wV-BpQ" id="gX8-DL-9BJ"/>
                 <outlet property="comboView" destination="HR9-tE-WBD" id="S5f-La-KGz"/>
+                <outlet property="freshBtn" destination="f5a-Zm-bXP" id="O8h-2q-rn7"/>
                 <outlet property="headerLab" destination="ZDt-4Q-9fI" id="0um-S9-aji"/>
                 <outlet property="headerViewContraint" destination="k7u-W9-Pf9" id="BSk-rc-2bA"/>
                 <outlet property="humanBtn" destination="PEg-hU-jMN" id="N4c-so-FCz"/>
@@ -48,6 +49,15 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ftO-fg-4Af">
                     <rect key="frame" x="8" y="-64" width="359" height="128"/>
                     <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f5a-Zm-bXP" customClass="ACFreshBtn">
+                            <rect key="frame" x="165" y="58" width="30" height="32"/>
+                            <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="XcS-ep-YkF"/>
+                            </constraints>
+                            <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" image="fresh"/>
+                        </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="下拉更新。。。。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZDt-4Q-9fI">
                             <rect key="frame" x="132" y="105" width="96" height="15"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -58,6 +68,8 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="ZDt-4Q-9fI" secondAttribute="bottom" constant="8" id="6RB-ZL-TnX"/>
+                        <constraint firstItem="f5a-Zm-bXP" firstAttribute="centerX" secondItem="ftO-fg-4Af" secondAttribute="centerX" id="Xhx-QV-Mkv"/>
+                        <constraint firstItem="ZDt-4Q-9fI" firstAttribute="top" secondItem="f5a-Zm-bXP" secondAttribute="bottom" constant="15" id="boN-tW-2KX"/>
                         <constraint firstAttribute="height" constant="128" id="gIv-qS-ZO5"/>
                         <constraint firstItem="ZDt-4Q-9fI" firstAttribute="centerX" secondItem="ftO-fg-4Af" secondAttribute="centerX" id="nd6-59-hjg"/>
                     </constraints>
@@ -134,5 +146,6 @@
         <image name="Newsvine" width="66" height="66"/>
         <image name="Rain" width="66" height="66"/>
         <image name="Sun" width="66" height="66"/>
+        <image name="fresh" width="32" height="32"/>
     </resources>
 </document>

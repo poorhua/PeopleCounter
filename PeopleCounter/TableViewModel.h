@@ -9,11 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "GlobalHeader.h"
 #import <UIKit/UIKit.h>
+#import "ACFreshBtn.h"
 
 @interface TableViewModel : NSObject<NSURLConnectionDataDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic,strong,nonnull) RACCommand *httpCommand;
 @property(nonatomic,strong,nonnull) UITableView *tableView;
+@property(nonatomic,strong) ACFreshBtn *freshBtn;
 @property(nonnull,nonatomic,strong) UIView *view;
 
 @property(nonatomic,weak) UINavigationController *navigationController;

@@ -11,12 +11,14 @@
 #import "TableViewModel.h"
 #import "ACMainViewModel.h"
 #import "GlobalHeader.h"
+#import "ACFreshBtn.h"
 #import "ACAlbumViewController.h"
 
 @interface ACMainViewController()
 @property (weak, nonatomic) IBOutlet UIView *btnView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *comboView;
+@property (weak, nonatomic) IBOutlet ACFreshBtn *freshBtn;
 
 @property (weak, nonatomic) IBOutlet UIButton *humanBtn;
 @property (weak, nonatomic) IBOutlet UIButton *tempBtn;
@@ -79,8 +81,9 @@
     self.tableVM.navigationController = self.navigationController;
     self.tableVM.headerLab = self.headerLab;
     self.tableVM.headerViewContraint = self.headerViewContraint;
+    self.tableVM.freshBtn = self.freshBtn;
     
-    [self.tableVM.httpCommand execute:nil];
+//    [self.tableVM.httpCommand execute:nil];
     
     self.mainVM.humanBtn = self.humanBtn;
     self.mainVM.airBtn = self.airBtn;
@@ -108,22 +111,6 @@
     InformViewController *informVC = [storyBoard instantiateViewControllerWithIdentifier:@"InformVC"];
     informVC.title = @"发送消息";
     [self.navigationController pushViewController:informVC animated:YES];
-}
-
-//清理沙盒目录下的文件
--(void)trachCashe
-{
-    NSString *filePath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSArray *files = [fileManager contentsOfDirectoryAtPath:filePath error:nil];
-    
-    for (NSString *file in files) {
-        if ([file hasSuffix:@"data"]) {
-            NSLog(@"%@",file);
-            [fileManager removeItemAtPath:[filePath stringByAppendingPathComponent:file] error:nil];
-        }
-    }
 }
 
 @end

@@ -52,14 +52,18 @@ CGFloat currentScale;
                     
                     dispatch_sync(dispatch_get_main_queue(), ^{
                         self.imgView.image = _image;
+                        [subscriber sendNext:_image];
+                        [subscriber sendCompleted];
                     });
                 }];
             }else{
                 _image = [UIImage imageWithData:imgData];
+                [subscriber sendNext:_image];
+                [subscriber sendCompleted];
             }
            
-            [subscriber sendNext:_image];
-            [subscriber sendCompleted];
+//            [subscriber sendNext:_image];
+//            [subscriber sendCompleted];
             
             return nil;
         }];
