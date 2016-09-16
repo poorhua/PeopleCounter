@@ -26,10 +26,18 @@
     _dimmingView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.5];
     _dimmingView.center = self.containerView.center;
     
+    UITapGestureRecognizer *geture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction)];
+    [_dimmingView addGestureRecognizer:geture];
+    
     [self.presentingViewController.transitionCoordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
                 _dimmingView.bounds = self.containerView.bounds;
             } completion:nil];
 
+}
+
+-(void)tapAction
+{
+    [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)dismissalTransitionWillBegin

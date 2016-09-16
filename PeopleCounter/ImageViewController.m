@@ -12,7 +12,7 @@
 #import <PhotosUI/PhotosUI.h>
 
 @interface ImageViewController()
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak,nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic,strong) ImageViewModel *imageVM;
 
 @property(nonatomic,strong) UIImage *currentImg;

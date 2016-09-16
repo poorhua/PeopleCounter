@@ -71,6 +71,9 @@
         _isCombo = true;
         _btnSubView = btnView;
         
+        UITapGestureRecognizer *gesture1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(recoverView)];
+        [_comboView addGestureRecognizer:gesture1];
+        
         [self hideBtns];
         
         //bindAction

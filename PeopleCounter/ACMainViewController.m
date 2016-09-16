@@ -83,7 +83,7 @@
     self.tableVM.headerViewContraint = self.headerViewContraint;
     self.tableVM.freshBtn = self.freshBtn;
     
-//    [self.tableVM.httpCommand execute:nil];
+    [self.tableVM.httpCommand execute:nil];
     
     self.mainVM.humanBtn = self.humanBtn;
     self.mainVM.airBtn = self.airBtn;
