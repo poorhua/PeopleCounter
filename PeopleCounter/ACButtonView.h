@@ -10,9 +10,9 @@
 
 @interface ACButtonView : UIView
 
-+(instancetype)getButtonView;
++ (instancetype)getButtonView;
 
--(void)turnSlop;
--(void)turnOrign;
+- (void)turnSlop;
+- (void)turnOrign;
 
 @end

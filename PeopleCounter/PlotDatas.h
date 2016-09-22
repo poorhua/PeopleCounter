@@ -10,7 +10,7 @@
 
 @interface PlotDatas : NSObject
 
-@property(nonatomic,strong) NSString *dateTimeStr;
-@property(nonatomic,strong) NSString *nums;
+@property (nonatomic, readwrite, copy) NSString *dateTimeStr;
+@property (nonatomic, readwrite, copy) NSString *nums;
 
 @end

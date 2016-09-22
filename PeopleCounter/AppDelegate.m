@@ -16,35 +16,12 @@
 
 @implementation AppDelegate
 
-//-(void)makeUpUI
-//{
-//    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-//    self.window.backgroundColor = [UIColor whiteColor];
-//    [self.window makeKeyAndVisible];
-//    
-//    UITabBarController *tab = [[UITabBarController alloc] init];
-//    
-//    void(^addVc)(NSString *) = ^(NSString *storyboard) {
-//        UIStoryboard *sb = [UIStoryboard storyboardWithName:storyboard bundle:nil];
-//        UIViewController *cv = sb.instantiateInitialViewController;
-//        
-//        NSLog(@"%@",cv.class);
-//        
-//        [tab addChildViewController:cv];
-//    };
-//    
-//    addVc(@"Main");
-//    addVc(@"InformStoryboard");
-//    
-//    self.window.rootViewController = tab;
-//}
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 //    [self makeUpUI];
     
     //添加第三方社会化分享
-    [UMSocialData setAppKey:UMAPP_KEY];
+    [UMSocialData setAppKey:umAppKey];
     
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];

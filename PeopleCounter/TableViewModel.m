@@ -13,13 +13,13 @@
 
 @interface TableViewModel()
 
-@property(nonatomic,strong) NSMutableArray<CellDatas *>* dataArray;
+@property (nonatomic, readwrite, strong) NSMutableArray<CellDatas *> *dataArray;
 
 @end
 
 @implementation TableViewModel
 
--(instancetype)init
+- (instancetype)init
 {
     self = [super init];
     if (self) {
@@ -28,9 +28,9 @@
     return self;
 }
 
--(void)bindEvents
+- (void)bindEvents
 {
-    _httpCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    self.httpCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         
         RACSignal *requestSig = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
             NSMutableURLRequest *request = [self makeUPURLConnection];
@@ -62,7 +62,7 @@
                     [cellData setRecogNumsStr:secArray[i][@"value"]];
                     [datasArray addObject:cellData];
                 }
-                _dataArray = datasArray;
+                self.dataArray = datasArray;
                 
                 [subscriber sendNext:datasArray];
                 [subscriber sendCompleted];
@@ -74,7 +74,7 @@
         return requestSig;
     }];
     
-    [[_httpCommand.executing skip:1] subscribeNext:^(id x) {
+    [[self.httpCommand.executing skip:1] subscribeNext:^(id x) {
         
         if ([x boolValue] == YES) {
             NSLog(@"httping!");
@@ -88,7 +88,7 @@
     }];
 }
 
--(NSMutableURLRequest *)makeUPURLConnection
+- (NSMutableURLRequest *)makeUPURLConnection
 {
     NSDate *now = [NSDate date];
     
@@ -101,14 +101,15 @@
     NSRange range;
     range.location = 1;
     range.length = 2;
+
+#ifdef TRUEDATE
     NSString *month = [[NSString stringWithFormat:@"%ld",(long)([dateComponent month]+100)] substringWithRange:range];
     NSString *day = [[NSString stringWithFormat:@"%ld",(long)([dateComponent day]+100)]substringWithRange:range];
     NSString *hour1 = [[NSString stringWithFormat:@"%ld",(long)([dateComponent hour]+100)] substringWithRange:range];
     NSString *hour2 = [[NSString stringWithFormat:@"%ld",(long)([dateComponent hour] - 1+100)] substringWithRange:range];
     NSString *minute = [[NSString stringWithFormat:@"%ld",(long)([dateComponent minute] - 1+100)] substringWithRange:range];
     NSString *second = [[NSString stringWithFormat:@"%ld",(long)([dateComponent second]+100)] substringWithRange:range];
-
-#ifdef TRUEDATE
+    
     NSString *endData = [NSString stringWithFormat:@"%ld-%@-%@T%@:%@:%@",(long)year,month,day,hour1,minute,second];
     NSString *startData = [NSString stringWithFormat:@"%ld-%@-%@T%@:%@:%@",(long)year,month,day,hour2,minute,second];
 #else
@@ -151,30 +152,30 @@
     
     [request setHTTPMethod:@"GET"];
 //    [request setHTTPBody:[bodyStr dataUsingEncoding:NSUTF8StringEncoding]];
-    [request setValue:APIKEY forHTTPHeaderField:@"api-key"];
+    [request setValue:apiKey forHTTPHeaderField:@"api-key"];
     
     NSLog(@"%@",request.URL);
     
     return request;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     ImageViewController *imgVc = [storyBoard instantiateViewControllerWithIdentifier:@"ImgVC"];
-    [imgVc setUuid:_dataArray[indexPath.row].imgUuid];
+    [imgVc setUuid:self.dataArray[indexPath.row].imgUuid];
     
     [self.navigationController pushViewController:imgVc animated:YES];
 }
 
 #pragma mark - tableView DateSourse
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_dataArray count];
+    return [self.dataArray count];
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
@@ -182,7 +183,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
     
-    CellDatas *cellDatas = _dataArray[indexPath.row];
+    CellDatas *cellDatas = self.dataArray[indexPath.row];
     
     NSRange range;
     range.location = 11;
@@ -199,17 +200,17 @@
     return cell;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 60;
 }
 
--(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     [self.freshBtn moveDistance:0.0 inType:ACMoveBegin];
 }
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     CGPoint scrollPoint = scrollView.contentOffset;
     
@@ -234,7 +235,7 @@
     [self.freshBtn moveDistance:moveDistance inType:ACMoveMoving];
 }
 
--(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
 {
     //告诉刷新动画结束触控
     [self.freshBtn moveDistance:0.0 inType:ACMoveEnd];
@@ -246,7 +247,7 @@
     if (moveDistance >= 80) {
         
         //更新数据
-        [_httpCommand execute:nil];
+        [self.httpCommand execute:nil];
         
         [self.tableView reloadData];
     }

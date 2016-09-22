@@ -11,15 +11,15 @@
 #import <UIKit/UIKit.h>
 #import "ACFreshBtn.h"
 
-@interface TableViewModel : NSObject<NSURLConnectionDataDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface TableViewModel : NSObject<NSURLConnectionDataDelegate, UITableViewDelegate, UITableViewDataSource>
 
-@property(nonatomic,strong,nonnull) RACCommand *httpCommand;
-@property(nonatomic,strong,nonnull) UITableView *tableView;
-@property(nonatomic,strong) ACFreshBtn *freshBtn;
-@property(nonnull,nonatomic,strong) UIView *view;
+@property (nonatomic, readwrite, strong, nonnull) RACCommand *httpCommand;
+@property (nonatomic, readwrite, weak) UITableView *tableView;
+@property (nonatomic, readwrite, weak) ACFreshBtn *freshBtn;
+@property (nonatomic, readwrite, weak) UIView *view;
 
-@property(nonatomic,weak) UINavigationController *navigationController;
-@property (weak, nonatomic) NSLayoutConstraint *headerViewContraint;
-@property (weak, nonatomic) UILabel *headerLab;
+@property (nonatomic, readwrite, weak) UINavigationController *navigationController;
+@property (nonatomic, readwrite, weak) NSLayoutConstraint *headerViewContraint;
+@property (nonatomic, readwrite, weak) UILabel *headerLab;
 
 @end

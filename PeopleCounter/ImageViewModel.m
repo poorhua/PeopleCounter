@@ -30,7 +30,7 @@ CGFloat currentScale;
 
 -(void)bindEvents
 {
-    _imageLoadCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    self.imageLoadCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         
         RACSignal *requestSig = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
             
@@ -48,17 +48,17 @@ CGFloat currentScale;
                     
                     [data writeToFile:filePath atomically:YES];
                     
-                    _image = [UIImage imageWithData:data];
+                    self.image = [UIImage imageWithData:data];
                     
                     dispatch_sync(dispatch_get_main_queue(), ^{
-                        self.imgView.image = _image;
-                        [subscriber sendNext:_image];
+                        self.imgView.image = self.image;
+                        [subscriber sendNext:self.image];
                         [subscriber sendCompleted];
                     });
                 }];
             }else{
-                _image = [UIImage imageWithData:imgData];
-                [subscriber sendNext:_image];
+                self.image = [UIImage imageWithData:imgData];
+                [subscriber sendNext:self.image];
                 [subscriber sendCompleted];
             }
            
@@ -71,7 +71,7 @@ CGFloat currentScale;
         return requestSig;
     }];
     
-    [[_imageLoadCommand.executing skip:1] subscribeNext:^(id x) {
+    [[self.imageLoadCommand.executing skip:1] subscribeNext:^(id x) {
         
         if ([x boolValue] == YES) {
             NSLog(@"loading!");
@@ -83,13 +83,13 @@ CGFloat currentScale;
             NSLog(@"done!");
             
             //设置图片显示，Scrollview的代理
-            _imgView = [[UIImageView alloc] initWithFrame:self.scrollView.bounds];
-            [_imgView setContentMode:UIViewContentModeScaleAspectFit];
+            self.imgView = [[UIImageView alloc] initWithFrame:self.scrollView.bounds];
+            [self.imgView setContentMode:UIViewContentModeScaleAspectFit];
             
-            _imgView.image = _image;
+            self.imgView.image = self.image;
             
-            [self.scrollView addSubview:_imgView];
-            self.scrollView.delegate =self;
+            [self.scrollView addSubview:self.imgView];
+            self.scrollView.delegate = self;
             
             CGFloat imgWid = self.imgView.image.size.width;
             CGFloat imgHei = self.imgView.image.size.height;
@@ -116,7 +116,7 @@ CGFloat currentScale;
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20];
     
     [request setHTTPMethod:@"GET"];
-    [request setValue:APIKEY forHTTPHeaderField:@"api-key"];
+    [request setValue:apiKey forHTTPHeaderField:@"api-key"];
     
     return request;
 }
@@ -148,7 +148,7 @@ CGFloat currentScale;
 #pragma mark - UIScrollViewDelegate
 -(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
-    return _imgView;
+    return self.imgView;
 }
 
 @end

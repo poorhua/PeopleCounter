@@ -16,14 +16,14 @@
 @property (weak, nonatomic) IBOutlet CPTGraphHostingView *graphView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLab;
 @property (weak, nonatomic) IBOutlet UILabel *dataLab;
-@property(nonatomic,strong) PlotViewModel *plotVM;
-@property(nonatomic,strong) NSMutableArray<PlotDatas *> *datasArray;
-@property(nonatomic,assign) ACSeekType style;
+@property (nonatomic, readwrite, strong) PlotViewModel *plotVM;
+@property (nonatomic, readwrite, strong) NSMutableArray<PlotDatas *> *datasArray;
+@property (nonatomic, readwrite, assign) ACSeekType style;
 @end
 
 @implementation PlotViewController
 
--(PlotViewModel *)plotVM
+- (PlotViewModel *)plotVM
 {
     if (_plotVM == nil) {
         _plotVM = [[PlotViewModel alloc] init];
@@ -40,13 +40,13 @@
     self.graphView.alpha = 0;
 }
 
--(void)viewDidAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
-    self.graphView.hostedGraph = [self.plotVM createGraphWith:_datasArray inStyle:_style];
+    self.graphView.hostedGraph = [self.plotVM createGraphWith:self.datasArray inStyle:self.style];
     
-    switch (_style) {
+    switch (self.style) {
         case SeekTemp:
             self.titleLab.text = @"当前温度";
             break;
@@ -59,10 +59,10 @@
     }
     [self.titleLab sizeToFit];
     
-    NSString *labStr = _datasArray.lastObject.nums;
+    NSString *labStr = self.datasArray.lastObject.nums;
     NSLog(@"%@",labStr);
     NSString *showStr;
-    switch (_style) {
+    switch (self.style) {
         case SeekAir:
             if ([labStr isEqualToString:@"1"]) {
                 showStr = @"AAAA";
@@ -96,7 +96,7 @@
     }];
 }
 
--(void)viewWillDisappear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     
@@ -111,10 +111,9 @@
     }];
 }
 
--(void)setDataArray:(NSArray *)array inStyle:(ACSeekType)style
+- (void)setDataArray:(NSArray *)array inStyle:(ACSeekType)style
 {
-    _style = style;
-    
+    self.style = style;
     
     NSInteger count = [array count];
     
@@ -125,7 +124,7 @@
             [plotData setDateTimeStr:array[i][@"at"]];
             [datasArray addObject:plotData];
         }
-    _datasArray = datasArray;
+    self.datasArray = datasArray;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -133,7 +132,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }

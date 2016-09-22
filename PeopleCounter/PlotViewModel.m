@@ -10,20 +10,20 @@
 #import "PlotDatas.h"
 
 @interface PlotViewModel()
-@property(nonatomic,strong) CPTXYGraph *graph;
-@property(nonatomic,strong) NSMutableArray *dataForPlot;
-@property(nonatomic,strong) NSMutableArray<PlotDatas *> *datasArray;
-@property(nonatomic,assign) ACSeekType style;
+@property (nonatomic, readwrite, strong) CPTXYGraph *graph;
+@property (nonatomic, readwrite, strong) NSMutableArray *dataForPlot;
+@property (nonatomic, readwrite, strong) NSMutableArray<PlotDatas *> *datasArray;
+@property (nonatomic, readwrite, assign) ACSeekType style;
 
-@property(nonatomic,strong) CPTXYAxis *yAxis;
-@property(nonatomic,strong) CPTXYAxis *xAxis;
+@property (nonatomic, readwrite, strong) CPTXYAxis *yAxis;
+@property (nonatomic, readwrite, strong) CPTXYAxis *xAxis;
 @end
 
 @implementation PlotViewModel
 
--(CPTXYGraph *)createGraphWith:(NSMutableArray<PlotDatas *> *)array inStyle:(ACSeekType)style
+- (CPTXYGraph *)createGraphWith:(NSMutableArray<PlotDatas *> *)array inStyle:(ACSeekType)style
 {
-    _style = style;
+    self.style = style;
     
     /*
      extern NSString *__nonnull const kCPTDarkGradientTheme; ///< A graph theme with dark gray gradient backgrounds and light gray lines.
@@ -48,38 +48,38 @@
         }
     }
     
-    _graph = [[CPTXYGraph alloc] initWithFrame:CGRectZero];
+    self.graph = [[CPTXYGraph alloc] initWithFrame:CGRectZero];
     CPTTheme *theme = [CPTTheme themeNamed:kCPTSlateTheme];
-    [_graph applyTheme:theme];
+    [self.graph applyTheme:theme];
     
-    _graph.paddingBottom = _graph.paddingTop = PADDINGLENTH;
-    _graph.paddingLeft = _graph.paddingRight = PADDINGLENTH;
+    self.graph.paddingBottom = self.graph.paddingTop = PADDINGLENTH;
+    self.graph.paddingLeft = self.graph.paddingRight = PADDINGLENTH;
     
-    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)_graph.defaultPlotSpace;
+    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)self.graph.defaultPlotSpace;
     plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:@-3 length:@(count)];
     plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:@(min - 2) length:@(max - min + 4)];
     
-    CPTXYAxisSet *axisSet = (CPTXYAxisSet *)_graph.axisSet;
+    CPTXYAxisSet *axisSet = (CPTXYAxisSet *)self.graph.axisSet;
     CPTMutableLineStyle *lineStyle = [CPTMutableLineStyle lineStyle];
     lineStyle.miterLimit = 1.0f;
     lineStyle.lineWidth = 0.5;
     lineStyle.lineColor = [CPTColor whiteColor];
     
-    CPTXYAxis * x = axisSet.xAxis;
+    CPTXYAxis *x = axisSet.xAxis;
     x.orthogonalPosition = @(min - 1.5); // 原点的 x 位置
     x.majorIntervalLength = @5;   // x轴主刻度：显示数字标签的量度间隔
     x.minorTicksPerInterval = 5;    // x轴细分刻度：每一个主刻度范围内显示细分刻度的个数
     x.minorTickLineStyle = lineStyle;
     x.delegate = self;
-    _xAxis = x;
+    self.xAxis = x;
     
-    CPTXYAxis * y = axisSet.yAxis;
+    CPTXYAxis *y = axisSet.yAxis;
     y.orthogonalPosition = @(0); // 原点的 y 位置
     y.majorIntervalLength = @(1);   // y轴主刻度：显示数字标签的量度间隔
     y.minorTicksPerInterval = 1;    // y轴细分刻度：每一个主刻度范围内显示细分刻度的个数
     y.minorTickLineStyle = lineStyle;
     y.delegate = self;
-    _yAxis = y;
+    self.yAxis = y;
     
     // Create a red-blue plot area
     //
@@ -87,13 +87,13 @@
     lineStyle.lineWidth         = 3.0f;
     lineStyle.lineColor         = [CPTColor orangeColor];
     
-    CPTScatterPlot * boundLinePlot  = [[CPTScatterPlot alloc] init];
+    CPTScatterPlot *boundLinePlot  = [[CPTScatterPlot alloc] init];
     boundLinePlot.dataLineStyle = lineStyle;
     boundLinePlot.dataSource    = self;
     
     // Add plot symbols: 表示数值的符号的形状
     //
-    CPTMutableLineStyle * symbolLineStyle = [CPTMutableLineStyle lineStyle];
+    CPTMutableLineStyle *symbolLineStyle = [CPTMutableLineStyle lineStyle];
     symbolLineStyle.lineColor = [CPTColor blackColor];
     symbolLineStyle.lineWidth = 1.0;
     
@@ -103,53 +103,53 @@
 //    plotSymbol.size          = CGSizeMake(5.0, 10.0);
 //    boundLinePlot.plotSymbol = plotSymbol;
     
-    [_graph addPlot:boundLinePlot];
+    [self.graph addPlot:boundLinePlot];
     
-    _datasArray = array;
+    self.datasArray = array;
 
-    _dataForPlot = [NSMutableArray arrayWithCapacity:count];
+    self.dataForPlot = [NSMutableArray arrayWithCapacity:count];
     NSUInteger i;
     for ( i = 0; i < count; i++ ) {
         id x = [NSNumber numberWithFloat:i];
-        id y = @([_datasArray[i].nums integerValue]);
-        [_dataForPlot addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil]];
+        id y = @([self.datasArray[i].nums integerValue]);
+        [self.dataForPlot addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil]];
     }
     
-    return _graph;
+    return self.graph;
 }
 
 #pragma mark Plot Data Source Methods
 
--(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot
+- (NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot
 {
-    return [_dataForPlot count];
+    return [self.dataForPlot count];
 }
 
--(NSNumber *)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index
+- (NSNumber *)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index
 {
-    NSString * key = (fieldEnum == CPTScatterPlotFieldX ? @"x" : @"y");
-    NSNumber * num = [[_dataForPlot objectAtIndex:index] valueForKey:key];
+    NSString *key = (fieldEnum == CPTScatterPlotFieldX ? @"x" : @"y");
+    NSNumber *num = [[self.dataForPlot objectAtIndex:index] valueForKey:key];
     
     return num;
 }
 
 #pragma mark Axis Delegate Methods
--(BOOL)axis:(CPTAxis *)axis shouldUpdateAxisLabelsAtLocations:(NSSet *)locations
+- (BOOL)axis:(CPTAxis *)axis shouldUpdateAxisLabelsAtLocations:(NSSet *)locations
 {
     CGFloat labelOffset             = axis.labelOffset;
-    NSMutableSet * newLabels        = [NSMutableSet set];
-    if ([_xAxis isEqual: axis]) {
-        for (NSDecimalNumber * tickLocation in locations) {
-            NSString * labelString      = [axis.labelFormatter stringForObjectValue:tickLocation];
+    NSMutableSet *newLabels        = [NSMutableSet set];
+    if ([self.xAxis isEqual: axis]) {
+        for (NSDecimalNumber *tickLocation in locations) {
+            NSString *labelString      = [axis.labelFormatter stringForObjectValue:tickLocation];
             NSInteger index = [labelString integerValue];
             
-            if (index < [_datasArray count]) {
+            if (index < [self.datasArray count]) {
                 NSRange range;
                 range.location = 11;
                 range.length = 5;
-                CPTTextLayer * newLabelLayer= [[CPTTextLayer alloc] initWithText:[_datasArray[index].dateTimeStr substringWithRange:range] style:[axis.labelTextStyle mutableCopy]];
+                CPTTextLayer *newLabelLayer= [[CPTTextLayer alloc] initWithText:[self.datasArray[index].dateTimeStr substringWithRange:range] style:[axis.labelTextStyle mutableCopy]];
                 
-                CPTAxisLabel * newLabel     = [[CPTAxisLabel alloc] initWithContentLayer:newLabelLayer];
+                CPTAxisLabel *newLabel     = [[CPTAxisLabel alloc] initWithContentLayer:newLabelLayer];
                 newLabel.tickLocation       = tickLocation;
                 newLabel.offset             = labelOffset;
                 
@@ -159,8 +159,8 @@
         
         axis.axisLabels = newLabels;
     }else{
-        for (NSDecimalNumber * tickLocation in locations) {
-            NSString * labelString      = [axis.labelFormatter stringForObjectValue:tickLocation];
+        for (NSDecimalNumber *tickLocation in locations) {
+            NSString *labelString      = [axis.labelFormatter stringForObjectValue:tickLocation];
             NSRange range;
             range.location = 0;
             if ([labelString length] <= 3) {
@@ -169,7 +169,7 @@
                 range.length = 2;
             
             NSString *labelStr;
-            switch (_style) {
+            switch (self.style) {
                 case SeekAir:
                     if ([labelString isEqualToString:@"1.0"]) {
                         labelStr = @"AAAA";
@@ -192,10 +192,10 @@
                     break;
             }
             
-            CPTTextLayer * newLabelLayer= [[CPTTextLayer alloc] initWithText:labelStr style:[axis.labelTextStyle mutableCopy]];
-            CPTAxisLabel * newLabel     = [[CPTAxisLabel alloc] initWithContentLayer:newLabelLayer];
-            newLabel.tickLocation       = tickLocation;
-            newLabel.offset             = labelOffset;
+            CPTTextLayer *newLabelLayer = [[CPTTextLayer alloc] initWithText:labelStr style:[axis.labelTextStyle mutableCopy]];
+            CPTAxisLabel *newLabel = [[CPTAxisLabel alloc] initWithContentLayer:newLabelLayer];
+            newLabel.tickLocation = tickLocation;
+            newLabel.offset = labelOffset;
             [newLabels addObject:newLabel];
         }
         

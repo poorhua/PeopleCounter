@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface CellDatas : NSObject
-@property(nonatomic,strong) NSString *dateTimeStr;
-@property(nonatomic,strong) NSString *recogNumsStr;
-@property(nonatomic,strong) NSString *imgUuid;
+
+@property (nonatomic, readwrite, copy) NSString *dateTimeStr;
+@property (nonatomic, readwrite, copy) NSString *recogNumsStr;
+@property (nonatomic, readwrite, copy) NSString *imgUuid;
 
 @end

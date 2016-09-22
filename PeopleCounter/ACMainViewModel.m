@@ -13,20 +13,20 @@
 
 @interface ACMainViewModel()
 
-@property(nonatomic,strong) MDTransitionDelegate *transitionalDelegate;
-@property(nonatomic,strong) NSArray *humanArray;
-@property(nonatomic,strong) NSArray *tempArray;
-@property(nonatomic,strong) NSArray *airArray;
+@property (nonatomic, readwrite, strong) MDTransitionDelegate *transitionalDelegate;
+@property (nonatomic, readwrite, copy) NSArray *humanArray;
+@property (nonatomic, readwrite, copy) NSArray *tempArray;
+@property (nonatomic, readwrite, copy) NSArray *airArray;
 
-@property(nonatomic,strong) UILabel *label;
-@property(nonatomic,assign) BOOL isCombo;
-@property(nonatomic,strong) ACButtonView *btnSubView;
+@property (nonatomic, readwrite, strong) UILabel *label;
+@property (nonatomic, readwrite, assign) BOOL isCombo;
+@property (nonatomic, readwrite, strong) ACButtonView *btnSubView;
 
 @end
 
 @implementation ACMainViewModel
 
--(MDTransitionDelegate *)transitionalDelegate
+- (MDTransitionDelegate *)transitionalDelegate
 {
     if (_transitionalDelegate == nil) {
         _transitionalDelegate = [[MDTransitionDelegate alloc] init];
@@ -34,7 +34,7 @@
     return _transitionalDelegate;
 }
 
--(UILabel *)label
+- (UILabel *)label
 {
     if (_label == nil) {
         _label = [[UILabel alloc] init];
@@ -52,11 +52,11 @@
     return self;
 }
 
--(void)bindEvents
+- (void)bindEvents
 {
-    _acMainCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    self.acMainCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         
-        self.label.text = ACAPP_NAME;
+        self.label.text = acAppName;
         //    自动设置了尺寸
         [self.label sizeToFit];
         self.label.textColor = [UIColor orangeColor];
@@ -64,71 +64,71 @@
         
         
         ACButtonView *btnView = [ACButtonView getButtonView];
-        btnView.frame = _btnView.bounds;
-        [_btnView addSubview:btnView];
+        btnView.frame = self.btnView.bounds;
+        [self.btnView addSubview:btnView];
         UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction)];
         [btnView addGestureRecognizer:gesture];
-        _isCombo = true;
-        _btnSubView = btnView;
+        self.isCombo = true;
+        self.btnSubView = btnView;
         
         UITapGestureRecognizer *gesture1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(recoverView)];
-        [_comboView addGestureRecognizer:gesture1];
+        [self.comboView addGestureRecognizer:gesture1];
         
         [self hideBtns];
         
         //bindAction
-        [_humanBtn addTarget:self action:@selector(humanAction) forControlEvents:UIControlEventTouchUpInside];
-        [_airBtn addTarget:self action:@selector(airAction) forControlEvents:UIControlEventTouchUpInside];
-        [_tempBtn addTarget:self action:@selector(tempAction) forControlEvents:UIControlEventTouchUpInside];
+        [self.humanBtn addTarget:self action:@selector(humanAction) forControlEvents:UIControlEventTouchUpInside];
+        [self.airBtn addTarget:self action:@selector(airAction) forControlEvents:UIControlEventTouchUpInside];
+        [self.tempBtn addTarget:self action:@selector(tempAction) forControlEvents:UIControlEventTouchUpInside];
         
         return [RACSignal empty];
         
     }];
 }
 
--(void)hideBtns
+- (void)hideBtns
 {
-    _humanBtn.transform = CGAffineTransformTranslate(_humanBtn.transform, 0, 246);
-    _tempBtn.transform = CGAffineTransformTranslate(_tempBtn.transform, -102, 163);
-    _airBtn.transform = CGAffineTransformTranslate(_airBtn.transform, 102, 163);
+    self.humanBtn.transform = CGAffineTransformTranslate(self.humanBtn.transform, 0, 246);
+    self.tempBtn.transform = CGAffineTransformTranslate(self.tempBtn.transform, -102, 163);
+    self.airBtn.transform = CGAffineTransformTranslate(self.airBtn.transform, 102, 163);
 }
 
--(void)recoverView
+- (void)recoverView
 {
     [UIView animateWithDuration:0.2 animations:^{
-        _comboView.alpha = 0.0;
+        self.comboView.alpha = 0.0;
         
-        [_label setAlpha:1];
+        [self.label setAlpha:1];
         
         self.navigationItem.leftBarButtonItem.tintColor = [UIColor orangeColor];
         
         [self hideBtns];
     }];
-    [_btnSubView turnOrign];
-    _isCombo = YES;
+    [self.btnSubView turnOrign];
+    self.isCombo = YES;
 }
 
--(void)tapAction
+- (void)tapAction
 {
-    if (_isCombo) {
+    if (self.isCombo) {
         
         //加载数据
         [self loadDatas];
         
         [UIView animateWithDuration:0.2 animations:^{
-            _comboView.alpha = 0.9;
+            self.comboView.alpha = 0.9;
             
-            [_label setAlpha:0];
+            [self.label setAlpha:0];
             
-            _humanBtn.transform = CGAffineTransformIdentity;
-            _tempBtn.transform = CGAffineTransformIdentity;
-            _airBtn.transform = CGAffineTransformIdentity;
+            self.humanBtn.transform = CGAffineTransformIdentity;
+            self.tempBtn.transform = CGAffineTransformIdentity;
+            self.airBtn.transform = CGAffineTransformIdentity;
             
             self.navigationItem.leftBarButtonItem.tintColor = [UIColor colorWithWhite:1 alpha:0];
         }];
         
-        [_btnSubView turnSlop];
-        _isCombo = NO;
+        [self.btnSubView turnSlop];
+        self.isCombo = NO;
     }else
     {
         [self recoverView];
@@ -136,41 +136,41 @@
 }
 
 //按键点击事件
--(void)humanAction
+- (void)humanAction
 {
     PlotViewController *plotVc = [[PlotViewController alloc] initWithNibName:@"PlotViewController" bundle:nil];
     plotVc.modalPresentationStyle = UIModalPresentationCustom;
     plotVc.transitioningDelegate = self.transitionalDelegate;
     
-    [plotVc setDataArray:_humanArray inStyle:SeekHuman];
+    [plotVc setDataArray:self.humanArray inStyle:SeekHuman];
     
     [self.navigationController presentViewController:plotVc animated:YES completion:nil];
 }
 
--(void)airAction
+- (void)airAction
 {
     PlotViewController *plotVc = [[PlotViewController alloc] initWithNibName:@"PlotViewController" bundle:nil];
     plotVc.modalPresentationStyle = UIModalPresentationCustom;
     plotVc.transitioningDelegate = self.transitionalDelegate;
     
-    [plotVc setDataArray:_airArray inStyle:SeekAir];
+    [plotVc setDataArray:self.airArray inStyle:SeekAir];
     
     [self.navigationController presentViewController:plotVc animated:YES completion:nil];
 }
 
--(void)tempAction
+- (void)tempAction
 {
     PlotViewController *plotVc = [[PlotViewController alloc] initWithNibName:@"PlotViewController" bundle:nil];
     plotVc.modalPresentationStyle = UIModalPresentationCustom;
     plotVc.transitioningDelegate = self.transitionalDelegate;
     
-    [plotVc setDataArray:_tempArray inStyle:SeekTemp];
+    [plotVc setDataArray:self.tempArray inStyle:SeekTemp];
     
     [self.navigationController presentViewController:plotVc animated:YES completion:nil];
 }
 
 //点击一下案件下载一次数据
--(void)loadDatas
+- (void)loadDatas
 {
     NSMutableURLRequest *request = [self makeUPURLConnection];
     [[NSURLConnection rac_sendAsynchronousRequest:request] subscribeNext:^(RACTuple* x) {
@@ -186,13 +186,13 @@
         NSDictionary *initDic = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
         NSArray *initArray = initDic[@"data"][@"datastreams"];
         //
-        _tempArray = initArray[0][@"datapoints"];
-        _humanArray = initArray[1][@"datapoints"];
-        _airArray = initArray[2][@"datapoints"];
+        self.tempArray = initArray[0][@"datapoints"];
+        self.humanArray = initArray[1][@"datapoints"];
+        self.airArray = initArray[2][@"datapoints"];
     }];
 }
 
--(NSMutableURLRequest *)makeUPURLConnection
+- (NSMutableURLRequest *)makeUPURLConnection
 {
     NSDate *now = [NSDate date];
     
@@ -205,6 +205,9 @@
     NSRange range;
     range.location = 1;
     range.length = 2;
+    
+    
+#ifdef TRUEDATE
     NSString *month = [[NSString stringWithFormat:@"%ld",(long)([dateComponent month]+100)] substringWithRange:range];
     NSString *day = [[NSString stringWithFormat:@"%ld",(long)([dateComponent day]+100)]substringWithRange:range];
     NSString *hour1 = [[NSString stringWithFormat:@"%ld",(long)([dateComponent hour]+100)] substringWithRange:range];
@@ -212,7 +215,6 @@
     NSString *minute = [[NSString stringWithFormat:@"%ld",(long)([dateComponent minute] - 1+100)] substringWithRange:range];
     NSString *second = [[NSString stringWithFormat:@"%ld",(long)([dateComponent second]+100)] substringWithRange:range];
     
-#ifdef TRUEDATE
     NSString *endData = [NSString stringWithFormat:@"%ld-%@-%@T%@:%@:%@",(long)year,month,day,hour1,minute,second];
     NSString *startData = [NSString stringWithFormat:@"%ld-%@-%@T%@:%@:%@",(long)year,month,day,hour2,minute,second];
 #else
@@ -229,7 +231,7 @@
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20];
     
     [request setHTTPMethod:@"GET"];
-    [request setValue:APIKEY forHTTPHeaderField:@"api-key"];
+    [request setValue:apiKey forHTTPHeaderField:@"api-key"];
     
     return request;
 }

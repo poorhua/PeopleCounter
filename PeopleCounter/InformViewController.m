@@ -14,22 +14,21 @@
 
 @interface InformViewController ()
 
-
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonConstraint;
 @property (weak, nonatomic) IBOutlet UIStackView *stackView;
-@property (strong, nonatomic) IBOutlet UIControl *viewControl;
+@property (weak, nonatomic) IBOutlet UIControl *viewControl;
 @property (weak, nonatomic) IBOutlet UITextView *inputTextField;
 @property (weak, nonatomic) IBOutlet UITextView *transTextField;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UIButton *transBtn;
 @property (weak, nonatomic) IBOutlet UIButton *sendBtn;
-@property(nonatomic,strong) InformViewModel *informVM;
+@property (nonatomic, readwrite, strong) InformViewModel *informVM;
 
 @end
 
 @implementation InformViewController
 
--(InformViewModel *)informVM
+- (InformViewModel *)informVM
 {
     if (_informVM == nil) {
         _informVM = [[InformViewModel alloc] init];

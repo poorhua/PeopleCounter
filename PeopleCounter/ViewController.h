@@ -10,7 +10,7 @@
 #import <Foundation/Foundation.h>
 #import "GlobalHeader.h"
 
-@interface ViewController : UITableViewController<UITableViewDataSource,UITableViewDelegate,NSURLConnectionDataDelegate>
+@interface ViewController : UITableViewController<UITableViewDataSource, UITableViewDelegate, NSURLConnectionDataDelegate>
 
 @end
 

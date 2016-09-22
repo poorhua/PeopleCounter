@@ -19,9 +19,9 @@
     return self;
 }
 
--(void)bindEvents
+- (void)bindEvents
 {
-    _informCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    self.informCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         //释放键盘
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(returnKeyboard)];
         self.stackView.userInteractionEnabled = YES;
@@ -124,14 +124,14 @@
         }];
 }
 
--(void)returnKeyboard
+- (void)returnKeyboard
 {
     [self.inputTextField resignFirstResponder];
     [self.transTextField resignFirstResponder];
     [self.nameTextField resignFirstResponder];
 }
 
--(NSMutableURLRequest *)makeUPURLConnection
+- (NSMutableURLRequest *)makeUPURLConnection
 {
     NSString *str = [NSString stringWithFormat:@"http://fanyi.youdao.com/openapi.do?keyfrom=RaspiTranslater&key=31594945&type=data&doctype=json&version=1.1&q=%@",self.inputTextField.text];
     NSLog(@"%@",str);
@@ -144,7 +144,7 @@
     return request;
 }
 
--(NSMutableURLRequest *)makeUPURLConnection:(NSString *) msg
+- (NSMutableURLRequest *)makeUPURLConnection:(NSString *) msg
 {
     NSDate *now = [NSDate date];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -159,7 +159,7 @@
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20];
     
     [request setHTTPMethod:@"POST"];
-    [request setValue:APIKEY forHTTPHeaderField:@"api-key"];
+    [request setValue:apiKey forHTTPHeaderField:@"api-key"];
     
     NSDictionary *reqDic = @{
                              @"datastreams":@[

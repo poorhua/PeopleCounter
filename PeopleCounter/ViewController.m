@@ -17,16 +17,16 @@
 
 @interface ViewController ()
 
-@property(nonatomic,strong) NSMutableArray<CellDatas *> *datasArray;
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic,strong) TableViewModel *tableVM;
+@property (nonatomic, readwrite, strong) NSMutableArray<CellDatas *> *datasArray;
+//@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, readwrite, strong) TableViewModel *tableVM;
 //@property (weak, nonatomic) IBOutlet CPTGraphHostingView *hostView;
 //@property(nonatomic,strong) PlotViewModel *plotVM;
 @end
 
 @implementation ViewController
 
--(TableViewModel *)tableVM
+- (TableViewModel *)tableVM
 {
     if (_tableVM == nil) {
         _tableVM = [[TableViewModel alloc] init];
@@ -35,7 +35,7 @@
     return _tableVM;
 }
 
--(NSMutableArray *)datasArray
+- (NSMutableArray *)datasArray
 {
     if (_datasArray == nil) {
         _datasArray = [NSMutableArray array];
@@ -63,7 +63,7 @@
     RACSignal *sig = [self.tableVM.httpCommand execute:nil];
     
     [sig subscribeNext:^(NSMutableArray *x) {
-        _datasArray = x;
+        self.datasArray = x;
         
 //        [[RACScheduler mainThreadScheduler] afterDelay:0.1 schedule:^{
 //            
@@ -82,11 +82,11 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([sender class] == [UIBarButtonItem class]) {
-        InformViewController *informVc = segue.destinationViewController;
+        //InformViewController *informVc = segue.destinationViewController;
     } else {
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         ImageViewController *imgVc = segue.destinationViewController;
-        [imgVc setUuid:_datasArray[indexPath.row].imgUuid];
+        [imgVc setUuid:self.datasArray[indexPath.row].imgUuid];
     } 
     
 }

@@ -9,33 +9,8 @@
 #import "UIImage+Bitmap.h"
 
 @implementation UIImage (Bitmap)
-//
-//+ (UIImage*)captureScreen
-//{
-//    // 需要先声明该外部函数
-//    extern CGImageRef UIGetScreenImage();
-//    // 调用UIGetScreenImage()函数执行截屏
-//    CGImageRef screen = UIGetScreenImage();
-//    // 获取截屏得到的图片
-//    UIImage* newImage = [UIImage imageWithCGImage:screen];
-//    return newImage;
-//}
-//+ (UIImage*)captureView:(UIView *)targetView
-//{
-//    // 获取目标UIView的所在的区域
-//    CGRect rect = targetView.frame;
-//    // 开始绘图
-//    UIGraphicsBeginImageContext(rect.size);
-//    // 获取当前的绘图Context
-//    CGContextRef context = UIGraphicsGetCurrentContext();
-//    // 调用CALayer的方法将当前控件绘制到绘图Context中
-//    [targetView.layer renderInContext:context];
-//    // 获取该绘图Context中的图片
-//    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
-//    return newImage;
-//}
--(UIImage *)imageAtRect:(CGRect)rect
+
+- (UIImage *)imageAtRect:(CGRect)rect
 {
     // 获取该UIImage图片对应的CGImageRef对象
     CGImageRef srcImage = [self CGImage];
@@ -44,11 +19,12 @@
     // 将“挖取”出来的CGImageRef转换为UIImage对象
     UIImage* subImage = [UIImage imageWithCGImage: imageRef];
 //    CGImageRelease(srcImage);
-    CFRelease(srcImage);
+//   CFRelease(srcImage);
 //    CGImageRelease(imageRef);
     CFRelease(imageRef);
     return subImage;
 }
+
 - (UIImage *)imageByScalingAspectToMinSize:(CGSize)targetSize
 {
     // 获取源图片的宽和高
@@ -101,6 +77,7 @@
     // 返回新图片
     return newImage ;
 }
+
 - (UIImage *)imageByScalingAspectToMaxSize:(CGSize)targetSize
 {
     // 获取源图片的宽和高
@@ -152,6 +129,7 @@
     // 返回新图片
     return newImage ;
 }
+
 - (UIImage *)imageByScalingToSize:(CGSize)targetSize
 {
     // 开始绘图
@@ -168,6 +146,7 @@
     // 返回新图片
     return newImage;
 }
+
 // 图片旋转角度
 - (UIImage *)imageRotatedByRadians:(CGFloat)radians
 {
@@ -198,10 +177,12 @@
     // 返回新图片
     return newImage;
 }
+
 - (UIImage *)imageRotatedByDegrees:(CGFloat)degrees
 {
     return [self imageRotatedByRadians:degrees * M_PI / 180];
 }
+
 - (void) saveToDocuments:(NSString*)fileName
 {
     // 获取当前应用路径下的Documents目录下的指定文件名对应的文件路径

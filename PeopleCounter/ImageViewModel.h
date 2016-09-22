@@ -12,9 +12,9 @@
 
 @interface ImageViewModel : NSObject<UIScrollViewDelegate>
 
-@property(nonatomic,strong) RACCommand *imageLoadCommand;
-@property(nonatomic,strong) NSString *uuid;
-@property(nonatomic,strong) UIScrollView *scrollView;
-@property(null_resettable, nonatomic,strong) UIView *view;
+@property (nonatomic, readwrite, strong, nonnull) RACCommand *imageLoadCommand;
+@property (nonatomic, readwrite, copy, nonnull) NSString *uuid;
+@property (nonatomic, readwrite, weak) UIScrollView *scrollView;
+@property (nonatomic, readwrite, weak) UIView *view;
 
 @end

@@ -13,9 +13,8 @@ typedef NS_ENUM(NSInteger, ACMoveType) {
     ACMoveEnd
 };
 
-
 @interface ACFreshBtn : UIButton
 
--(void)moveDistance:(CGFloat)dis inType:(ACMoveType) type;
+- (void)moveDistance:(CGFloat)dis inType:(ACMoveType)type;
 
 @end

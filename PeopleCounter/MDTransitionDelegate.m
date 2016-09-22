@@ -12,19 +12,19 @@
 
 @implementation MDTransitionDelegate
 
--(id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source
 {
     return [[LayoutAnimate alloc] init];
 //    return [[LayoutSliderAnimate alloc] initWithTransitionType:ModalTransition andOperation:Presentation];
 }
 
--(id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
 {
         return [[LayoutAnimate alloc] init];
 //    return [[LayoutSliderAnimate alloc] initWithTransitionType:ModalTransition andOperation:Dismissal];
 }
 
--(UIPresentationController *)presentationControllerForPresentedViewController:(UIViewController *)presented presentingViewController:(UIViewController *)presenting sourceViewController:(UIViewController *)source
+- (UIPresentationController *)presentationControllerForPresentedViewController:(UIViewController *)presented presentingViewController:(UIViewController *)presenting sourceViewController:(UIViewController *)source
 {
     return [[LayoutPresentationVC alloc] initWithPresentedViewController:presented presentingViewController:presenting];
 }

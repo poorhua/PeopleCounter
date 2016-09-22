@@ -12,15 +12,16 @@
 #import <PhotosUI/PhotosUI.h>
 
 @interface ImageViewController()
-@property (weak,nonatomic) IBOutlet UIScrollView *scrollView;
-@property (nonatomic,strong) ImageViewModel *imageVM;
 
-@property(nonatomic,strong) UIImage *currentImg;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, readwrite, strong) ImageViewModel *imageVM;
+@property (nonatomic, readwrite, strong) UIImage *currentImg;
+
 @end
 
 @implementation ImageViewController
 
--(ImageViewModel *)imageVM
+- (ImageViewModel *)imageVM
 {
     if (_imageVM == nil) {
         _imageVM = [[ImageViewModel alloc] init];
@@ -29,7 +30,7 @@
     return _imageVM;
 }
 
--(void)viewDidLoad
+- (void)viewDidLoad
 {
     [super viewDidLoad];
     
@@ -43,7 +44,7 @@
     }];
 }
 
--(void)setUuid:(NSString *)str
+- (void)setUuid:(NSString *)str
 {
     self.imageVM.uuid = str;
 }
@@ -76,7 +77,7 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
--(void)savePhotoToPhone
+- (void)savePhotoToPhone
 {
     // 判断授权状态
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
@@ -129,7 +130,7 @@
     // 先从已存在相册中找到自定义相册对象
     PHFetchResult<PHAssetCollection *> *collectionResult = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
     for (PHAssetCollection *collection in collectionResult) {
-        if ([collection.localizedTitle isEqualToString:PHOTO_ALBLUM]) {
+        if ([collection.localizedTitle isEqualToString:photoAlblum]) {
             return collection;
         }
     }
@@ -138,11 +139,11 @@
     __block NSString *collectionId = nil;
     NSError *error = nil;
     [[PHPhotoLibrary sharedPhotoLibrary] performChangesAndWait:^{
-        collectionId = [PHAssetCollectionChangeRequest creationRequestForAssetCollectionWithTitle:PHOTO_ALBLUM].placeholderForCreatedAssetCollection.localIdentifier;
+        collectionId = [PHAssetCollectionChangeRequest creationRequestForAssetCollectionWithTitle:photoAlblum].placeholderForCreatedAssetCollection.localIdentifier;
     } error:&error];
     
     if (error) {
-        NSLog(@"获取相册【%@】失败", PHOTO_ALBLUM);
+        NSLog(@"获取相册【%@】失败", photoAlblum);
         return nil;
     }
     
@@ -151,7 +152,7 @@
 }
 
 
--(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
+- (void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
 {
     //根据`responseCode`得到发送结果,如果分享成功
     if(response.responseCode == UMSResponseCodeSuccess)

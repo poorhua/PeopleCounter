@@ -12,7 +12,7 @@
 
 @interface DateCell : UITableViewCell
 
--(void)setImage:(UIImage *)image andLabel:(NSString *) date;
--(void)setData:(CellDatas *) cellData;
+- (void)setImage:(UIImage *)image andLabel:(NSString *)date;
+- (void)setData:(CellDatas *)cellData;
 
 @end

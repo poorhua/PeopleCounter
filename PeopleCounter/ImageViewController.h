@@ -11,6 +11,6 @@
 
 @interface ImageViewController : UIViewController<UMSocialUIDelegate>
 
--(void)setUuid:(NSString *) str;
+- (void)setUuid:(NSString *)str;
 
 @end

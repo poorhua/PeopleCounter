@@ -10,6 +10,6 @@
 
 @interface PlotViewController : UIViewController
 
--(void)setDataArray:(NSArray *) array inStyle:(ACSeekType)style;
+- (void)setDataArray:(NSArray *)array inStyle:(ACSeekType)style;
 
 @end

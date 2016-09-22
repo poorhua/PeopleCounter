@@ -27,13 +27,13 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerViewContraint;
 @property (weak, nonatomic) IBOutlet UILabel *headerLab;
 
-@property(nonatomic,strong) TableViewModel *tableVM;
-@property(nonatomic,strong) ACMainViewModel *mainVM;
+@property (nonatomic, readwrite, strong) TableViewModel *tableVM;
+@property (nonatomic, readwrite, strong) ACMainViewModel *mainVM;
 @end
 
 @implementation ACMainViewController
 
--(TableViewModel *)tableVM
+- (TableViewModel *)tableVM
 {
     if (_tableVM == nil) {
         _tableVM = [[TableViewModel alloc] init];
@@ -41,7 +41,7 @@
     return _tableVM;
 }
 
--(ACMainViewModel *)mainVM
+- (ACMainViewModel *)mainVM
 {
     if (_mainVM == nil) {
         _mainVM = [[ACMainViewModel alloc] init];
@@ -49,21 +49,21 @@
     return _mainVM;
 }
 
--(void)viewDidLoad
+- (void)viewDidLoad
 {
     [super viewDidLoad];
     
     [self setUpUI];
 }
 
--(void)viewWillAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
     [self.tableView reloadData];
 }
 
--(void)setUpUI
+- (void)setUpUI
 {
 //    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(trachCashe)];
     

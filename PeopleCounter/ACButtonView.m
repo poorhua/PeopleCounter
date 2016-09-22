@@ -9,30 +9,31 @@
 #import "ACButtonView.h"
 
 @interface ACButtonView()
+
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 
 @end
 
 @implementation ACButtonView
 
-+(instancetype)getButtonView
++ (instancetype)getButtonView
 {
     return [[NSBundle mainBundle] loadNibNamed:@"ACButtonView" owner:nil options:nil][0];
 }
 
--(void)awakeFromNib
+- (void)awakeFromNib
 {
     self.layer.cornerRadius = 5;
 }
 
--(void)turnSlop
+- (void)turnSlop
 {
     [UIView animateWithDuration:0.3 animations:^{
         self.imgView.transform = CGAffineTransformRotate(self.imgView.transform, M_PI/4.0);
     } completion:nil];
 }
 
--(void)turnOrign
+- (void)turnOrign
 {
     [UIView animateWithDuration:0.3 animations:^{
         self.imgView.transform = CGAffineTransformRotate(self.imgView.transform, -M_PI/4.0);

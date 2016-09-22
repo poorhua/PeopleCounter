@@ -10,14 +10,14 @@
 
 @interface ACFreshBtn()
 
-@property(nonatomic,strong) UIView *smallView;
-@property(nonatomic,strong) CAShapeLayer *shapeLayer;
+@property (nonatomic, readwrite, strong) UIView *smallView;
+@property (nonatomic, readwrite, strong) CAShapeLayer *shapeLayer;
 
 @end
 
 @implementation ACFreshBtn
 
--(CAShapeLayer *)shapeLayer
+- (CAShapeLayer *)shapeLayer
 {
     if (_shapeLayer == nil) {
         
@@ -31,7 +31,7 @@
     return _shapeLayer;
 }
 
--(instancetype)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
         [self setUpUI];
@@ -39,13 +39,13 @@
     return self;
 }
 
--(void)awakeFromNib
+- (void)awakeFromNib
 {
     [super awakeFromNib];
     [self setUpUI];
 }
 
--(void)setUpUI
+- (void)setUpUI
 {
     self.autoresizesSubviews = NO;
     
@@ -60,7 +60,7 @@
     
 }
 
--(void)moveDistance:(CGFloat)dis inType:(ACMoveType) type
+- (void)moveDistance:(CGFloat)dis inType:(ACMoveType)type
 {
     if (type == ACMoveBegin) {
         self.hidden = NO;
@@ -136,7 +136,7 @@
     }
 }
 
--(UIBezierPath *)drawPathBetreenViews
+- (UIBezierPath *)drawPathBetreenViews
 {
     CGFloat x1 = self.smallView.center.x;
     CGFloat y1 = self.smallView.center.y;
@@ -168,7 +168,7 @@
     
 }
 
--(CGFloat)distanceFromView:(UIView *)view toView:(UIView *)otherView
+- (CGFloat)distanceFromView:(UIView *)view toView:(UIView *)otherView
 {
     CGFloat offsetX = view.center.x - otherView.center.x;
     CGFloat offsetY = view.center.y - otherView.center.y;

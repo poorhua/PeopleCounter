@@ -9,8 +9,10 @@
 #import "ACPhotoViewController.h"
 
 @interface ACPhotoViewController ()
+
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property(nonatomic,strong) UIImageView *imgView;
+@property (nonatomic, readwrite, strong) UIImageView *imgView;
+
 @end
 
 @implementation ACPhotoViewController
@@ -18,26 +20,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
-    
 }
 
--(void)viewWillAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
 }
 
--(void)viewDidAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
-    _imgView = [[UIImageView alloc] initWithFrame:self.scrollView.bounds];
-    [_imgView setContentMode:UIViewContentModeScaleAspectFit];
+    self.imgView = [[UIImageView alloc] initWithFrame:self.scrollView.bounds];
+    [self.imgView setContentMode:UIViewContentModeScaleAspectFit];
     
-    _imgView.image = self.img;
+    self.imgView.image = self.img;
     
-    [self.scrollView addSubview:_imgView];
+    [self.scrollView addSubview:self.imgView];
     self.scrollView.delegate =self;
     
     CGFloat imgWid = self.img.size.width;
@@ -57,7 +56,7 @@
 #pragma mark - UIScrollViewDelegate
 - (nullable UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
-    return _imgView;
+    return self.imgView;
 }
 
 @end

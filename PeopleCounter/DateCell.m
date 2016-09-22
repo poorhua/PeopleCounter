@@ -13,13 +13,13 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;
 @property (weak, nonatomic) IBOutlet UILabel *dateLab;
-@property (nonatomic,strong) NSArray *imgArray;
+@property (nonatomic, readwrite, copy) NSArray *imgArray;
 
 @end
 
 @implementation DateCell
 
--(NSArray *)imgArray
+- (NSArray *)imgArray
 {
     if (_imgArray == nil) {
         _imgArray = @[
@@ -39,13 +39,13 @@
     return _imgArray;
 }
 
--(void)setImage:(UIImage *)image andLabel:(NSString *)date
+- (void)setImage:(UIImage *)image andLabel:(NSString *)date
 {
     self.imageView.image = image;
     self.dateLab.text = date;
 }
 
--(void)setData:(CellDatas *)cellData
+- (void)setData:(CellDatas *)cellData
 {
     NSInteger imgIndex = [[cellData recogNumsStr] integerValue];
     

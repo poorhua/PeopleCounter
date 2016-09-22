@@ -10,12 +10,12 @@
 
 @implementation LayoutAnimate
 
--(NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext
+- (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext
 {
     return 0.3;
 }
 
--(void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
+- (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
 {
     UIViewController *fromVc = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     

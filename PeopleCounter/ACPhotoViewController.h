@@ -10,6 +10,6 @@
 
 @interface ACPhotoViewController : UIViewController<UIScrollViewDelegate>
 
-@property(nonatomic,strong) UIImage *img;
+@property (nonatomic, readwrite, strong) UIImage *img;
 
 @end

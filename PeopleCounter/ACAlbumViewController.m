@@ -14,14 +14,16 @@
 #define ITEM_WID ([UIScreen mainScreen].bounds.size.width - 50)/4.0
 
 @interface ACAlbumViewController ()
+
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property(nonatomic,strong) NSMutableArray *imgArray;
+@property (nonatomic, readwrite, strong) NSMutableArray *imgArray;
+
 @end
 
 @implementation ACAlbumViewController
 
 #pragma mark - lazyload
--(NSMutableArray *)imgArray
+- (NSMutableArray *)imgArray
 {
     if (_imgArray == nil) {
         _imgArray = [NSMutableArray array];
@@ -116,13 +118,13 @@
 {
     return CGSizeMake(ITEM_WID, 100);
 }
+
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     return UIEdgeInsetsMake(10, 10, 10, 10);
 }
 
-
--(void)seekPhotosInfo
+- (void)seekPhotosInfo
 {
     // 判断授权状态
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
@@ -165,7 +167,7 @@
     
     NSLog(@"相册名字：%@", collection.localizedTitle);
     
-    if ([collection.localizedTitle isEqualToString:PHOTO_ALBLUM]) {
+    if ([collection.localizedTitle isEqualToString:photoAlblum]) {
         // 遍历这个相册中的所有图片
         PHFetchResult<PHAsset *> *assetResult = [PHAsset fetchAssetsInAssetCollection:collection options:nil];
         for (PHAsset *asset in assetResult) {

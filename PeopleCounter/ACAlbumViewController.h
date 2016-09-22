@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ACAlbumViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
+@interface ACAlbumViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @end

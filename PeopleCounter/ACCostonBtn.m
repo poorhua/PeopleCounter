@@ -10,12 +10,12 @@
 
 @implementation ACCostonBtn
 
--(void)awakeFromNib
+- (void)awakeFromNib
 {
     [self setUP];
 }
 
--(instancetype)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
         
@@ -34,7 +34,7 @@
     [self setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
 }
 
--(void)layoutSubviews{
+- (void)layoutSubviews{
     [super layoutSubviews];
     
     CGFloat imageW = self.bounds.size.width;
