@@ -21,5 +21,6 @@
 @property (nonatomic, readwrite, weak) UIStackView *stackView;
 @property (nonatomic, readwrite, weak) NSLayoutConstraint *buttonConstraint;
 @property (nonatomic, readwrite, strong, nonnull) RACCommand *informCommand;
+@property (nonatomic, readwrite, weak) UIViewController *viewController;
 
 @end

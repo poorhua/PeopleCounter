@@ -6,7 +6,7 @@
 //  Copyright © 2016年 Air_chen. All rights reserved.
 //
 
-#import "LayoutAnimate.h"
+#include "LayoutAnimate.h"
 
 @implementation LayoutAnimate
 

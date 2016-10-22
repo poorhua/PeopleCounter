@@ -31,6 +31,10 @@
         //输入框的事件绑定
         self.inputTextField.text = @"";
         self.transTextField.text = @"";
+        
+        [self.transBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateDisabled];
+        [self.sendBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateDisabled];
+        
         RAC(self.transBtn,enabled) = [self.inputTextField.rac_textSignal map:^id(NSString* value) {
             
             return @(value.length != 0);
@@ -105,19 +109,32 @@
         }];
         
 //        发送
+        
         [[self.sendBtn rac_signalForControlEvents:UIControlEventTouchDown] subscribeNext:^(id x) {
-           
+            [self returnKeyboard];
             NSMutableURLRequest *request = [self makeUPURLConnection:[NSString stringWithFormat:@"%@:%@",self.nameTextField.text,self.transTextField.text]];
             
             [[NSURLConnection rac_sendAsynchronousRequest:request] subscribeNext:^(RACTuple* x) {
                 RACTupleUnpack(NSHTTPURLResponse *response,NSData *data) = x;
-                
-                NSString *content = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                //                        状态码
-                NSLog(@"%ld",(long)response.statusCode);
-                
-                NSLog(@"%@",content);
+
+                if (response.statusCode == 200) {
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                       
+                        UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:@"通知" message:@"发送成功" preferredStyle:UIAlertControllerStyleAlert];
+                        
+                        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                                              handler:^(UIAlertAction * action) {}];
+                        [alertVc addAction:defaultAction];
+                        
+                        [self.viewController presentViewController:alertVc animated:YES completion:nil];
+                        
+                    });
+                    
+                }
             }];
+
+                       
         }];
         
             return [RACSignal empty];

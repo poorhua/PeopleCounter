@@ -55,8 +55,13 @@
     self.informVM.transBtn = self.transBtn;
     self.informVM.sendBtn = self.sendBtn;
     self.informVM.viewControl = self.viewControl;
+    self.informVM.viewController = self;
+
     
-    [self.informVM.informCommand execute:nil];
+    [[self.informVM.informCommand execute:nil] subscribeNext:^(RACTuple* x) {
+                
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
