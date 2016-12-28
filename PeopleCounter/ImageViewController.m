@@ -10,6 +10,7 @@
 #import "ImageViewModel.h"
 #import <Photos/Photos.h>
 #import <PhotosUI/PhotosUI.h>
+#import "UIAlertController+Blocks.h"
 
 @interface ImageViewController()
 
@@ -64,17 +65,13 @@
 //                                shareToSnsNames:@[UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,UMShareToQzone]
 //                                       delegate:self];
     
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"提示"
-                                                                   message:@"确定将图片保存到本地相册？"
-                                                            preferredStyle:UIAlertControllerStyleActionSheet];
-    
-    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault
-                                                          handler:^(UIAlertAction * action) {
-                                                              [self savePhotoToPhone];
-                                                          }];
-    
-    [alert addAction:defaultAction];
-    [self presentViewController:alert animated:YES completion:nil];
+    [UIAlertController showActionSheetInViewController:self withTitle:@"提示" message:@"确定将图片保存到本地相册？" cancelButtonTitle:@"确定" destructiveButtonTitle:nil otherButtonTitles:nil popoverPresentationControllerBlock:^(UIPopoverPresentationController * _Nonnull popover) {
+        
+    } tapBlock:^(UIAlertController * _Nonnull controller, UIAlertAction * _Nonnull action, NSInteger buttonIndex) {
+        if (buttonIndex == controller.cancelButtonIndex) {
+            [self savePhotoToPhone];
+        }
+    }];
 }
 
 - (void)savePhotoToPhone
@@ -101,8 +98,12 @@
             } error:&error];
             
             if (error) {
-                NSLog(@"保存失败：%@", error);
-                return;
+                NSString *picSaveStr = [NSString stringWithFormat:@"保存失败：%@", error];
+                [UIAlertController showAlertInViewController:self withTitle:@"提示" message:picSaveStr cancelButtonTitle:@"确定" destructiveButtonTitle:nil otherButtonTitles:nil tapBlock:^(UIAlertController * _Nonnull controller, UIAlertAction * _Nonnull action, NSInteger buttonIndex) {
+                    if (buttonIndex == controller.cancelButtonIndex) {
+                        return;
+                    }
+                }];
             }
             
             // 拿到自定义的相册对象
@@ -113,11 +114,16 @@
                 [[PHAssetCollectionChangeRequest changeRequestForAssetCollection:collection] insertAssets:@[createdAsset] atIndexes:[NSIndexSet indexSetWithIndex:0]];
             } error:&error];
             
+            NSString *personalSaveStr = nil;
             if (error) {
-                NSLog(@"保存失败：%@", error);
+                personalSaveStr = [NSString stringWithFormat:@"保存失败：%@", error];
             } else {
-                NSLog(@"保存成功");
+                personalSaveStr = @"保存成功";
             }
+            
+            [UIAlertController showAlertInViewController:self withTitle:@"提示" message:personalSaveStr cancelButtonTitle:@"确定" destructiveButtonTitle:nil otherButtonTitles:nil tapBlock:^(UIAlertController * _Nonnull controller, UIAlertAction * _Nonnull action, NSInteger buttonIndex) {
+                
+            }];
         });
     }];
 }

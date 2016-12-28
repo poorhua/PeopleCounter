@@ -26,6 +26,9 @@ static NSString * const umAppKey = @"57b8fb3c67e58eed8b0025c4";
 static NSString * const photoAlblum = @"远程监测客户端-Photos";
 static NSString * const acAppName = @"远程监测客户端";
 
+static NSString * const uuidUrl = @"http://api.heclouds.com/devices/1100353/datapoints";
+static NSString * const enviromentUrl = @"http://api.heclouds.com/devices/3124912/datapoints";
+
 #ifndef GlobalHeader_h
 #define GlobalHeader_h
 

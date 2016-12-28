@@ -10,6 +10,7 @@
 #import "MDTransitionDelegate.h"
 #import "PlotViewController.h"
 #import "ACButtonView.h"
+#import "ACNetWorkManager.h"
 
 @interface ACMainViewModel()
 
@@ -172,10 +173,8 @@
 //点击一下案件下载一次数据
 - (void)loadDatas
 {
-    NSMutableURLRequest *request = [self makeUPURLConnection];
-    [[NSURLConnection rac_sendAsynchronousRequest:request] subscribeNext:^(RACTuple* x) {
-        
-        RACTupleUnpack(NSHTTPURLResponse *response,NSData *data) = x;
+    [[ACNetWorkManager shareManager] getUrlStr:enviromentUrl thatResult:^(RACTuple *resData) {
+        RACTupleUnpack(NSHTTPURLResponse *response,NSData *data) = resData;
         
         NSString *content = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         //                        状态码
@@ -190,50 +189,6 @@
         self.humanArray = initArray[1][@"datapoints"];
         self.airArray = initArray[2][@"datapoints"];
     }];
-}
-
-- (NSMutableURLRequest *)makeUPURLConnection
-{
-    NSDate *now = [NSDate date];
-    
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSUInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
-    NSDateComponents *dateComponent = [calendar components:unitFlags fromDate:now];
-    
-    NSInteger year = [dateComponent year];
-    //    加上100，然后转化为字符串，取后两位，可以保证以0x的形式出现
-    NSRange range;
-    range.location = 1;
-    range.length = 2;
-    
-    
-#ifdef TRUEDATE
-    NSString *month = [[NSString stringWithFormat:@"%ld",(long)([dateComponent month]+100)] substringWithRange:range];
-    NSString *day = [[NSString stringWithFormat:@"%ld",(long)([dateComponent day]+100)]substringWithRange:range];
-    NSString *hour1 = [[NSString stringWithFormat:@"%ld",(long)([dateComponent hour]+100)] substringWithRange:range];
-    NSString *hour2 = [[NSString stringWithFormat:@"%ld",(long)([dateComponent hour] - 1+100)] substringWithRange:range];
-    NSString *minute = [[NSString stringWithFormat:@"%ld",(long)([dateComponent minute] - 1+100)] substringWithRange:range];
-    NSString *second = [[NSString stringWithFormat:@"%ld",(long)([dateComponent second]+100)] substringWithRange:range];
-    
-    NSString *endData = [NSString stringWithFormat:@"%ld-%@-%@T%@:%@:%@",(long)year,month,day,hour1,minute,second];
-    NSString *startData = [NSString stringWithFormat:@"%ld-%@-%@T%@:%@:%@",(long)year,month,day,hour2,minute,second];
-#else
-    NSString *endData = [NSString stringWithFormat:@"%ld-08-07T14:20:00",(long)year];
-    NSString *startData = [NSString stringWithFormat:@"%ld-08-07T13:20:00",(long)year];
-#endif
-    
-    NSString *str = [NSString stringWithFormat:@"http://api.heclouds.com/devices/3124912/datapoints? datastream_id=001 2&start=%@&end=%@",startData,endData];
-    NSLog(@"%@",str);
-    str = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
-    
-    NSURL *url = [NSURL URLWithString:str];
-    NSLog(@"%@",url);
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20];
-    
-    [request setHTTPMethod:@"GET"];
-    [request setValue:apiKey forHTTPHeaderField:@"api-key"];
-    
-    return request;
 }
 
 @end

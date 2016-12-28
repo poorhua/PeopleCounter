@@ -7,6 +7,8 @@
 //
 
 #import "InformViewModel.h"
+#import "ACNetWorkManager.h"
+#import "UIAlertController+Blocks.h"
 
 @implementation InformViewModel
 
@@ -84,9 +86,9 @@
 //        http请求
 //        翻译
         [[self.transBtn rac_signalForControlEvents:UIControlEventTouchDown] subscribeNext:^(id x) {
-            NSMutableURLRequest *request = [self makeUPURLConnection];
-            [[[NSURLConnection rac_sendAsynchronousRequest:request] map:^id(RACTuple *value) {
-                RACTupleUnpack(NSHTTPURLResponse *response,NSData *data) = value;
+            
+            [[ACNetWorkManager shareManager] youdaoTranslaterStr:self.inputTextField.text thatResult:^(RACTuple *resData) {
+                RACTupleUnpack(NSHTTPURLResponse *response,NSData *data) = resData;
                 
                 NSString *content = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
                 //                        状态码
@@ -97,44 +99,30 @@
                 NSDictionary *initDic = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
                 
                 NSString *transStr = initDic[@"translation"][0];
-                NSLog(@"%@",transStr);
-                
-                return transStr;
-            }] subscribeNext:^(NSString* x) {
                 
                 [[RACScheduler mainThreadScheduler] afterDelay:0.5 schedule:^{
-                    [self.transTextField setText:x];
+                    [self.transTextField setText:transStr];
                 }];
             }];
         }];
         
 //        发送
-        
         [[self.sendBtn rac_signalForControlEvents:UIControlEventTouchDown] subscribeNext:^(id x) {
             [self returnKeyboard];
-            NSMutableURLRequest *request = [self makeUPURLConnection:[NSString stringWithFormat:@"%@:%@",self.nameTextField.text,self.transTextField.text]];
             
-            [[NSURLConnection rac_sendAsynchronousRequest:request] subscribeNext:^(RACTuple* x) {
-                RACTupleUnpack(NSHTTPURLResponse *response,NSData *data) = x;
-
+            [[ACNetWorkManager shareManager] postMsgStr:[NSString stringWithFormat:@"%@:%@",self.nameTextField.text,self.transTextField.text] thatResult:^(RACTuple *resData) {
+                RACTupleUnpack(NSHTTPURLResponse *response,NSData *data) = resData;
+                
                 if (response.statusCode == 200) {
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
-                       
-                        UIAlertController *alertVc = [UIAlertController alertControllerWithTitle:@"通知" message:@"发送成功" preferredStyle:UIAlertControllerStyleAlert];
                         
-                        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                                              handler:^(UIAlertAction * action) {}];
-                        [alertVc addAction:defaultAction];
-                        
-                        [self.viewController presentViewController:alertVc animated:YES completion:nil];
+                        [UIAlertController showAlertInViewController:self.viewController withTitle:@"通知" message:@"发送成功" cancelButtonTitle:@"OK" destructiveButtonTitle:nil otherButtonTitles:nil tapBlock:nil];
                         
                     });
                     
                 }
             }];
-
-                       
         }];
         
             return [RACSignal empty];
@@ -147,58 +135,5 @@
     [self.transTextField resignFirstResponder];
     [self.nameTextField resignFirstResponder];
 }
-
-- (NSMutableURLRequest *)makeUPURLConnection
-{
-    NSString *str = [NSString stringWithFormat:@"http://fanyi.youdao.com/openapi.do?keyfrom=RaspiTranslater&key=31594945&type=data&doctype=json&version=1.1&q=%@",self.inputTextField.text];
-    NSLog(@"%@",str);
-    str = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
-    NSURL *url = [NSURL URLWithString:str];
-    NSLog(@"%@",url);
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20];
-    
-    [request setHTTPMethod:@"GET"];
-    return request;
-}
-
-- (NSMutableURLRequest *)makeUPURLConnection:(NSString *) msg
-{
-    NSDate *now = [NSDate date];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss";
-    NSString *strDate = [formatter stringFromDate:now];
-    
-    NSString *str = [NSString stringWithFormat:@"http://api.heclouds.com/devices/3124697/datapoints"];
-    NSLog(@"%@",str);
-    str = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
-    NSURL *url = [NSURL URLWithString:str];
-    NSLog(@"%@",url);
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20];
-    
-    [request setHTTPMethod:@"POST"];
-    [request setValue:apiKey forHTTPHeaderField:@"api-key"];
-    
-    NSDictionary *reqDic = @{
-                             @"datastreams":@[
-                                     @{
-                                         @"id":@"001",
-                                         @"datapoints":@[
-                                                 @{
-                                                     @"at":strDate,
-                                                     @"value":msg
-                                                     }
-                                                 ]
-                                         }
-                                     ]
-                             };
-    NSData *reqData = [NSJSONSerialization dataWithJSONObject:reqDic options:NSJSONWritingPrettyPrinted error:nil];
-    
-    NSString *content = [[NSString alloc] initWithData:reqData encoding:NSUTF8StringEncoding];
-    NSLog(@"%@",content);
-    
-    [request setHTTPBody:reqData];
-    return request;
-}
-
 
 @end

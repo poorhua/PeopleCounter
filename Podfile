@@ -9,7 +9,8 @@ pod 'CorePlot', '~> 2.1'
 pod 'ReactiveCocoa', '~> 2.5'
 pod 'MBProgressHUD', '~> 0.9.2'
 #pod 'SDWebImage', '~>3.8'
-pod 'UMengSocialCOM', '~> 5.2.1'
+#pod 'UMengSocialCOM', '~> 5.2.1'
+pod 'UIAlertController+Blocks', '~> 0.9.2'
 
 end
 

@@ -8,6 +8,7 @@
 
 #import "ImageViewModel.h"
 #import "UIImage+Bitmap.h"
+#import "ACNetWorkManager.h"
 
 @interface ImageViewModel()
 
@@ -39,12 +40,9 @@ CGFloat currentScale;
             
             NSData *imgData = [NSData dataWithContentsOfFile:filePath];
             if (imgData == nil) {
-                NSMutableURLRequest *request = [self makeUpURLConnection];
-            
-                [[NSURLConnection rac_sendAsynchronousRequest:request] subscribeNext:^(RACTuple* x) {
-                    RACTupleUnpack(NSHTTPURLResponse *response,NSData *data) = x;
-                    
-                    //NSInteger statusCode = response.statusCode;
+                
+                [[ACNetWorkManager shareManager] getPicUuidStr:self.uuid thatResult:^(RACTuple *resData) {
+                    RACTupleUnpack(NSHTTPURLResponse *response,NSData *data) = resData;
                     
                     [data writeToFile:filePath atomically:YES];
                     
@@ -106,22 +104,6 @@ CGFloat currentScale;
     }];
 }
 
--(NSMutableURLRequest *) makeUpURLConnection
-{
-    NSString *str = [NSString stringWithFormat:@"http://api.heclouds.com/bindata/%@",self.uuid];
-    NSLog(@"%@",str);
-    str = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
-    
-    NSURL *url = [NSURL URLWithString:str];
-    NSLog(@"%@",url);
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20];
-    
-    [request setHTTPMethod:@"GET"];
-    [request setValue:apiKey forHTTPHeaderField:@"api-key"];
-    
-    return request;
-}
-
 - (UIImage *)transImage:(UIImage *)image//图片转换成小图
 {
     //CGSize origImageSize = image.size;
@@ -139,7 +121,6 @@ CGFloat currentScale;
     projectRect.size = newRect.size;
     projectRect.origin.x = (newRect.size.width - projectRect.size.width) / 2.0;
     projectRect.origin.y = (newRect.size.height - projectRect.size.height) / 2.0;
-    
     
     [image drawInRect:projectRect];
     UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();

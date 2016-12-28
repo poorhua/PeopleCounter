@@ -10,6 +10,7 @@
 #import "CellDatas.h"
 #import "DateCell.h"
 #import "ImageViewController.h"
+#import "ACNetWorkManager.h"
 
 @interface TableViewModel()
 
@@ -33,10 +34,9 @@
     self.httpCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         
         RACSignal *requestSig = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-            NSMutableURLRequest *request = [self makeUPURLConnection];
-            [[NSURLConnection rac_sendAsynchronousRequest:request] subscribeNext:^(RACTuple* x) {
-                
-                RACTupleUnpack(NSHTTPURLResponse *response,NSData *data) = x;
+            
+            [[ACNetWorkManager shareManager] getUrlStr:uuidUrl thatResult:^(RACTuple *resData) {
+                RACTupleUnpack(NSHTTPURLResponse *response,NSData *data) = resData;
                 
                 NSString *content = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
                 
@@ -66,7 +66,6 @@
                 
                 [subscriber sendNext:datasArray];
                 [subscriber sendCompleted];
-                
             }];
             
             return nil;
@@ -86,77 +85,6 @@
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         }
     }];
-}
-
-- (NSMutableURLRequest *)makeUPURLConnection
-{
-    NSDate *now = [NSDate date];
-    
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSUInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
-    NSDateComponents *dateComponent = [calendar components:unitFlags fromDate:now];
-    
-    NSInteger year = [dateComponent year];
-    //    加上100，然后转化为字符串，取后两位，可以保证以0x的形式出现
-    NSRange range;
-    range.location = 1;
-    range.length = 2;
-
-#ifdef TRUEDATE
-    NSString *month = [[NSString stringWithFormat:@"%ld",(long)([dateComponent month]+100)] substringWithRange:range];
-    NSString *day = [[NSString stringWithFormat:@"%ld",(long)([dateComponent day]+100)]substringWithRange:range];
-    NSString *hour1 = [[NSString stringWithFormat:@"%ld",(long)([dateComponent hour]+100)] substringWithRange:range];
-    NSString *hour2 = [[NSString stringWithFormat:@"%ld",(long)([dateComponent hour] - 1+100)] substringWithRange:range];
-    NSString *minute = [[NSString stringWithFormat:@"%ld",(long)([dateComponent minute] - 1+100)] substringWithRange:range];
-    NSString *second = [[NSString stringWithFormat:@"%ld",(long)([dateComponent second]+100)] substringWithRange:range];
-    
-    NSString *endData = [NSString stringWithFormat:@"%ld-%@-%@T%@:%@:%@",(long)year,month,day,hour1,minute,second];
-    NSString *startData = [NSString stringWithFormat:@"%ld-%@-%@T%@:%@:%@",(long)year,month,day,hour2,minute,second];
-#else
-    NSString *endData = [NSString stringWithFormat:@"%ld-06-23T11:45:00",(long)year];
-    NSString *startData = [NSString stringWithFormat:@"%ld-06-23T11:00:00",(long)year];
-#endif
-    
-//    NSURL *url = [NSURL URLWithString:@"http://api.heclouds.com/devices/1100353/datapoints"];
-    
-    NSString *str = [NSString stringWithFormat:@"http://api.heclouds.com/devices/1100353/datapoints? datastream_id=001 2&start=%@&end=%@",startData,endData];
-//    NSLog(@"%@",str);
-    str = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
-    
-    /*
-     // Returns a character set containing the characters allowed in an URL's user subcomponent.
-     + (NSCharacterSet *)URLUserAllowedCharacterSet NS_AVAILABLE(10_9, 7_0);
-     
-     // Returns a character set containing the characters allowed in an URL's password subcomponent.
-     + (NSCharacterSet *)URLPasswordAllowedCharacterSet NS_AVAILABLE(10_9, 7_0);
-     
-     // Returns a character set containing the characters allowed in an URL's host subcomponent.
-     + (NSCharacterSet *)URLHostAllowedCharacterSet NS_AVAILABLE(10_9, 7_0);
-     
-     // Returns a character set containing the characters allowed in an URL's path component. ';' is a legal path character, but it is recommended that it be percent-encoded for best compatibility with NSURL (-stringByAddingPercentEncodingWithAllowedCharacters: will percent-encode any ';' characters if you pass the URLPathAllowedCharacterSet).
-     + (NSCharacterSet *)URLPathAllowedCharacterSet NS_AVAILABLE(10_9, 7_0);
-     
-     // Returns a character set containing the characters allowed in an URL's query component.
-     + (NSCharacterSet *)URLQueryAllowedCharacterSet NS_AVAILABLE(10_9, 7_0);
-     
-     // Returns a character set containing the characters allowed in an URL's fragment component.
-     + (NSCharacterSet *)URLFragmentAllowedCharacterSet NS_AVAILABLE(10_9, 7_0);
-     */
-    
-    NSURL *url = [NSURL URLWithString:str];
-//    NSLog(@"%@",url);
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20];
-    
-    
-//    NSString *bodyStr = [NSString stringWithFormat:@"datastream_id=001&start=%@&end=%@",startData,endData];
-    
-    [request setHTTPMethod:@"GET"];
-//    [request setHTTPBody:[bodyStr dataUsingEncoding:NSUTF8StringEncoding]];
-    [request setValue:apiKey forHTTPHeaderField:@"api-key"];
-    
-    NSLog(@"%@",request.URL);
-    
-    return request;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
