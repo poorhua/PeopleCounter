@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MJExtension.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-PeopleCounter.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,22 +37,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>3858FDBCE52428A115E7FFB968F721ED</key>
+		<key>327428B8556CF5FAE6623C302977A47A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>394987852535EA1D946FA1D924F2C695</key>
+		<key>466FDFC9C4B59B0C4E6FB8B7989A945C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5AA17C95E926B760FD08E0B487DAEFA2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5CDC300C86852F7875CBCB9905EB564C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>6B1714E816AE794962516E2ECBB40A5A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C3A6C438100A5A9E125E8C42E65B0A98</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -7,14 +7,13 @@
 //
 
 #import "TableViewModel.h"
-#import "CellDatas.h"
-#import "DateCell.h"
 #import "ImageViewController.h"
 #import "ACNetWorkManager.h"
+#import "ACDevModel.h"
 
 @interface TableViewModel()
 
-@property (nonatomic, readwrite, strong) NSMutableArray<CellDatas *> *dataArray;
+@property (nonatomic, readwrite, copy) NSArray<ACDevPointModel *> *dataArray;
 
 @end
 
@@ -46,26 +45,16 @@
                 NSLog(@"%@",content);
                 
                 NSDictionary *initDic = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-                NSArray *initArray = initDic[@"data"][@"datastreams"];
-                NSInteger count = [initDic[@"data"][@"count"] integerValue] / 3;
                 
-                NSArray *firstArray = initArray[0][@"datapoints"];
-                NSArray *secArray = initArray[1][@"datapoints"];
-                //    NSArray *thrArray = initArray[2][@"datapoints"];//图片
-                //    2.加载到数组里面
-                //    2.1初始化CellDatas
-                NSMutableArray<CellDatas *>* datasArray = [NSMutableArray arrayWithCapacity:count];
-                for (int i = 0; i < count; i++) {
-                    CellDatas *cellData = [[CellDatas alloc] init];
-                    [cellData setDateTimeStr:firstArray[i][@"at"]];
-                    [cellData setImgUuid:firstArray[i][@"value"]];
-                    [cellData setRecogNumsStr:secArray[i][@"value"]];
-                    [datasArray addObject:cellData];
-                }
-                self.dataArray = datasArray;
+                ACDevModel *devModel = [ACDevModel setUpDevModelFromDic:initDic];
                 
-                [subscriber sendNext:datasArray];
+                NSArray<ACDevPointModel *> *firstArray = devModel.data.datastreams[0].datapoints;
+                
+                self.dataArray = firstArray;
+                
+                [subscriber sendNext:firstArray];
                 [subscriber sendCompleted];
+ 
             }];
             
             return nil;
@@ -92,7 +81,7 @@
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     ImageViewController *imgVc = [storyBoard instantiateViewControllerWithIdentifier:@"ImgVC"];
-    [imgVc setUuid:self.dataArray[indexPath.row].imgUuid];
+    [imgVc setUuid:self.dataArray[indexPath.row].value];
     
     [self.navigationController pushViewController:imgVc animated:YES];
 }
@@ -111,12 +100,10 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
     
-    CellDatas *cellDatas = self.dataArray[indexPath.row];
-    
     NSRange range;
     range.location = 11;
     range.length = 8;
-    NSString *str = [cellDatas.dateTimeStr substringWithRange:range];
+    NSString *str = [self.dataArray[indexPath.row].at substringWithRange:range];
     cell.textLabel.text = str;
     
     cell.textLabel.textColor = [UIColor whiteColor];

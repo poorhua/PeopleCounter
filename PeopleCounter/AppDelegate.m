@@ -21,7 +21,7 @@
 //    [self makeUpUI];
     
     //添加第三方社会化分享
-    [UMSocialData setAppKey:umAppKey];
+    //[UMSocialData setAppKey:umAppKey];
     
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GlobalHeader.h"
 
-@interface ImageViewController : UIViewController<UMSocialUIDelegate>
+@interface ImageViewController : UIViewController
 
 - (void)setUuid:(NSString *)str;
 

@@ -10,6 +10,7 @@
 #import "GlobalHeader.h"
 #import "PlotViewModel.h"
 #import "PlotDatas.h"
+#import "ACDevModel.h"
 
 @interface PlotViewController ()
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *widConstraints;
@@ -119,9 +120,10 @@
     
     NSMutableArray<PlotDatas *>* datasArray = [NSMutableArray arrayWithCapacity:count];
         for (int i = 0; i < count; i++) {
+            ACDevPointModel *point = array[i];
             PlotDatas *plotData = [[PlotDatas alloc] init];
-            [plotData setNums:array[i][@"value"]];
-            [plotData setDateTimeStr:array[i][@"at"]];
+            [plotData setNums:point.value];
+            [plotData setDateTimeStr:point.at];
             [datasArray addObject:plotData];
         }
     self.datasArray = datasArray;

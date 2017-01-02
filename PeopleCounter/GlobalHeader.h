@@ -10,7 +10,9 @@
 #import "NSURLConnection+RACSupport.h"
 #import "MBProgressHUD.h"
 #import "CorePlot.h"
-#import "UMSocial.h"
+//#import "UMSocial.h"
+
+#import "MJExtension.h"
 
 //#define TRUEDATE
 #define PADDINGLENTH 2

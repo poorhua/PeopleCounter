@@ -10,12 +10,9 @@
 		22BF72E1732D71599DDA4D89 /* Pods_PeopleCounter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81D99682DF08CC26552386AC /* Pods_PeopleCounter.framework */; };
 		54097DF11D1782BC0047ED36 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 54097DF01D1782BC0047ED36 /* main.m */; };
 		54097DF41D1782BC0047ED36 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 54097DF31D1782BC0047ED36 /* AppDelegate.m */; };
-		54097DF71D1782BC0047ED36 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54097DF61D1782BC0047ED36 /* ViewController.m */; };
 		54097DFA1D1782BC0047ED36 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54097DF81D1782BC0047ED36 /* Main.storyboard */; };
 		54097DFC1D1782BC0047ED36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54097DFB1D1782BC0047ED36 /* Assets.xcassets */; };
 		54097DFF1D1782BC0047ED36 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54097DFD1D1782BC0047ED36 /* LaunchScreen.storyboard */; };
-		54097E081D178A2B0047ED36 /* DateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 54097E071D178A2B0047ED36 /* DateCell.m */; };
-		54097E0E1D17C56A0047ED36 /* CellDatas.m in Sources */ = {isa = PBXBuildFile; fileRef = 54097E0D1D17C56A0047ED36 /* CellDatas.m */; };
 		54097E111D180C5D0047ED36 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54097E101D180C5D0047ED36 /* ImageViewController.m */; };
 		542222AD1D561A880063AAD1 /* ACMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 542222AC1D561A880063AAD1 /* ACMainViewController.m */; };
 		542222AF1D561AB50063AAD1 /* ACMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 542222AE1D561AB50063AAD1 /* ACMainView.xib */; };
@@ -43,6 +40,7 @@
 		54ABDEE51D18312D00D2F93D /* TableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 54ABDEE41D18312D00D2F93D /* TableViewModel.m */; };
 		54ABDEE91D18ECA200D2F93D /* ImageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 54ABDEE81D18ECA200D2F93D /* ImageViewModel.m */; };
 		54EB43DD1E1370FA00AA25C8 /* ACNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 54EB43DC1E1370FA00AA25C8 /* ACNetWorkManager.m */; };
+		54EB43E01E1938B800AA25C8 /* ACDevModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 54EB43DF1E1938B800AA25C8 /* ACDevModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,16 +49,10 @@
 		54097DF01D1782BC0047ED36 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		54097DF21D1782BC0047ED36 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		54097DF31D1782BC0047ED36 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		54097DF51D1782BC0047ED36 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		54097DF61D1782BC0047ED36 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		54097DF91D1782BC0047ED36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		54097DFB1D1782BC0047ED36 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		54097DFE1D1782BC0047ED36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		54097E001D1782BC0047ED36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		54097E061D178A2B0047ED36 /* DateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateCell.h; sourceTree = "<group>"; };
-		54097E071D178A2B0047ED36 /* DateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateCell.m; sourceTree = "<group>"; };
-		54097E0C1D17C56A0047ED36 /* CellDatas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellDatas.h; sourceTree = "<group>"; };
-		54097E0D1D17C56A0047ED36 /* CellDatas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellDatas.m; sourceTree = "<group>"; };
 		54097E0F1D180C5D0047ED36 /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
 		54097E101D180C5D0047ED36 /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
 		542222AB1D561A880063AAD1 /* ACMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACMainViewController.h; sourceTree = "<group>"; };
@@ -109,6 +101,8 @@
 		54ABDEE81D18ECA200D2F93D /* ImageViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewModel.m; sourceTree = "<group>"; };
 		54EB43DB1E1370FA00AA25C8 /* ACNetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACNetWorkManager.h; sourceTree = "<group>"; };
 		54EB43DC1E1370FA00AA25C8 /* ACNetWorkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACNetWorkManager.m; sourceTree = "<group>"; };
+		54EB43DE1E1938B800AA25C8 /* ACDevModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACDevModel.h; sourceTree = "<group>"; };
+		54EB43DF1E1938B800AA25C8 /* ACDevModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACDevModel.m; sourceTree = "<group>"; };
 		81D99682DF08CC26552386AC /* Pods_PeopleCounter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PeopleCounter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		847133DD8C4DE686984EDE17 /* Pods-PeopleCounter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PeopleCounter.release.xcconfig"; path = "Pods/Target Support Files/Pods-PeopleCounter/Pods-PeopleCounter.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -181,10 +175,6 @@
 		542222BB1D56E1630063AAD1 /* Invalid */ = {
 			isa = PBXGroup;
 			children = (
-				54097DF51D1782BC0047ED36 /* ViewController.h */,
-				54097DF61D1782BC0047ED36 /* ViewController.m */,
-				54097E061D178A2B0047ED36 /* DateCell.h */,
-				54097E071D178A2B0047ED36 /* DateCell.m */,
 			);
 			name = Invalid;
 			sourceTree = "<group>";
@@ -244,8 +234,8 @@
 		542886C71D66CDF200557784 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				54097E0C1D17C56A0047ED36 /* CellDatas.h */,
-				54097E0D1D17C56A0047ED36 /* CellDatas.m */,
+				54EB43DE1E1938B800AA25C8 /* ACDevModel.h */,
+				54EB43DF1E1938B800AA25C8 /* ACDevModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -506,14 +496,12 @@
 				54832B931D23FF3800192ECB /* InformViewModel.m in Sources */,
 				5428872D1D69568A00557784 /* ACAlbumViewController.m in Sources */,
 				54097E111D180C5D0047ED36 /* ImageViewController.m in Sources */,
-				54097DF71D1782BC0047ED36 /* ViewController.m in Sources */,
 				542222C41D56E3060063AAD1 /* MDTransitionDelegate.m in Sources */,
 				54ABDEE91D18ECA200D2F93D /* ImageViewModel.m in Sources */,
 				542222C31D56E3060063AAD1 /* LayoutPresentationVC.m in Sources */,
 				544C44741D2E8B6B00A638C5 /* UIImage+Bitmap.m in Sources */,
 				542222C21D56E3060063AAD1 /* LayoutAnimate.m in Sources */,
 				54ABDEE51D18312D00D2F93D /* TableViewModel.m in Sources */,
-				54097E0E1D17C56A0047ED36 /* CellDatas.m in Sources */,
 				542222AD1D561A880063AAD1 /* ACMainViewController.m in Sources */,
 				54832B6D1D21498800192ECB /* PlotViewModel.m in Sources */,
 				5491D8A61D7876AE00E4D9AA /* ACFreshBtn.m in Sources */,
@@ -521,7 +509,7 @@
 				54097DF11D1782BC0047ED36 /* main.m in Sources */,
 				542222CF1D572BDC0063AAD1 /* ACCostonBtn.m in Sources */,
 				54EB43DD1E1370FA00AA25C8 /* ACNetWorkManager.m in Sources */,
-				54097E081D178A2B0047ED36 /* DateCell.m in Sources */,
+				54EB43E01E1938B800AA25C8 /* ACDevModel.m in Sources */,
 				542222B21D5620220063AAD1 /* ACButtonView.m in Sources */,
 				54832B8E1D23F71800192ECB /* InformViewController.m in Sources */,
 				542222CC1D57045F0063AAD1 /* PlotDatas.m in Sources */,

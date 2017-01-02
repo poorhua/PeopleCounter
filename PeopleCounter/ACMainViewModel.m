@@ -11,6 +11,7 @@
 #import "PlotViewController.h"
 #import "ACButtonView.h"
 #import "ACNetWorkManager.h"
+#import "ACDevModel.h"
 
 @interface ACMainViewModel()
 
@@ -183,11 +184,13 @@
         NSLog(@"%@",content);
         
         NSDictionary *initDic = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-        NSArray *initArray = initDic[@"data"][@"datastreams"];
-        //
-        self.tempArray = initArray[0][@"datapoints"];
-        self.humanArray = initArray[1][@"datapoints"];
-        self.airArray = initArray[2][@"datapoints"];
+
+        ACDevModel *devModel = [ACDevModel setUpDevModelFromDic:initDic];
+        
+        self.tempArray = devModel.data.datastreams[0].datapoints;
+        self.humanArray = devModel.data.datastreams[1].datapoints;
+        self.airArray = devModel.data.datastreams[2].datapoints;
+
     }];
 }
 
