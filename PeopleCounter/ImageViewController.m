@@ -10,7 +10,6 @@
 #import "ImageViewModel.h"
 #import <Photos/Photos.h>
 #import <PhotosUI/PhotosUI.h>
-#import "UIAlertController+Blocks.h"
 
 @interface ImageViewController()
 
@@ -51,19 +50,6 @@
 }
 
 - (IBAction)shareAction:(id)sender {
-//    [UMSocialData defaultData].extConfig.title = @"分享的title";
-////    [UMSocialData defaultData].extConfig.qqData.url = @"http://baidu.com";
-//    [UMSocialData defaultData].extConfig.renrenData.url = @"http://baidu.com";
-//    [UMSocialData defaultData].extConfig.facebookData.url = @"http://baidu.com";
-//    [UMSocialData defaultData].extConfig.wechatFavoriteData.url = @"http://baidu.com";
-//    [UMSocialData defaultData].extConfig.wechatTimelineData.url = @"http://baidu.com";
-
-//    [UMSocialSnsService presentSnsIconSheetView:self
-//                                         appKey:UMAPP_KEY
-//                                      shareText:@"友盟社会化分享让您快速实现分享等社会化功能，http://umeng.com/social"
-//                                     shareImage: [UIImage imageNamed:@"icon"]
-//                                shareToSnsNames:@[UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,UMShareToQzone]
-//                                       delegate:self];
     
     [UIAlertController showActionSheetInViewController:self withTitle:@"提示" message:@"确定将图片保存到本地相册？" cancelButtonTitle:@"确定" destructiveButtonTitle:nil otherButtonTitles:nil popoverPresentationControllerBlock:^(UIPopoverPresentationController * _Nonnull popover) {
         

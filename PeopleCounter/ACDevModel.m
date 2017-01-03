@@ -14,8 +14,12 @@
 //value有可能为字典
 - (id)mj_newValueFromOldValue:(id)oldValue property:(MJProperty *)property
 {
-    if ([property.name isEqualToString:@"value"] && [property.type.code isEqualToString:@"NSDictionary"]) {
+    
+    if ([property.name isEqualToString:@"value"] && [[oldValue class] isSubclassOfClass:[NSDictionary class]]) {
         NSDictionary *dic = oldValue;
+        
+        NSLog(@"%@",dic[@"index"]);
+        
         return dic[@"index"];
     }
     return oldValue;

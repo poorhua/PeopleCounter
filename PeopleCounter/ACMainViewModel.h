@@ -10,6 +10,8 @@
 #import <UIKit/UIKit.h>
 #import "GlobalHeader.h"
 
+@class ACMainViewController;
+
 @interface ACMainViewModel : NSObject
 
 @property (nonatomic, readwrite, strong, nonnull) RACCommand *acMainCommand;
@@ -22,5 +24,7 @@
 @property (nonatomic, readwrite, weak) UINavigationController *navigationController;
 @property (nonatomic, readwrite, weak) UIView *btnView;
 @property (nonatomic, readwrite, weak) UIView *comboView;
+
+@property (nonatomic, readwrite, weak) ACMainViewController *controller;
 
 @end

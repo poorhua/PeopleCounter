@@ -10,6 +10,8 @@
 #import "ImageViewController.h"
 #import "ACNetWorkManager.h"
 #import "ACDevModel.h"
+#import "ACMainViewController.h"
+#import "ACFreshBtn.h"
 
 @interface TableViewModel()
 
@@ -48,12 +50,21 @@
                 
                 ACDevModel *devModel = [ACDevModel setUpDevModelFromDic:initDic];
                 
-                NSArray<ACDevPointModel *> *firstArray = devModel.data.datastreams[0].datapoints;
-                
-                self.dataArray = firstArray;
-                
-                [subscriber sendNext:firstArray];
-                [subscriber sendCompleted];
+                if (devModel.data.count == 0) {
+                    
+                    [UIAlertController showAlertInViewController:self.controller withTitle:@"提示" message:@"没有传感器数据" cancelButtonTitle:@"确定" destructiveButtonTitle:nil otherButtonTitles:nil tapBlock:^(UIAlertController * _Nonnull controller, UIAlertAction * _Nonnull action, NSInteger buttonIndex) {
+                    }];
+                    
+                    self.dataArray = [NSArray array];
+                    [subscriber sendNext:[NSArray array]];
+                    [subscriber sendCompleted];
+                }else{
+                    NSArray<ACDevPointModel *> *firstArray = devModel.data.datastreams[0].datapoints;
+                    self.dataArray = firstArray;
+                    
+                    [subscriber sendNext:firstArray];
+                    [subscriber sendCompleted];
+                }
  
             }];
             

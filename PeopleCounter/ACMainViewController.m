@@ -94,6 +94,7 @@
     self.mainVM.btnView = self.btnView;
     self.mainVM.navigationController = self.navigationController;
     self.mainVM.comboView = self.comboView;
+    self.mainVM.controller = self;
     
     [self.mainVM.acMainCommand execute:nil];
 

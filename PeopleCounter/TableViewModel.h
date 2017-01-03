@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "GlobalHeader.h"
 #import <UIKit/UIKit.h>
-#import "ACFreshBtn.h"
+
+@class ACFreshBtn;
+@class ACMainViewController;
 
 @interface TableViewModel : NSObject<NSURLConnectionDataDelegate, UITableViewDelegate, UITableViewDataSource>
 
@@ -21,5 +23,7 @@
 @property (nonatomic, readwrite, weak) UINavigationController *navigationController;
 @property (nonatomic, readwrite, weak) NSLayoutConstraint *headerViewContraint;
 @property (nonatomic, readwrite, weak) UILabel *headerLab;
+
+@property (nonatomic, readwrite, weak) ACMainViewController *controller;
 
 @end

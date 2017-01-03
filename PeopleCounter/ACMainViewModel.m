@@ -12,6 +12,7 @@
 #import "ACButtonView.h"
 #import "ACNetWorkManager.h"
 #import "ACDevModel.h"
+#import "ACMainViewController.h"
 
 @interface ACMainViewModel()
 
@@ -24,6 +25,7 @@
 @property (nonatomic, readwrite, assign) BOOL isCombo;
 @property (nonatomic, readwrite, strong) ACButtonView *btnSubView;
 
+@property (nonatomic, readwrite, assign) BOOL isTap;
 @end
 
 @implementation ACMainViewModel
@@ -78,6 +80,7 @@
         
         [self hideBtns];
         
+        self.isTap = YES;
         //bindAction
         [self.humanBtn addTarget:self action:@selector(humanAction) forControlEvents:UIControlEventTouchUpInside];
         [self.airBtn addTarget:self action:@selector(airAction) forControlEvents:UIControlEventTouchUpInside];
@@ -140,35 +143,41 @@
 //按键点击事件
 - (void)humanAction
 {
-    PlotViewController *plotVc = [[PlotViewController alloc] initWithNibName:@"PlotViewController" bundle:nil];
-    plotVc.modalPresentationStyle = UIModalPresentationCustom;
-    plotVc.transitioningDelegate = self.transitionalDelegate;
-    
-    [plotVc setDataArray:self.humanArray inStyle:SeekHuman];
-    
-    [self.navigationController presentViewController:plotVc animated:YES completion:nil];
+    if (self.isTap) {
+        PlotViewController *plotVc = [[PlotViewController alloc] initWithNibName:@"PlotViewController" bundle:nil];
+        plotVc.modalPresentationStyle = UIModalPresentationCustom;
+        plotVc.transitioningDelegate = self.transitionalDelegate;
+        
+        [plotVc setDataArray:self.humanArray inStyle:SeekHuman];
+        
+        [self.navigationController presentViewController:plotVc animated:YES completion:nil];
+    }
 }
 
 - (void)airAction
 {
-    PlotViewController *plotVc = [[PlotViewController alloc] initWithNibName:@"PlotViewController" bundle:nil];
-    plotVc.modalPresentationStyle = UIModalPresentationCustom;
-    plotVc.transitioningDelegate = self.transitionalDelegate;
-    
-    [plotVc setDataArray:self.airArray inStyle:SeekAir];
-    
-    [self.navigationController presentViewController:plotVc animated:YES completion:nil];
+    if (self.isTap) {
+        PlotViewController *plotVc = [[PlotViewController alloc] initWithNibName:@"PlotViewController" bundle:nil];
+        plotVc.modalPresentationStyle = UIModalPresentationCustom;
+        plotVc.transitioningDelegate = self.transitionalDelegate;
+        
+        [plotVc setDataArray:self.airArray inStyle:SeekAir];
+        
+        [self.navigationController presentViewController:plotVc animated:YES completion:nil];
+    }
 }
 
 - (void)tempAction
 {
-    PlotViewController *plotVc = [[PlotViewController alloc] initWithNibName:@"PlotViewController" bundle:nil];
-    plotVc.modalPresentationStyle = UIModalPresentationCustom;
-    plotVc.transitioningDelegate = self.transitionalDelegate;
-    
-    [plotVc setDataArray:self.tempArray inStyle:SeekTemp];
-    
-    [self.navigationController presentViewController:plotVc animated:YES completion:nil];
+    if (self.isTap) {
+        PlotViewController *plotVc = [[PlotViewController alloc] initWithNibName:@"PlotViewController" bundle:nil];
+        plotVc.modalPresentationStyle = UIModalPresentationCustom;
+        plotVc.transitioningDelegate = self.transitionalDelegate;
+        
+        [plotVc setDataArray:self.tempArray inStyle:SeekTemp];
+        
+        [self.navigationController presentViewController:plotVc animated:YES completion:nil];
+    }
 }
 
 //点击一下案件下载一次数据
@@ -187,9 +196,19 @@
 
         ACDevModel *devModel = [ACDevModel setUpDevModelFromDic:initDic];
         
-        self.tempArray = devModel.data.datastreams[0].datapoints;
-        self.humanArray = devModel.data.datastreams[1].datapoints;
-        self.airArray = devModel.data.datastreams[2].datapoints;
+        if (devModel.data.count == 0) {
+            [UIAlertController showAlertInViewController:self.controller withTitle:@"提示" message:@"没有传感器数据" cancelButtonTitle:@"确定" destructiveButtonTitle:nil otherButtonTitles:nil tapBlock:^(UIAlertController * _Nonnull controller, UIAlertAction * _Nonnull action, NSInteger buttonIndex) {
+            }];
+            self.isTap = NO;
+            self.tempArray = [NSArray array];
+            self.humanArray = [NSArray array];
+            self.airArray = [NSArray array];
+        }else{
+            self.isTap = YES;
+            self.tempArray = devModel.data.datastreams[0].datapoints;
+            self.humanArray = devModel.data.datastreams[1].datapoints;
+            self.airArray = devModel.data.datastreams[2].datapoints;
+        }
 
     }];
 }
