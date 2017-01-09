@@ -89,9 +89,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
-    ImageViewController *imgVc = [storyBoard instantiateViewControllerWithIdentifier:@"ImgVC"];
+    ImageViewController *imgVc = [[ImageViewController alloc] init];
     [imgVc setUuid:self.dataArray[indexPath.row].value];
     
     [self.navigationController pushViewController:imgVc animated:YES];

@@ -37,6 +37,7 @@
 		54832B6D1D21498800192ECB /* PlotViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 54832B6C1D21498800192ECB /* PlotViewModel.m */; };
 		54832B8E1D23F71800192ECB /* InformViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54832B8D1D23F71800192ECB /* InformViewController.m */; };
 		54832B931D23FF3800192ECB /* InformViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 54832B921D23FF3800192ECB /* InformViewModel.m */; };
+		5486BC191E23B2CC00DF532E /* ImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5486BC181E23B2CC00DF532E /* ImageView.xib */; };
 		5491D8A61D7876AE00E4D9AA /* ACFreshBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 5491D8A51D7876AE00E4D9AA /* ACFreshBtn.m */; };
 		54ABDEE51D18312D00D2F93D /* TableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 54ABDEE41D18312D00D2F93D /* TableViewModel.m */; };
 		54ABDEE91D18ECA200D2F93D /* ImageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 54ABDEE81D18ECA200D2F93D /* ImageViewModel.m */; };
@@ -95,6 +96,7 @@
 		54832B8D1D23F71800192ECB /* InformViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformViewController.m; sourceTree = "<group>"; };
 		54832B911D23FF3800192ECB /* InformViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformViewModel.h; sourceTree = "<group>"; };
 		54832B921D23FF3800192ECB /* InformViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformViewModel.m; sourceTree = "<group>"; };
+		5486BC181E23B2CC00DF532E /* ImageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageView.xib; sourceTree = "<group>"; };
 		5491D8A41D7876AE00E4D9AA /* ACFreshBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACFreshBtn.h; sourceTree = "<group>"; };
 		5491D8A51D7876AE00E4D9AA /* ACFreshBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACFreshBtn.m; sourceTree = "<group>"; };
 		54ABDEE31D18312D00D2F93D /* TableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewModel.h; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 			children = (
 				54097E0F1D180C5D0047ED36 /* ImageViewController.h */,
 				54097E101D180C5D0047ED36 /* ImageViewController.m */,
+				5486BC181E23B2CC00DF532E /* ImageView.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 				54097DFC1D1782BC0047ED36 /* Assets.xcassets in Resources */,
 				542222B41D5620330063AAD1 /* ACButtonView.xib in Resources */,
 				542222AF1D561AB50063AAD1 /* ACMainView.xib in Resources */,
+				5486BC191E23B2CC00DF532E /* ImageView.xib in Resources */,
 				542222C91D56E38A0063AAD1 /* PlotViewController.xib in Resources */,
 				542B71881E23675700DDAE3E /* InformView.xib in Resources */,
 				542887341D69707500557784 /* ACPhotoViewController.xib in Resources */,
