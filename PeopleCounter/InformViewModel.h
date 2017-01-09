@@ -11,16 +11,12 @@
 #import "GlobalHeader.h"
 
 @interface InformViewModel : NSObject
-
-@property (nonatomic, readwrite, weak) UITextView *inputTextField;
-@property (nonatomic, readwrite, weak) UITextView *transTextField;
-@property (nonatomic, readwrite, weak) UITextField *nameTextField;
-@property (nonatomic, readwrite, weak) UIButton *transBtn;
-@property (nonatomic, readwrite, weak) UIButton *sendBtn;
-@property (nonatomic, readwrite, weak) UIControl *viewControl;
-@property (nonatomic, readwrite, weak) UIStackView *stackView;
-@property (nonatomic, readwrite, weak) NSLayoutConstraint *buttonConstraint;
 @property (nonatomic, readwrite, strong, nonnull) RACCommand *informCommand;
 @property (nonatomic, readwrite, weak) UIViewController *viewController;
+
+@property (weak, nonatomic) UITextField *nameTextField;
+@property (weak, nonatomic) UITextView *detailTextView;
+@property (weak, nonatomic) UIButton *sendBtn;
+@property (weak, nonatomic) NSLayoutConstraint *heightContraint;
 
 @end

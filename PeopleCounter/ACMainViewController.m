@@ -108,8 +108,7 @@
 }
 
 - (IBAction)msgAction:(id)sender {
-    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    InformViewController *informVC = [storyBoard instantiateViewControllerWithIdentifier:@"InformVC"];
+    InformViewController *informVC = [[InformViewController alloc] init];
     informVC.title = @"发送消息";
     [self.navigationController pushViewController:informVC animated:YES];
 }

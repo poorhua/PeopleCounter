@@ -9,6 +9,11 @@
 #import "InformViewModel.h"
 #import "ACNetWorkManager.h"
 #import "UIAlertController+Blocks.h"
+#import "ACTranslateManager.h"
+
+@interface InformViewModel()<UITextFieldDelegate, UITextViewDelegate>
+
+@end
 
 @implementation InformViewModel
 
@@ -26,103 +31,85 @@
     self.informCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         //释放键盘
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(returnKeyboard)];
-        self.stackView.userInteractionEnabled = YES;
-        [self.stackView addGestureRecognizer:tap];
-        [self.viewControl addTarget:self action:@selector(returnKeyboard) forControlEvents:UIControlEventTouchDown];
+        [self.viewController.view addGestureRecognizer:tap];
         
         //输入框的事件绑定
-        self.inputTextField.text = @"";
-        self.transTextField.text = @"";
+        if (self.viewController.view.bounds.size.width != 414) {
+            self.heightContraint.constant = 360;
+        }
         
-        [self.transBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateDisabled];
-        [self.sendBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateDisabled];
+        self.nameTextField.text = @"";
+        self.detailTextView.text = @"";
         
-        RAC(self.transBtn,enabled) = [self.inputTextField.rac_textSignal map:^id(NSString* value) {
-            
-            return @(value.length != 0);
-        }];
-        
-        RAC(self.sendBtn,enabled) = [RACSignal combineLatest:@[RACObserve(self.transTextField, text),self.nameTextField.rac_textSignal,self.transTextField.rac_textSignal] reduce:^id(NSString *str1,NSString *str2,NSString *str3){
-  
-            return @((str1.length != 0 || str3.length != 0) && str2.length != 0);
-        }];
+        self.nameTextField.delegate = self;
+        self.detailTextView.delegate = self;
         
 //        当键盘出现的时候，调整布局，便于输入文字
+        __block BOOL isDrop = NO;
+        __block CGFloat orgHeight = self.heightContraint.constant;
+        __block CGFloat compHeight = 0.0;
+        
         [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIKeyboardWillChangeFrameNotification object:nil] subscribeNext:^(id x) {
             NSNotification *noteCenter = x;
         
             CGRect fra = [noteCenter.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
             NSTimeInterval dure = [noteCenter.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue];
+            compHeight = fra.size.height;
             
-            NSInteger part = 0;
-            NSInteger fraHei = fra.size.height;
-            //根据不同的输入栏调整不同的高度
-            if ([self.inputTextField isFirstResponder]) {
-                part = fraHei / 2.0;
-            }else if ([self.transTextField isFirstResponder])
-                part = fraHei / 3.0;
-            else
-                part = 0;
-            
-            self.buttonConstraint.constant = fra.size.height + 20 - part;
+            if ([self.detailTextView isFirstResponder] && !isDrop) {
+                self.heightContraint.constant = orgHeight - compHeight;
+                isDrop = YES;
+            }
             
             [UIView animateWithDuration:dure animations:^{
-                [self.viewControl layoutIfNeeded];
+                [self.viewController.view layoutIfNeeded];
             }];
         }];
         
         [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIKeyboardWillHideNotification object:nil] subscribeNext:^(id x) {
             NSNotification *noteCenter = x;
-            
             NSTimeInterval dure = [noteCenter.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue];
             
-            self.buttonConstraint.constant = 0;
+            if ([self.detailTextView isFirstResponder] && isDrop) {
+                self.heightContraint.constant = orgHeight;
+                isDrop = NO;
+            }
             
             [UIView animateWithDuration:dure animations:^{
-                [self.viewControl layoutIfNeeded];
-            }];
-        }];
-        
-//        http请求
-//        翻译
-        [[self.transBtn rac_signalForControlEvents:UIControlEventTouchDown] subscribeNext:^(id x) {
-            
-            [[ACNetWorkManager shareManager] youdaoTranslaterStr:self.inputTextField.text thatResult:^(RACTuple *resData) {
-                RACTupleUnpack(NSHTTPURLResponse *response,NSData *data) = resData;
-                
-                NSString *content = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                //                        状态码
-                NSLog(@"%ld",(long)response.statusCode);
-                
-                NSLog(@"%@",content);
-                
-                NSDictionary *initDic = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-                
-                NSString *transStr = initDic[@"translation"][0];
-                
-                [[RACScheduler mainThreadScheduler] afterDelay:0.5 schedule:^{
-                    [self.transTextField setText:transStr];
-                }];
+                [self.viewController.view layoutIfNeeded];
             }];
         }];
         
 //        发送
         [[self.sendBtn rac_signalForControlEvents:UIControlEventTouchDown] subscribeNext:^(id x) {
-            [self returnKeyboard];
             
-            [[ACNetWorkManager shareManager] postMsgStr:[NSString stringWithFormat:@"%@:%@",self.nameTextField.text,self.transTextField.text] thatResult:^(RACTuple *resData) {
-                RACTupleUnpack(NSHTTPURLResponse *response,NSData *data) = resData;
+            [self returnKeyboard];
+            [self.nameTextField endEditing:YES];
+            [self.detailTextView endEditing:YES];
+            
+            if ([self.nameTextField.text isEqualToString:@""] || [self.detailTextView.text isEqualToString:@""]) {
+                [UIAlertController showAlertInViewController:self.viewController withTitle:@"通知" message:@"请将信息补充完整" cancelButtonTitle:@"OK" destructiveButtonTitle:nil otherButtonTitles:nil tapBlock:nil];
+            }else{
                 
-                if (response.statusCode == 200) {
+                if ([[ACTranslateManager shareManager] isChineseInString:self.nameTextField.text] || [[ACTranslateManager shareManager] isChineseInString:self.detailTextView.text]) {
                     
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        
-                        [UIAlertController showAlertInViewController:self.viewController withTitle:@"通知" message:@"发送成功" cancelButtonTitle:@"OK" destructiveButtonTitle:nil otherButtonTitles:nil tapBlock:nil];
-                        
-                    });
-                    
+                    [[RACScheduler mainThreadScheduler] afterDelay:1.0 schedule:^{
+                         [[ACNetWorkManager shareManager] postMsgStr:[NSString stringWithFormat:@"%@:%@",self.nameTextField.text,self.detailTextView.text] thatResult:^(RACTuple *resData) {
+                            RACTupleUnpack(NSHTTPURLResponse *response,NSData *data) = resData;
+                            
+                            if (response.statusCode == 200) {
+                                
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    
+                                    [UIAlertController showAlertInViewController:self.viewController withTitle:@"通知" message:@"发送成功" cancelButtonTitle:@"OK" destructiveButtonTitle:nil otherButtonTitles:nil tapBlock:nil];
+                                    
+                                });
+                                
+                            }
+                        }];
+                    }];
                 }
-            }];
+            }
         }];
         
             return [RACSignal empty];
@@ -131,9 +118,33 @@
 
 - (void)returnKeyboard
 {
-    [self.inputTextField resignFirstResponder];
-    [self.transTextField resignFirstResponder];
     [self.nameTextField resignFirstResponder];
+    [self.detailTextView resignFirstResponder];
+}
+
+#pragma mark - delegateMethod
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    NSString *orgStr = textField.text;
+    if ([[ACTranslateManager shareManager] isChineseInString:orgStr]) {
+        [[ACTranslateManager shareManager] translateWithOrgString:orgStr withResult:^(NSString *resStr) {
+            [[RACScheduler mainThreadScheduler] afterDelay:0.5 schedule:^{
+                textField.text = resStr;
+            }];
+        }];
+    }
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    NSString *orgStr = textView.text;
+    if ([[ACTranslateManager shareManager] isChineseInString:orgStr]) {
+        [[ACTranslateManager shareManager] translateWithOrgString:orgStr withResult:^(NSString *resStr) {
+            [[RACScheduler mainThreadScheduler] afterDelay:0.5 schedule:^{
+                textView.text = resStr;
+            }];
+        }];
+    }
 }
 
 @end

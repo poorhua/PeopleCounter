@@ -13,16 +13,12 @@
 #define SCROLLWIDTH self.scrollView.bounds.size.width
 
 @interface InformViewController ()
-
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonConstraint;
-@property (weak, nonatomic) IBOutlet UIStackView *stackView;
-@property (weak, nonatomic) IBOutlet UIControl *viewControl;
-@property (weak, nonatomic) IBOutlet UITextView *inputTextField;
-@property (weak, nonatomic) IBOutlet UITextView *transTextField;
-@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
-@property (weak, nonatomic) IBOutlet UIButton *transBtn;
-@property (weak, nonatomic) IBOutlet UIButton *sendBtn;
 @property (nonatomic, readwrite, strong) InformViewModel *informVM;
+
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
+@property (weak, nonatomic) IBOutlet UITextView *detailTextView;
+@property (weak, nonatomic) IBOutlet UIButton *sendBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *heightContraint;
 
 @end
 
@@ -47,14 +43,11 @@
     label.textColor = [UIColor orangeColor];
     self.navigationItem.titleView = label;
     
-    self.informVM.buttonConstraint = self.buttonConstraint;
-    self.informVM.stackView = self.stackView;
-    self.informVM.inputTextField = self.inputTextField;
-    self.informVM.transTextField = self.transTextField;
     self.informVM.nameTextField = self.nameTextField;
-    self.informVM.transBtn = self.transBtn;
+    self.informVM.detailTextView = self.detailTextView;
+    self.informVM.heightContraint = self.heightContraint;
     self.informVM.sendBtn = self.sendBtn;
-    self.informVM.viewControl = self.viewControl;
+    
     self.informVM.viewController = self;
 
     

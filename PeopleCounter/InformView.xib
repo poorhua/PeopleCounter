@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InformViewController">
+            <connections>
+                <outlet property="detailTextView" destination="wmk-Wn-QRi" id="5xV-en-Vm3"/>
+                <outlet property="heightContraint" destination="RoU-7K-F3J" id="Xuk-Gb-ow1"/>
+                <outlet property="nameTextField" destination="Jps-aP-l2c" id="Uis-hH-sWJ"/>
+                <outlet property="sendBtn" destination="YAC-b4-cbk" id="E3w-wf-bZK"/>
+                <outlet property="view" destination="iN0-l3-epB" id="m6A-Vn-SYN"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rZK-fq-JN4">
+                    <rect key="frame" x="8" y="72" width="52" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="内容：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHc-nj-OcV">
+                    <rect key="frame" x="8" y="101" width="52" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jps-aP-l2c">
+                    <rect key="frame" x="68" y="69" width="338" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wmk-Wn-QRi">
+                    <rect key="frame" x="8" y="130" width="398" height="490"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="490" id="RoU-7K-F3J"/>
+                    </constraints>
+                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                    <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YAC-b4-cbk">
+                    <rect key="frame" x="8" y="628" width="31" height="30"/>
+                    <state key="normal" title="发送">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="Jps-aP-l2c" firstAttribute="leading" secondItem="rZK-fq-JN4" secondAttribute="trailing" constant="8" id="3vE-Dd-2uU"/>
+                <constraint firstItem="Jps-aP-l2c" firstAttribute="baseline" secondItem="rZK-fq-JN4" secondAttribute="baseline" id="AO9-A0-z6e"/>
+                <constraint firstAttribute="trailing" secondItem="Jps-aP-l2c" secondAttribute="trailing" constant="8" id="Djh-2A-yqX"/>
+                <constraint firstItem="wmk-Wn-QRi" firstAttribute="top" secondItem="RHc-nj-OcV" secondAttribute="bottom" constant="8" id="Hif-8g-kb9"/>
+                <constraint firstItem="YAC-b4-cbk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="Jom-M7-04Y"/>
+                <constraint firstItem="RHc-nj-OcV" firstAttribute="top" secondItem="rZK-fq-JN4" secondAttribute="bottom" constant="8" id="Vbh-SU-fde"/>
+                <constraint firstAttribute="trailing" secondItem="wmk-Wn-QRi" secondAttribute="trailing" constant="8" id="Wa0-zR-MIZ"/>
+                <constraint firstItem="rZK-fq-JN4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="hMz-tH-czT"/>
+                <constraint firstItem="wmk-Wn-QRi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="iCa-nG-yPD"/>
+                <constraint firstItem="YAC-b4-cbk" firstAttribute="top" secondItem="wmk-Wn-QRi" secondAttribute="bottom" constant="8" id="jdn-xZ-GD1"/>
+                <constraint firstItem="rZK-fq-JN4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="72" id="kt9-zG-Fqa"/>
+                <constraint firstItem="RHc-nj-OcV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="qOI-yN-y3L"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

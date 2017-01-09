@@ -10,7 +10,6 @@
 		22BF72E1732D71599DDA4D89 /* Pods_PeopleCounter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81D99682DF08CC26552386AC /* Pods_PeopleCounter.framework */; };
 		54097DF11D1782BC0047ED36 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 54097DF01D1782BC0047ED36 /* main.m */; };
 		54097DF41D1782BC0047ED36 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 54097DF31D1782BC0047ED36 /* AppDelegate.m */; };
-		54097DFA1D1782BC0047ED36 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54097DF81D1782BC0047ED36 /* Main.storyboard */; };
 		54097DFC1D1782BC0047ED36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54097DFB1D1782BC0047ED36 /* Assets.xcassets */; };
 		54097DFF1D1782BC0047ED36 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54097DFD1D1782BC0047ED36 /* LaunchScreen.storyboard */; };
 		54097E111D180C5D0047ED36 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54097E101D180C5D0047ED36 /* ImageViewController.m */; };
@@ -32,6 +31,8 @@
 		5428872E1D69568A00557784 /* ACAlbumViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5428872C1D69568A00557784 /* ACAlbumViewController.xib */; };
 		542887331D69707500557784 /* ACPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 542887311D69707500557784 /* ACPhotoViewController.m */; };
 		542887341D69707500557784 /* ACPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 542887321D69707500557784 /* ACPhotoViewController.xib */; };
+		542B71861E23424200DDAE3E /* ACTranslateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 542B71851E23424200DDAE3E /* ACTranslateManager.m */; };
+		542B71881E23675700DDAE3E /* InformView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 542B71871E23675700DDAE3E /* InformView.xib */; };
 		544C44741D2E8B6B00A638C5 /* UIImage+Bitmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 544C44731D2E8B6B00A638C5 /* UIImage+Bitmap.m */; };
 		54832B6D1D21498800192ECB /* PlotViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 54832B6C1D21498800192ECB /* PlotViewModel.m */; };
 		54832B8E1D23F71800192ECB /* InformViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54832B8D1D23F71800192ECB /* InformViewController.m */; };
@@ -49,7 +50,6 @@
 		54097DF01D1782BC0047ED36 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		54097DF21D1782BC0047ED36 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		54097DF31D1782BC0047ED36 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		54097DF91D1782BC0047ED36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		54097DFB1D1782BC0047ED36 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		54097DFE1D1782BC0047ED36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		54097E001D1782BC0047ED36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -84,6 +84,9 @@
 		542887301D69707500557784 /* ACPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACPhotoViewController.h; sourceTree = "<group>"; };
 		542887311D69707500557784 /* ACPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACPhotoViewController.m; sourceTree = "<group>"; };
 		542887321D69707500557784 /* ACPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ACPhotoViewController.xib; sourceTree = "<group>"; };
+		542B71841E23424200DDAE3E /* ACTranslateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACTranslateManager.h; sourceTree = "<group>"; };
+		542B71851E23424200DDAE3E /* ACTranslateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACTranslateManager.m; sourceTree = "<group>"; };
+		542B71871E23675700DDAE3E /* InformView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InformView.xib; sourceTree = "<group>"; };
 		544C44721D2E8B6B00A638C5 /* UIImage+Bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Bitmap.h"; sourceTree = "<group>"; };
 		544C44731D2E8B6B00A638C5 /* UIImage+Bitmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Bitmap.m"; sourceTree = "<group>"; };
 		54832B6B1D21498800192ECB /* PlotViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlotViewModel.h; sourceTree = "<group>"; };
@@ -144,17 +147,12 @@
 			children = (
 				54097DF21D1782BC0047ED36 /* AppDelegate.h */,
 				54097DF31D1782BC0047ED36 /* AppDelegate.m */,
-				54ABDEE61D1831EF00D2F93D /* GlobalHeader.h */,
-				544C44721D2E8B6B00A638C5 /* UIImage+Bitmap.h */,
-				544C44731D2E8B6B00A638C5 /* UIImage+Bitmap.m */,
-				54EB43DB1E1370FA00AA25C8 /* ACNetWorkManager.h */,
-				54EB43DC1E1370FA00AA25C8 /* ACNetWorkManager.m */,
+				54699C3B1E1B98FB008B6D71 /* Tools */,
 				5428872F1D69569200557784 /* PhotoVc */,
 				542886CE1D66CF2C00557784 /* ImageVc */,
 				542886CB1D66CEFB00557784 /* InformVc */,
 				542886C81D66CE4900557784 /* PlotVc */,
 				542886C41D66CD8B00557784 /* MainVc */,
-				54097DF81D1782BC0047ED36 /* Main.storyboard */,
 				54097DFB1D1782BC0047ED36 /* Assets.xcassets */,
 				54097DFD1D1782BC0047ED36 /* LaunchScreen.storyboard */,
 				54097E001D1782BC0047ED36 /* Info.plist */,
@@ -283,6 +281,7 @@
 			children = (
 				54832B8C1D23F71800192ECB /* InformViewController.h */,
 				54832B8D1D23F71800192ECB /* InformViewController.m */,
+				542B71871E23675700DDAE3E /* InformView.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -316,6 +315,20 @@
 				542887321D69707500557784 /* ACPhotoViewController.xib */,
 			);
 			name = PhotoVc;
+			sourceTree = "<group>";
+		};
+		54699C3B1E1B98FB008B6D71 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				54ABDEE61D1831EF00D2F93D /* GlobalHeader.h */,
+				544C44721D2E8B6B00A638C5 /* UIImage+Bitmap.h */,
+				544C44731D2E8B6B00A638C5 /* UIImage+Bitmap.m */,
+				54EB43DB1E1370FA00AA25C8 /* ACNetWorkManager.h */,
+				54EB43DC1E1370FA00AA25C8 /* ACNetWorkManager.m */,
+				542B71841E23424200DDAE3E /* ACTranslateManager.h */,
+				542B71851E23424200DDAE3E /* ACTranslateManager.m */,
+			);
+			name = Tools;
 			sourceTree = "<group>";
 		};
 		54ABDEE11D18214200D2F93D /* Model */ = {
@@ -429,9 +442,9 @@
 				54097DFF1D1782BC0047ED36 /* LaunchScreen.storyboard in Resources */,
 				54097DFC1D1782BC0047ED36 /* Assets.xcassets in Resources */,
 				542222B41D5620330063AAD1 /* ACButtonView.xib in Resources */,
-				54097DFA1D1782BC0047ED36 /* Main.storyboard in Resources */,
 				542222AF1D561AB50063AAD1 /* ACMainView.xib in Resources */,
 				542222C91D56E38A0063AAD1 /* PlotViewController.xib in Resources */,
+				542B71881E23675700DDAE3E /* InformView.xib in Resources */,
 				542887341D69707500557784 /* ACPhotoViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -511,6 +524,7 @@
 				54EB43DD1E1370FA00AA25C8 /* ACNetWorkManager.m in Sources */,
 				54EB43E01E1938B800AA25C8 /* ACDevModel.m in Sources */,
 				542222B21D5620220063AAD1 /* ACButtonView.m in Sources */,
+				542B71861E23424200DDAE3E /* ACTranslateManager.m in Sources */,
 				54832B8E1D23F71800192ECB /* InformViewController.m in Sources */,
 				542222CC1D57045F0063AAD1 /* PlotDatas.m in Sources */,
 				542222C81D56E38A0063AAD1 /* PlotViewController.m in Sources */,
@@ -520,14 +534,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		54097DF81D1782BC0047ED36 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				54097DF91D1782BC0047ED36 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		54097DFD1D1782BC0047ED36 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
