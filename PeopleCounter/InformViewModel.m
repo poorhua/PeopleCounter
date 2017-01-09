@@ -34,8 +34,8 @@
         [self.viewController.view addGestureRecognizer:tap];
         
         //输入框的事件绑定
-        if (self.viewController.view.bounds.size.width != 414) {
-            self.heightContraint.constant = 360;
+        if ([UIScreen mainScreen].bounds.size.width != 414) {
+            self.heightContraint.constant = 350;
         }
         
         self.nameTextField.text = @"";
@@ -90,11 +90,9 @@
             if ([self.nameTextField.text isEqualToString:@""] || [self.detailTextView.text isEqualToString:@""]) {
                 [UIAlertController showAlertInViewController:self.viewController withTitle:@"通知" message:@"请将信息补充完整" cancelButtonTitle:@"OK" destructiveButtonTitle:nil otherButtonTitles:nil tapBlock:nil];
             }else{
-                
-                if ([[ACTranslateManager shareManager] isChineseInString:self.nameTextField.text] || [[ACTranslateManager shareManager] isChineseInString:self.detailTextView.text]) {
-                    
-                    [[RACScheduler mainThreadScheduler] afterDelay:1.0 schedule:^{
-                         [[ACNetWorkManager shareManager] postMsgStr:[NSString stringWithFormat:@"%@:%@",self.nameTextField.text,self.detailTextView.text] thatResult:^(RACTuple *resData) {
+                [[RACScheduler mainThreadScheduler] afterDelay:1.0 schedule:^{
+                    if (![[ACTranslateManager shareManager] isChineseInString:self.nameTextField.text] && ![[ACTranslateManager shareManager] isChineseInString:self.detailTextView.text]) {
+                        [[ACNetWorkManager shareManager] postMsgStr:[NSString stringWithFormat:@"%@:%@",self.nameTextField.text,self.detailTextView.text] thatResult:^(RACTuple *resData) {
                             RACTupleUnpack(NSHTTPURLResponse *response,NSData *data) = resData;
                             
                             if (response.statusCode == 200) {
@@ -107,8 +105,8 @@
                                 
                             }
                         }];
-                    }];
-                }
+                    }
+                }];
             }
         }];
         
