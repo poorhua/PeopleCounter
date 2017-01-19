@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ `ACPhotoViewController` 图片浏览
+ */
 @interface ACPhotoViewController : UIViewController<UIScrollViewDelegate>
 
+/**
+ 要浏览的image
+ */
 @property (nonatomic, readwrite, strong) UIImage *img;
 
 @end

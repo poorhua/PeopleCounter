@@ -16,7 +16,7 @@
 
 #import "MJExtension.h"
 
-#define TRUEDATE
+//#define TRUEDATE
 #define PADDINGLENTH 2
 /*
 #define APIKEY @"BMoXY9INkS=l0Iiow=Zo4bqjqLE= "

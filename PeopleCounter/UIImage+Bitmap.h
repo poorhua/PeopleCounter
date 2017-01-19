@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ `UIImage (Bitmap)` 分类，图形变换的的分类
+ */
 @interface UIImage (Bitmap)
 
 //// 对指定UI控件进行截图

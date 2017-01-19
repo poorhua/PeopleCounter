@@ -36,7 +36,7 @@
         
         RACSignal *requestSig = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
             
-            [[ACNetWorkManager shareManager] getUrlStr:uuidUrl thatResult:^(RACTuple *resData) {
+            [[ACNetWorkManager shareManager] getWithUrlStr:uuidUrl thatResult:^(RACTuple *resData) {
                 RACTupleUnpack(NSHTTPURLResponse *response,NSData *data) = resData;
                 
                 NSString *content = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];

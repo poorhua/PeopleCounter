@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ `ACAlbumViewController` 相册
+ */
 @interface ACAlbumViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @end

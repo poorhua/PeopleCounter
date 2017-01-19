@@ -41,7 +41,7 @@ CGFloat currentScale;
             NSData *imgData = [NSData dataWithContentsOfFile:filePath];
             if (imgData == nil) {
                 
-                [[ACNetWorkManager shareManager] getPicUuidStr:self.uuid thatResult:^(RACTuple *resData) {
+                [[ACNetWorkManager shareManager] getPicWithUuidStr:self.uuid thatResult:^(RACTuple *resData) {
                     RACTupleUnpack(NSHTTPURLResponse *response,NSData *data) = resData;
                     
                     [data writeToFile:filePath atomically:YES];
@@ -133,7 +133,7 @@ CGFloat currentScale;
 {
     CGSize scrollSize = self.scrollView.bounds.size;
     CGSize imgSize = self.imgView.bounds.size;
-    CGFloat verticleSpace = scrollSize.height > imgSize.height ? (scrollSize.height - imgSize.height)/2.0 : 0.0;
+//    CGFloat verticleSpace = scrollSize.height > imgSize.height ? (scrollSize.height - imgSize.height)/2.0 : 0.0;
     CGFloat horizenSpace = scrollSize.width > imgSize.width ? (scrollSize.width - imgSize.width)/2.0 : 0.0;
     self.scrollView.contentInset = UIEdgeInsetsMake(0, horizenSpace, 0, horizenSpace);
 }

@@ -10,6 +10,9 @@
 #import "GlobalHeader.h"
 #import <UIKit/UIKit.h>
 
+/**
+ `ImageViewModel` 图片加载viewmodel
+ */
 @interface ImageViewModel : NSObject<UIScrollViewDelegate>
 
 @property (nonatomic, readwrite, strong, nonnull) RACCommand *imageLoadCommand;

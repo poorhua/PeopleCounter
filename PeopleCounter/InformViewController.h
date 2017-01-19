@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ `InformViewController` 通知发送视图控制器
+ */
 @interface InformViewController : UIViewController
 
 @end

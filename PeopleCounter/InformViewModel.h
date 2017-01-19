@@ -10,6 +10,9 @@
 #import <UIKit/UIKit.h>
 #import "GlobalHeader.h"
 
+/**
+ `InformViewModel` 通知发送试图的Viewmodel
+ */
 @interface InformViewModel : NSObject
 @property (nonatomic, readwrite, strong, nonnull) RACCommand *informCommand;
 @property (nonatomic, readwrite, weak) UIViewController *viewController;

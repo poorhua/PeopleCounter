@@ -9,8 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "GlobalHeader.h"
 
+/**
+ `ImageViewController` 图片加载的视图控制器，下载图片
+ */
 @interface ImageViewController : UIViewController
 
+/**
+ 所获取的图片
+ 
+ @param str 图片的uuid
+ 
+ */
 - (void)setUuid:(NSString *)str;
 
 @end

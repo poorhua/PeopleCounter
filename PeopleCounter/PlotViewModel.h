@@ -11,7 +11,7 @@
 
 @class PlotDatas;
 
-@interface PlotViewModel : NSObject<CPTAxisDelegate, CPTPlotDataSource>
+@interface PlotViewModel : NSObject<CPTAxisDelegate, CPTPlotDataSource, CALayerDelegate>
 
 - (CPTXYGraph *)createGraphWith:(NSMutableArray<PlotDatas *> *)array inStyle:(ACSeekType)style;
 

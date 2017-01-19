@@ -92,7 +92,7 @@
             }else{
                 [[RACScheduler mainThreadScheduler] afterDelay:1.0 schedule:^{
                     if (![[ACTranslateManager shareManager] isChineseInString:self.nameTextField.text] && ![[ACTranslateManager shareManager] isChineseInString:self.detailTextView.text]) {
-                        [[ACNetWorkManager shareManager] postMsgStr:[NSString stringWithFormat:@"%@:%@",self.nameTextField.text,self.detailTextView.text] thatResult:^(RACTuple *resData) {
+                        [[ACNetWorkManager shareManager] postWithMsgStr:[NSString stringWithFormat:@"%@:%@",self.nameTextField.text,self.detailTextView.text] thatResult:^(RACTuple *resData) {
                             RACTupleUnpack(NSHTTPURLResponse *response,NSData *data) = resData;
                             
                             if (response.statusCode == 200) {

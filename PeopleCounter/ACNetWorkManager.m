@@ -9,6 +9,12 @@
 #import "ACNetWorkManager.h"
 
 @implementation ACNetWorkManager
+
+typedef NS_ENUM(NSInteger, MothodType) {
+    POST = 0,//POST
+    GET = 1,//GET
+};
+
 static ACNetWorkManager *instance = nil;
 
 + (instancetype)shareManager
@@ -19,16 +25,13 @@ static ACNetWorkManager *instance = nil;
     return instance;
 }
 
-- (void)postMsgStr:(NSString *)msgStr thatResult:(resultBlock)resData
+- (void)postWithMsgStr:(NSString *)msgStr thatResult:(resultBlock)resData
 {
     NSString *str = [NSString stringWithFormat:@"http://api.heclouds.com/devices/3124697/datapoints"];
     NSLog(@"%@",str);
     str = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
     NSURL *url = [NSURL URLWithString:str];
     NSLog(@"%@",url);
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:apiKey forHTTPHeaderField:@"api-key"];
     
     NSDate *now = [NSDate date];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -52,28 +55,23 @@ static ACNetWorkManager *instance = nil;
     NSString *content = [[NSString alloc] initWithData:reqData encoding:NSUTF8StringEncoding];
     NSLog(@"%@",content);
     
-    [request setHTTPBody:reqData];
+    NSDictionary *dic = @{ @"api-key":apiKey };
     
-    [[NSURLConnection rac_sendAsynchronousRequest:request] subscribeNext:^(RACTuple* x) {
-        resData(x);
-    }];
+    [self postWithUrl:url withValue:dic withHttpBody:reqData result:resData];
 }
 
-- (void)getPicUuidStr:(NSString *)uuidStr thatResult:(resultBlock)resData
+- (void)getPicWithUuidStr:(NSString *)uuidStr thatResult:(resultBlock)resData
 {
     NSString *str = [NSString stringWithFormat:@"http://api.heclouds.com/bindata/%@",uuidStr];
     str = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
     NSURL *url = [NSURL URLWithString:str];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20];
-    [request setHTTPMethod:@"GET"];
-    [request setValue:apiKey forHTTPHeaderField:@"api-key"];
     
-    [[NSURLConnection rac_sendAsynchronousRequest:request] subscribeNext:^(RACTuple* x) {
-        resData(x);
-    }];
+    NSDictionary *dic = @{ @"api-key":apiKey };
+    
+    [self getWithUrl:url withValue:dic result:resData];
 }
 
-- (void)getUrlStr:(NSString *)urlStr thatResult:(resultBlock)resData
+- (void)getWithUrlStr:(NSString *)urlStr thatResult:(resultBlock)resData
 {
 #ifdef TRUEDATE
     NSDate *now = [NSDate date];
@@ -114,23 +112,49 @@ static ACNetWorkManager *instance = nil;
     str = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
     
     NSURL *url = [NSURL URLWithString:str];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20];
+
+    NSDictionary *dic = @{ @"api-key":apiKey };
     
-    [request setHTTPMethod:@"GET"];
-    [request setValue:apiKey forHTTPHeaderField:@"api-key"];
-    
-    [[NSURLConnection rac_sendAsynchronousRequest:request] subscribeNext:^(RACTuple* x) {
-        resData(x);
-    }];
+    [self getWithUrl:url withValue:dic result:resData];
 }
 
-- (void)youdaoTranslaterStr:(NSString *)contentStr thatResult:(resultBlock)resData
+- (void)youdaoTranslaterWithStr:(NSString *)contentStr thatResult:(resultBlock)resData
 {
     NSString *str = [NSString stringWithFormat:@"http://fanyi.youdao.com/openapi.do?keyfrom=RaspiTranslater&key=31594945&type=data&doctype=json&version=1.1&q=%@",contentStr];
     str = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
     NSURL *url = [NSURL URLWithString:str];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20];
-    [request setHTTPMethod:@"GET"];
+    
+    [self getWithUrl:url withValue:[NSDictionary dictionary] result:resData];
+}
+
+#pragma mark - 核心方法
+- (void)postWithUrl:(NSURL *)aUrl withValue:(NSDictionary *)aDic withHttpBody:(NSData *)aData result:(resultBlock)resData {
+    [self requestUrl:aUrl type:POST withValue:aDic withHttpBody:aData result:resData];
+}
+
+- (void)getWithUrl:(NSURL *)aUrl withValue:(NSDictionary *)aDic result:(resultBlock)resData {
+    [self requestUrl:aUrl type:GET withValue:aDic withHttpBody:[NSData data] result:resData];
+}
+
+- (void)requestUrl:(NSURL *)aUrl
+              type:(MothodType)type
+         withValue:(NSDictionary *)aDic
+     withHttpBody:(NSData *)aData
+           result:(resultBlock)resData{
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:aUrl cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20];
+    
+    if (type == POST) {
+        [request setHTTPMethod:@"POST"];
+        if ([aDic count] != 0) {
+            [request setValue:aDic[aDic.allKeys[0]] forHTTPHeaderField:aDic.allKeys[0]];
+        }
+        [request setHTTPBody:aData];
+    }else{
+        [request setHTTPMethod:@"GET"];
+        if ([aDic count] != 0) {
+            [request setValue:aDic[aDic.allKeys[0]] forHTTPHeaderField:aDic.allKeys[0]];
+        }
+    }
     
     [[NSURLConnection rac_sendAsynchronousRequest:request] subscribeNext:^(RACTuple* x) {
         resData(x);

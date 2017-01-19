@@ -21,7 +21,7 @@ static ACTranslateManager *instance = nil;
     return instance;
 }
 
-- (BOOL)isChineseInString:(NSString *) orgStr
+- (BOOL)isChineseInString:(NSString *)orgStr
 {
 //    NSUInteger hanCount = 0;
 //    NSUInteger yinCount = 0;
@@ -42,9 +42,9 @@ static ACTranslateManager *instance = nil;
     return NO;
 }
 
-- (void)translateWithOrgString:(NSString *) orgStr withResult:(translateBlock) resStr
+- (void)translateWithOrgString:(NSString *)orgStr withResult:(translateBlock)resStr
 {
-    [[ACNetWorkManager shareManager] youdaoTranslaterStr:orgStr thatResult:^(RACTuple *resData) {
+    [[ACNetWorkManager shareManager] youdaoTranslaterWithStr:orgStr thatResult:^(RACTuple *resData) {
         RACTupleUnpack(NSHTTPURLResponse *response,NSData *data) = resData;
         
         NSString *content = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];

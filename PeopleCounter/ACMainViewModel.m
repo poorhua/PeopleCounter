@@ -183,7 +183,7 @@
 //点击一下案件下载一次数据
 - (void)loadDatas
 {
-    [[ACNetWorkManager shareManager] getUrlStr:enviromentUrl thatResult:^(RACTuple *resData) {
+    [[ACNetWorkManager shareManager] getWithUrlStr:enviromentUrl thatResult:^(RACTuple *resData) {
         RACTupleUnpack(NSHTTPURLResponse *response,NSData *data) = resData;
         
         NSString *content = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
