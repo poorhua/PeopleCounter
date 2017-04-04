@@ -11,10 +11,8 @@
 #import "ACNetWorkManager.h"
 
 @interface ImageViewModel()
-
 @property(nonatomic,strong) UIImage *image;
 @property(nonatomic,strong) UIImageView *imgView;
-//@property(nonatomic,assign) CGFloat lastScale;
 @end
 
 @implementation ImageViewModel
@@ -34,41 +32,73 @@ CGFloat currentScale;
     self.imageLoadCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         
         RACSignal *requestSig = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            //内存缓存 - 本地缓存 - 网络获取
+            //set up cache
+            static NSCache *cache = nil;
+            if (!cache) {
+                cache = [[NSCache alloc] init];
+            }
+            //if already cached, return immediately
+            UIImage *image = [cache objectForKey:self.uuid];
             
-            NSString *filePath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
-            filePath = [filePath stringByAppendingPathComponent:self.uuid];
-            
-            NSData *imgData = [NSData dataWithContentsOfFile:filePath];
-            if (imgData == nil) {
-                
-                [[ACNetWorkManager shareManager] getPicWithUuidStr:self.uuid thatResult:^(RACTuple *resData) {
-                    RACTupleUnpack(NSHTTPURLResponse *response,NSData *data) = resData;
-                    
-                    [data writeToFile:filePath atomically:YES];
-                    
-                    self.image = [UIImage imageWithData:data];
-                    
-                    dispatch_sync(dispatch_get_main_queue(), ^{
-                        self.imgView.image = self.image;
-                        [subscriber sendNext:self.image];
-                        [subscriber sendCompleted];
-                    });
-                }];
-            }else{
-                self.image = [UIImage imageWithData:imgData];
+            if (image) {
+                self.image = image;
                 [subscriber sendNext:self.image];
                 [subscriber sendCompleted];
+                
+                return nil;
             }
-           
-//            [subscriber sendNext:_image];
-//            [subscriber sendCompleted];
             
+            //set placeholder to avoid reloading image multiple times
+            [cache setObject:[NSNull null] forKey:self.uuid];
+            //switch to background thread
+            //load image
+            NSString *filePath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
+            filePath = [filePath stringByAppendingPathComponent:self.uuid];
+            __block NSData *imgData = [NSData dataWithContentsOfFile:filePath];
+            
+            void(^loadImageData)(NSData *) = ^(NSData *imgData) {
+                UIImage *image = [UIImage imageWithData:imgData];
+                [cache setObject:image forKey:self.uuid];
+
+                //redraw image using device context
+                UIGraphicsBeginImageContextWithOptions(image.size, YES, 0);
+                [image drawAtPoint:CGPointZero];
+                image = UIGraphicsGetImageFromCurrentImageContext();
+                UIGraphicsEndImageContext();
+                //set image for correct image view
+                dispatch_async(dispatch_get_main_queue(), ^{ //cache the image
+                    //display the image
+                    self.image = image;
+                    
+                    UIImage *transImg = [cache objectForKey:self.uuid];
+                    [subscriber sendNext:transImg];
+                    [subscriber sendCompleted];
+                });
+            };
+            
+            if (!imgData) {
+                [[ACNetWorkManager shareManager] getPicWithUuidStr:self.uuid thatResult:^(RACTuple *resData) {
+                    RACTupleUnpack(NSHTTPURLResponse *response,NSData *data) = resData;
+                    [data writeToFile:filePath atomically:YES];
+                    loadImageData(data);
+                }];
+            }else{
+                dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                    loadImageData(imgData);
+                });
+            }
+
             return nil;
         }];
         
         return requestSig;
     }];
     
+    [self loadProcess];
+}
+
+- (void)loadProcess{
     [[self.imageLoadCommand.executing skip:1] subscribeNext:^(id x) {
         
         if ([x boolValue] == YES) {
@@ -82,7 +112,6 @@ CGFloat currentScale;
             
             //设置图片显示，Scrollview的代理
             self.imgView = [[UIImageView alloc] initWithImage:self.image];
-            [self.imgView setContentMode:UIViewContentModeScaleAspectFit];
             
             [self.scrollView addSubview:self.imgView];
             self.scrollView.delegate = self;
@@ -104,36 +133,13 @@ CGFloat currentScale;
     }];
 }
 
-- (UIImage *)transImage:(UIImage *)image//图片转换成小图
-{
-    //CGSize origImageSize = image.size;
-    CGRect newRect = CGRectMake(0, 0,[UIScreen mainScreen].bounds.size.width,image.size.height * ([UIScreen mainScreen].bounds.size.width / image.size.width));
-    
-    //    得到的图片尺寸
-    
-    //float ratio = MAX(newRect.size.width / origImageSize.width, newRect.size.height / origImageSize.height);
-    
-    UIGraphicsBeginImageContextWithOptions(newRect.size, NO, 0.0);//根据当前设备屏幕的scaling factor创建透明的位图上下文
-    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:newRect cornerRadius:8.0];
-    
-    [path addClip];
-    CGRect projectRect;
-    projectRect.size = newRect.size;
-    projectRect.origin.x = (newRect.size.width - projectRect.size.width) / 2.0;
-    projectRect.origin.y = (newRect.size.height - projectRect.size.height) / 2.0;
-    
-    [image drawInRect:projectRect];
-    UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
-    return smallImage;
-}
-
 #pragma mark - UIScrollViewDelegate
 
 - (void)rectangleImgView
 {
     CGSize scrollSize = self.scrollView.bounds.size;
     CGSize imgSize = self.imgView.bounds.size;
-//    CGFloat verticleSpace = scrollSize.height > imgSize.height ? (scrollSize.height - imgSize.height)/2.0 : 0.0;
+
     CGFloat horizenSpace = scrollSize.width > imgSize.width ? (scrollSize.width - imgSize.width)/2.0 : 0.0;
     self.scrollView.contentInset = UIEdgeInsetsMake(0, horizenSpace, 0, horizenSpace);
 }

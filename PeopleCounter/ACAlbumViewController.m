@@ -82,7 +82,7 @@
     imgView.frame = CGRectMake(0, 0, ITEM_WID, 100);
     imgView.clipsToBounds = YES;
     
-    [cell addSubview:imgView];
+    [cell.contentView addSubview:imgView];
     
     return cell;
 }
@@ -109,9 +109,6 @@
 {
     NSLog(@"complete!!");
 }
-
-// support for custom transition layout
-//- (nonnull UICollectionViewTransitionLayout *)collectionView:(UICollectionView *)collectionView transitionLayoutForOldLayout:(UICollectionViewLayout *)fromLayout newLayout:(UICollectionViewLayout *)toLayout;
 
 #pragma mark - UICollectionViewFlowrLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath

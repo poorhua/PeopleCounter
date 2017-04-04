@@ -26,18 +26,6 @@
     
     [self.scrollView addSubview:self.imgView];
     self.scrollView.delegate =self;
-    
-    CGFloat imgWid = self.img.size.width;
-    CGFloat imgHei = self.img.size.height;
-    CGFloat actrueWid = [UIScreen mainScreen].bounds.size.width;
-    
-    self.scrollView.contentSize = CGSizeMake(actrueWid,imgHei * actrueWid/imgWid);
-    self.scrollView.maximumZoomScale = 2.0;
-    self.scrollView.minimumZoomScale = 1;
-    
-    self.imgView.frame = CGRectMake(0,(self.imgView.bounds.size.height - self.scrollView.bounds.size.height+64)/2.0, actrueWid,imgHei * actrueWid/imgWid);
-    
-    [self rectangleImgView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -48,6 +36,16 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    CGFloat imgWid = self.img.size.width;
+    CGFloat imgHei = self.img.size.height;
+    CGFloat actrueWid = [UIScreen mainScreen].bounds.size.width;
+    
+    self.scrollView.contentSize = CGSizeMake(actrueWid,imgHei * actrueWid/imgWid);
+    self.scrollView.maximumZoomScale = 2.0;
+    self.scrollView.minimumZoomScale = 1;
+    
+    self.imgView.frame = CGRectMake(0,(self.imgView.bounds.size.height - self.scrollView.bounds.size.height+64)/2.0, actrueWid,imgHei * actrueWid/imgWid);
+    [self rectangleImgView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,12 +60,12 @@
 {
     CGSize scrollSize = self.scrollView.bounds.size;
     CGSize imgSize = self.imgView.bounds.size;
-    //CGFloat verticleSpace = scrollSize.height > imgSize.height ? (scrollSize.height - imgSize.height)/2.0 : 0.0;
+    CGFloat verticleSpace = scrollSize.height > imgSize.height ? (scrollSize.height - imgSize.height)/2.0 : 0.0;
     CGFloat horizenSpace = scrollSize.width > imgSize.width ? (scrollSize.width - imgSize.width)/2.0 : 0.0;
-    self.scrollView.contentInset = UIEdgeInsetsMake(0, horizenSpace, 0, horizenSpace);
+    self.scrollView.contentInset = UIEdgeInsetsMake(0, horizenSpace, verticleSpace, horizenSpace);
 }
 
--(void)scrollViewDidZoom:(UIScrollView *)scrollView
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView
 {
     [self rectangleImgView];
 }
